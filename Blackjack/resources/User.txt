@@ -1,0 +1,9 @@
+Anton 67.0
+Angel 265.0
+Benny 75.0
+Budi 130.0
+g 100.0
+Jason 90.0
+Deny 190.0
+l 190.0
+Susi 10.0

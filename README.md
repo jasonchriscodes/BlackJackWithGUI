@@ -1,6 +1,6 @@
-# Program Design and Construction Project (Assesment 2)
+# Program Design and Construction Project
 
-**Version 2.0.0**
+**Version 1.0.0**
 
 Author: Jason Christian
 
