@@ -10,7 +10,9 @@ package File;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,6 +73,37 @@ public final class DBManager {
             } catch (SQLException ex) {
                 Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    public ResultSet myQuery(String sql) {
+
+        Connection connection = this.conn;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public void myUpdate(String sql) {
+
+        Connection connection = this.conn;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
