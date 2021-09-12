@@ -11,6 +11,8 @@ package File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -58,6 +60,16 @@ public final class DBManager {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
 
+            }
+        }
+    }
+
+    public void closeConnections() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
