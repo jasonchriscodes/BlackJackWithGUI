@@ -36,14 +36,13 @@ public final class DBManager {
     private static final String URL = "jdbc:derby:Users;create=true";
     Connection conn;
 
-    public static void main(String[] args) {
-        DBManager dbManager = new DBManager();
-        //You will find: org.apache.derby.client.net.NetConnection40@7fbe847c
-        //That means: Connection conn = new NetConnection();
-        System.out.println(dbManager.getConnection());
-
-    }
-
+//    public static void main(String[] args) {
+//        DBManager dbManager = new DBManager();
+//        //You will find: org.apache.derby.client.net.NetConnection40@7fbe847c
+//        //That means: Connection conn = new NetConnection();
+//        System.out.println(dbManager.getConnection());
+//
+//    }
     public DBManager() {
         establishConnection();
     }
