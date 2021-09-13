@@ -33,16 +33,17 @@ public final class DBManager {
 
     //Embedded database: 
     //You do NOT need to start the javaDB, the database will be created at the root of the project folder
-    private static final String URL = "jdbc:derby:Users;create=true";
+    private static final String URL = "jdbc:derby:PlayersDB;create=true";
     Connection conn;
 
-//    public static void main(String[] args) {
-//        DBManager dbManager = new DBManager();
-//        //You will find: org.apache.derby.client.net.NetConnection40@7fbe847c
-//        //That means: Connection conn = new NetConnection();
-//        System.out.println(dbManager.getConnection());
-//
-//    }
+    public static void main(String[] args) {
+        DBManager dbManager = new DBManager();
+        //You will find: org.apache.derby.client.net.NetConnection40@7fbe847c
+        //That means: Connection conn = new NetConnection();
+        System.out.println(dbManager.getConnection());
+
+    }
+
     public DBManager() {
         establishConnection();
     }
@@ -56,10 +57,10 @@ public final class DBManager {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-                //System.out.println(URL + "   CONNECTED....");
+//                System.out.println(URL + "   CONNECTED....");
 
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
 
             }
         }
