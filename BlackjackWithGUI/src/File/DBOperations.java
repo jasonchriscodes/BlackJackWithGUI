@@ -53,9 +53,7 @@ public class DBOperations {
             statement.executeUpdate(sqlInsert);
 
             //statement.close();
-            System.out.println(
-                    "Table created");
-
+            System.out.println("Table created");
         } catch (SQLException ex) {
             Logger.getLogger(DBOperations.class
                     .getName()).log(Level.SEVERE, null, ex);
