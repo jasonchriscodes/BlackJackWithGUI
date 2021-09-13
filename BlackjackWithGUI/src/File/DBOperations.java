@@ -32,10 +32,11 @@ public class DBOperations {
             // You'd have to specify a different table name for the JPA entity 
             // (usually done via the @Table annotation).
 
-            // delete table
-            // must be used in order to create a new table
-            statement.executeUpdate("drop table " + newTableName);
-
+            if (isTableExistsSQL() == false) {
+                // delete table
+                // must be used in order to create a new table
+                statement.executeUpdate("drop table " + newTableName);
+            }
             String sqlCreate = "create table " + newTableName + " (ID int not null,"
                     + "Name varchar(20), "
                     + "Chip int, PRIMARY KEY (ID))";
@@ -104,6 +105,22 @@ public class DBOperations {
             Logger.getLogger(DBOperations.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public boolean isTableExistsSQL() {
+        return tableExistsSQL;
+    }
+
+    public boolean tableExistsSQL(Connection connection, String tableName) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(*) "
+                + "FROM information_schema.tables "
+                + "WHERE table_name = ?"
+                + "LIMIT 1;");
+        preparedStatement.setString(1, tableName);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getInt(1) != 0;
     }
 
     public static void main(String[] args) {
