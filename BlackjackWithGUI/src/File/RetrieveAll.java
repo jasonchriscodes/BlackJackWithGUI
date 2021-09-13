@@ -31,7 +31,6 @@ public class RetrieveAll {
         ResultSet rs = dbManager.myQuery("select * from Players");
         try {
             while (rs.next()) {
-                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 double gain = rs.getInt("chip");
 
@@ -47,8 +46,8 @@ public class RetrieveAll {
     }
 
     public HumanPlayer getPlayerByName(String name) {
-        HumanPlayer car = new HumanPlayer(name);
-        ResultSet rs = dbManager.myQuery("select * from Car where id=" + name);
+        HumanPlayer human = new HumanPlayer(name);
+        ResultSet rs = dbManager.myQuery("select * from Players where name=" + name);
 
         if (rs == null) {
             return null;
@@ -56,14 +55,14 @@ public class RetrieveAll {
 
         try {
             while (rs.next()) {
-                car.setTotalGain(rs.getDouble("chip"));
+                human.setTotalGain(rs.getDouble("chip"));
             }
 
         } catch (SQLException ex) {
             return null;
         }
 
-        return car;
+        return human;
     }
 
     public static void main(String args[]) {

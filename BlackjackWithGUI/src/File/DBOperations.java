@@ -37,18 +37,17 @@ public class DBOperations {
                 // must be used in order to create a new table
                 statement.executeUpdate("drop table " + newTableName);
             }
-            String sqlCreate = "create table " + newTableName + " (ID int not null,"
-                    + "Name varchar(20), "
-                    + "Chip int, PRIMARY KEY (ID))";
+            String sqlCreate = "create table " + newTableName + " (Name varchar(20) not null, "
+                    + "Chip Double, PRIMARY KEY (NAME))";
 
             statement.executeUpdate(sqlCreate);
 
             String sqlInsert = "insert into " + newTableName + " values("
-                    + "1, 'Jason', 100),"
+                    + "'Jason', 100),"
                     + "("
-                    + "2, 'Benny', 90),"
+                    + "'Benny', 90),"
                     + "("
-                    + "3, 'Susi', 60)";
+                    + "'Susi', 60)";
 
             statement.executeUpdate(sqlInsert);
 
@@ -77,7 +76,7 @@ public class DBOperations {
             rs = statement.executeQuery(sqlQuery);
             rs.beforeFirst();
             while (rs.next()) {
-                int chip = rs.getInt(1);
+                Double chip = rs.getDouble(1);
                 System.out.println(nm + ":  " + chip + " chips");
             }
 
