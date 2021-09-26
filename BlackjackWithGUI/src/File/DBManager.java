@@ -33,6 +33,7 @@ public final class DBManager {
 
     //Embedded database: 
     //You do NOT need to start the javaDB, the database will be created at the root of the project folder
+//    private static final String URL = "jdbc:derby://localhost:1527/PlayersDB;create=true";
     private static final String URL = "jdbc:derby:PlayersDB;create=true";
     Connection conn;
 
@@ -57,11 +58,10 @@ public final class DBManager {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-//                System.out.println(URL + "   CONNECTED....");
+                System.out.println(URL + "   CONNECTED....");
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
-
+                System.out.println(ex.getMessage());
             }
         }
     }
