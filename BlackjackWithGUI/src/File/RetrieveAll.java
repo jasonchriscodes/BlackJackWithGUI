@@ -26,7 +26,7 @@ public class RetrieveAll {
         dbManager = new DBManager();
     }
 
-    public List<HumanPlayer> getAllCars() {
+    public List<HumanPlayer> getAllHumans() {
         List<HumanPlayer> humanList = new ArrayList<>();
         ResultSet rs = dbManager.myQuery("select * from Players");
         try {
@@ -67,7 +67,7 @@ public class RetrieveAll {
 
     public static void main(String args[]) {
         RetrieveAll retrieve = new RetrieveAll();
-        List<HumanPlayer> humanList = retrieve.getAllCars();
+        List<HumanPlayer> humanList = retrieve.getAllHumans();
         for (HumanPlayer human : humanList) {
             System.out.println("Name: " + human.getName() + ", Chips: " + human.getTotalGain());
         }

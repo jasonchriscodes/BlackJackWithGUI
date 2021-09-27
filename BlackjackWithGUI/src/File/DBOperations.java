@@ -4,7 +4,7 @@
 package File;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,45 +17,54 @@ import java.util.logging.Logger;
  */
 public class DBOperations {
 
-    private DBManager dbManager;
-    private boolean tableExistsSQL;
+    DBManager dbManager;
+    private final Connection conn;
+    private Statement statement;
+    private String newTableName = "PLAYERS";
 
     public DBOperations() {
         dbManager = new DBManager();
+        conn = dbManager.getConnection();
     }
 
+    // REMEMBER: after check the table by connecting to PlayersDB, always 
+    // disconnect data base first if you want to execute netbeans command or 
+    // to change data in the table because embeeded data base only have one 
+    // connection at the time
     public void createTable() {
         try {
             Statement statement = dbManager.getConnection().createStatement();
-            String newTableName = "PLAYERS";
             // DO NOT use "USER" name as table because it is a built-in function in Derby. 
             // You'd have to specify a different table name for the JPA entity 
             // (usually done via the @Table annotation).
 
-            if (isTableExistsSQL() == false) {
-                // delete table
-                // must be used in order to create a new table
-                statement.executeUpdate("drop table " + newTableName);
-            }
+            // check if table is exist
+            this.checkExistedTable(newTableName);
+
             String sqlCreate = "create table " + newTableName + " (Name varchar(20) not null, "
                     + "Chip Double, PRIMARY KEY (NAME))";
 
             statement.executeUpdate(sqlCreate);
-
-            String sqlInsert = "insert into " + newTableName + " values("
-                    + "'Jason', 100),"
-                    + "("
-                    + "'Benny', 90),"
-                    + "("
-                    + "'Susi', 60)";
-
-            statement.executeUpdate(sqlInsert);
 
             //statement.close();
             System.out.println("Table created");
         } catch (SQLException ex) {
             Logger.getLogger(DBOperations.class
                     .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addData() {
+        String sqlInsert = "insert into " + newTableName + " values("
+                + "'Jason', 100),"
+                + "("
+                + "'Benny', 90),"
+                + "("
+                + "'Susi', 60)";
+        try {
+            statement.executeUpdate(sqlInsert);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -104,25 +113,32 @@ public class DBOperations {
         }
     }
 
-    public boolean isTableExistsSQL() {
-        return tableExistsSQL;
-    }
+    public void checkExistedTable(String name) {
+        try {
+            DatabaseMetaData dbmd = this.conn.getMetaData();
+            String[] types = {"TABLE"};
+            statement = this.conn.createStatement();
+            ResultSet rs = dbmd.getTables(null, null, null, types);
 
-    public boolean tableExistsSQL(Connection connection, String tableName) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(*) "
-                + "FROM information_schema.tables "
-                + "WHERE table_name = ?"
-                + "LIMIT 1;");
-        preparedStatement.setString(1, tableName);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getInt(1) != 0;
+            while (rs.next()) {
+                String table_name = rs.getString("TABLE_NAME");
+                System.out.println(table_name);
+                if (table_name.equalsIgnoreCase(name)) {
+                    statement.executeUpdate("Drop table " + name);
+                    System.out.println("Table " + name + " has been deleted.");
+                    break;
+                }
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void main(String[] args) {
         DBOperations dboperations = new DBOperations();
         dboperations.createTable();
+        dboperations.addData();
         dboperations.getQuery();
         dboperations.updateTable();
         dboperations.getQuery();

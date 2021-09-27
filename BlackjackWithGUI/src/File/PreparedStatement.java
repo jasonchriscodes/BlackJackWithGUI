@@ -39,11 +39,11 @@ public class PreparedStatement {
 
     public static void main(String args[]) {
         RetrieveAll retrieve = new RetrieveAll();
-        List<HumanPlayer> humanList = retrieve.getAllCars();
+        List<HumanPlayer> humanList = retrieve.getAllHumans();
 
         //Update the third element of carList, id=3
         HumanPlayer humanToUpdate = humanList.get(1);
-        humanToUpdate.setTotalGain(35);
+        humanToUpdate.setTotalGain(40);
 
         //Fire update
         PreparedStatement prepared = new PreparedStatement();

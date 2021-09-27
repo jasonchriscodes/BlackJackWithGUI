@@ -24,10 +24,8 @@ public class FileManagement {
     private String file;
 
     public FileManagement() throws IOException {
-        DBManager dbManager = new DBManager();
-        //You will find: org.apache.derby.client.net.NetConnection40@7fbe847c
-        //That means: Connection conn = new NetConnection();
-        System.out.println(dbManager.getConnection());
+        DBOperations dboperations = new DBOperations();
+        dboperations.createTable();
         file = "./resources/User.txt";
         humans = new HashMap();
         getUsers(file);
