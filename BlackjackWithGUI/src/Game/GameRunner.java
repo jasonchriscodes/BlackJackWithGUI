@@ -4,10 +4,12 @@
 package Game;
 
 import File.FileManagement;
+import Graphic.BlackjackFrame;
 import Players.BotDealer;
 import Players.BotPlayer;
 import Players.HumanPlayer;
 import Players.Participant;
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +87,15 @@ public class GameRunner {
      */
     protected void start() {
 
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                BlackjackFrame gameFrame = new BlackjackFrame();
+            }
+        });
+
         boolean isValid = false;
+
         do {
             message.printingMessage(6);
             String botPlayer = Utils.scanner.next();
@@ -104,6 +114,7 @@ public class GameRunner {
         Deck deck = new Deck();
         String result;
         result = "0";
+
         do {
             if (result.equals("0") || result.equals("1")) {
                 for (Participant player : players) {
@@ -120,13 +131,16 @@ public class GameRunner {
                 System.out.println("please type either \"1\" or \"2\" or \"3\"");
                 result = Utils.scanner.next();
             }
-        } while (result.equals("1") || result.equals("2"));
+        } while (result.equals(
+                "1") || result.equals("2"));
         printPlayerHighestGain();
+
         try {
             file.updateScore(new HumanPlayer(getPlayers().get(0).getName(), (getPlayers().get(0).getTotalGain())));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
         quit();
     }
 
