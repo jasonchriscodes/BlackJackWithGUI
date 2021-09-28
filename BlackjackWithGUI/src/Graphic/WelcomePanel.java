@@ -6,7 +6,6 @@ package Graphic;
 import File.DBOperations;
 import java.awt.event.*;
 import javax.swing.*;
-import blackjack.controller.*;
 
 /**
  *
@@ -80,7 +79,7 @@ public class WelcomePanel extends BasePanel {
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
-                loadGameButton.setEnabled(User.isDatabaseEmpty() ? false : true);
+                loadGameButton.setEnabled(dboperations.isDatabaseEmpty() ? false : true);
             }
         });
     }
