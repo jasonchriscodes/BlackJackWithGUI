@@ -148,7 +148,7 @@ public class DBOperations {
     public boolean isDatabaseEmpty() {
         try {
             Statement statement = dbManager.getConnection().createStatement();
-            String sqlCheckEmpty = "SELECT COUNT(*) FROM USERS";
+            String sqlCheckEmpty = "SELECT COUNT(*) FROM PLAYERS";
 
             ResultSet numOfRows = statement.executeQuery(sqlCheckEmpty);
             while (numOfRows.next()) {

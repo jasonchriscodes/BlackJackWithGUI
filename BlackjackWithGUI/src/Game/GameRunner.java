@@ -29,7 +29,7 @@ public class GameRunner {
     /**
      * The Constant IMG_SRC.
      */
-    private static final String IMG_SRC = "img/bg.png";
+    private static final String IMG_SRC = "image/background.png";
 
     /**
      * Initialize human player and bot dealer
