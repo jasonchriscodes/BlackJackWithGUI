@@ -28,7 +28,7 @@ public class Message {
                 messageString = "Select from the following options: \n"
                         + "1. Start new game \n"
                         + "2. Load the game \n"
-                        + "Pslease type either (1) or (2)";
+                        + "Please type either (1) or (2)";
                 break;
             case 3:
                 messageString = "Please type either (1) or (2)";

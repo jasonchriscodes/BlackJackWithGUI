@@ -41,6 +41,21 @@ public class GameRunner {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                BlackjackFrame gameFrame = new BlackjackFrame();
+                WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
+//                NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
+//                LoadGamePanel loadGamePanel = new LoadGamePanel(IMG_SRC);
+//                GamePanel gamePanel = new GamePanel();
+                gameFrame.add("welcome", welcomePanel);
+//                gameFrame.add("newgame", newGamePanel);
+//                gameFrame.add("loadgame", loadGamePanel);
+//                gameFrame.add("game", gamePanel);
+                gameFrame.setVisible(true);
+            }
+        });
         players = new ArrayList<>();
         message.printingMessage(1);
         file.savedPlayer();
@@ -91,17 +106,7 @@ public class GameRunner {
      *
      */
     protected void start() {
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                BlackjackFrame gameFrame = new BlackjackFrame();
-                WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
-            }
-        });
-
         boolean isValid = false;
-
         do {
             message.printingMessage(6);
             String botPlayer = Utils.scanner.next();
