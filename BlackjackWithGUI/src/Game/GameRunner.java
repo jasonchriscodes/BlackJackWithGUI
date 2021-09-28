@@ -74,6 +74,7 @@ public class GameRunner {
         if ("1".equals(loadAnswer)) {
             file.createNewFile();
             players.add(new HumanPlayer(name, 100));
+            file.addHumanToMap(new HumanPlayer(getPlayers().get(0).getName(), 100));
             System.out.println("You do not have saved data named: " + name + " and you start with: 100 chips");
         } else {
             players.add(new HumanPlayer(name, file.checkUser(name).getTotalGain()));
@@ -151,7 +152,6 @@ public class GameRunner {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         quit();
     }
 

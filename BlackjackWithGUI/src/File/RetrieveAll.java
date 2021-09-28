@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 public class RetrieveAll {
 
     DBManager dbManager;
-    private DBOperations dboperations = new DBOperations();
 
     public RetrieveAll() {
         dbManager = new DBManager();

@@ -81,5 +81,14 @@ public class FileManagement {
     public void createNewFile() {
         DBOperations dboperations = new DBOperations();
         dboperations.createTable();
+        humanList.clear();
+    }
+
+    /**
+     * Add human to HashMap
+     */
+    public void addHumanToMap(HumanPlayer human) {
+        humans.clear();
+        this.humans.put(human.getName(), human);
     }
 }
