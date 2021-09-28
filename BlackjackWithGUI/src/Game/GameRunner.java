@@ -5,6 +5,7 @@ package Game;
 
 import File.FileManagement;
 import Graphic.BlackjackFrame;
+import Graphic.WelcomePanel;
 import Players.BotDealer;
 import Players.BotPlayer;
 import Players.HumanPlayer;
@@ -25,6 +26,10 @@ public class GameRunner {
     FileManagement file;
     int number;
     Message message = new Message(number);
+    /**
+     * The Constant IMG_SRC.
+     */
+    private static final String IMG_SRC = "img/bg.png";
 
     /**
      * Initialize human player and bot dealer
@@ -91,6 +96,7 @@ public class GameRunner {
             @Override
             public void run() {
                 BlackjackFrame gameFrame = new BlackjackFrame();
+                WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
             }
         });
 
