@@ -140,6 +140,28 @@ public class DBOperations {
         }
     }
 
+    /**
+     * Checks if database is empty.
+     *
+     * @return true, if database is empty
+     */
+    public boolean isDatabaseEmpty() {
+        try {
+            Statement statement = dbManager.getConnection().createStatement();
+            String sqlCheckEmpty = "SELECT COUNT(*) FROM USERS";
+
+            ResultSet numOfRows = statement.executeQuery(sqlCheckEmpty);
+            while (numOfRows.next()) {
+                if (numOfRows.getInt(1) == 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException sqle) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         DBOperations dboperations = new DBOperations();
         dboperations.createTable();
