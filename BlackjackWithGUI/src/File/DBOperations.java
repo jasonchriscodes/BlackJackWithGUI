@@ -42,27 +42,35 @@ public class DBOperations {
             this.checkExistedTable(newTableName);
 
             String sqlCreate = "create table " + newTableName + " (Name varchar(20) not null, "
-                    + "Chip Double, PRIMARY KEY (NAME))";
+                    + "Chips Double, PRIMARY KEY (NAME))";
 
             statement.executeUpdate(sqlCreate);
 
             //statement.close();
-            System.out.println("Table created");
+//            System.out.println("Table created");
         } catch (SQLException ex) {
             Logger.getLogger(DBOperations.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void addData() {
-        String sqlInsert = "insert into " + newTableName + " values("
-                + "'Jason', 100),"
-                + "("
-                + "'Benny', 90),"
-                + "("
-                + "'Susi', 60)";
+    public void deleteTable() throws SQLException {
+        statement = dbManager.getConnection().createStatement();
+        String sqlDelete = "Drop table " + newTableName;
         try {
+            statement.executeUpdate(sqlDelete);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addData(String name, double chips) {
+        try {
+            statement = dbManager.getConnection().createStatement();
+            String sqlInsert = "insert into " + newTableName + "(name, chips) " + " values("
+                    + "'" + name + "', " + chips + ")";
             statement.executeUpdate(sqlInsert);
+//            System.out.println("Data has been saved");
         } catch (SQLException ex) {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,37 +78,34 @@ public class DBOperations {
 
     public void getQuery() {
         ResultSet rs = null;
-
         try {
-
             System.out.println("Please wait.... getting query....");
             Statement statement = dbManager.getConnection().createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
 
             String nm = "Jason";
-            String sqlQuery = "select chip from players "
+            String sqlQuery = "select chips from players "
                     + "where name ='" + nm + "'";
 
             rs = statement.executeQuery(sqlQuery);
             rs.beforeFirst();
             while (rs.next()) {
-                Double chip = rs.getDouble(1);
-                System.out.println(nm + ":  " + chip + " chips");
+                Double chips = rs.getDouble(1);
+                System.out.println(nm + ":  " + chips + " chips");
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DBOperations.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void updateTable() {
         try {
             Statement statement = dbManager.getConnection().createStatement();
-            String newTableName = "PLAYERS";
+            String newTableName = "PDC.PLAYERS";
 
-            String sqlUpdateTable = "update " + newTableName + " set chip=20 "
+            String sqlUpdateTable = "update " + newTableName + " set chips=20 "
                     + "where name='Jason'";
             statement.executeUpdate(sqlUpdateTable);
 
@@ -122,10 +127,10 @@ public class DBOperations {
 
             while (rs.next()) {
                 String table_name = rs.getString("TABLE_NAME");
-                System.out.println(table_name);
+//                System.out.println(table_name);
                 if (table_name.equalsIgnoreCase(name)) {
                     statement.executeUpdate("Drop table " + name);
-                    System.out.println("Table " + name + " has been deleted.");
+//                    System.out.println("Table " + name + " has been deleted.");
                     break;
                 }
             }
@@ -138,7 +143,7 @@ public class DBOperations {
     public static void main(String[] args) {
         DBOperations dboperations = new DBOperations();
         dboperations.createTable();
-        dboperations.addData();
+        dboperations.addData("Jason", 50);
         dboperations.getQuery();
         dboperations.updateTable();
         dboperations.getQuery();

@@ -4,15 +4,9 @@
 package File;
 
 import Players.HumanPlayer;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.List;
 
 /**
  *
@@ -21,37 +15,22 @@ import java.util.Scanner;
 public class FileManagement {
 
     private final HashMap<String, HumanPlayer> humans;
-    private String file;
+    private RetrieveAll retrieve = new RetrieveAll();
+    private List<HumanPlayer> humanList;
+    private DBOperations dboperations = new DBOperations();
 
     public FileManagement() throws IOException {
-        DBOperations dboperations = new DBOperations();
-        dboperations.createTable();
-        file = "./resources/User.txt";
         humans = new HashMap();
-        getUsers(file);
+        getUsers();
     }
 
-    public void getUsers(String fn) {
-        try {
-            FileReader fr = new FileReader(fn);
-            BufferedReader bufferedReader = new BufferedReader(fr);
-            Scanner fileScanner = new Scanner(bufferedReader);
-
-            // scan file line by line and separate each name and score
-            while (fileScanner.hasNextLine()) {
-                String fileContent = fileScanner.nextLine();
-                String[] tempData = fileContent.split(" ");
-                String newName = tempData[0];
-                String newGain = tempData[1];
-                HumanPlayer human = new HumanPlayer(newName, Double.parseDouble(newGain));
-                this.humans.put(human.getName(), human);
-            }
-            fr.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
+    public void getUsers() {
+        humanList = retrieve.getAllHumans();
+        for (HumanPlayer human : humanList) {
+            this.humans.put(human.getName(), human);
+//            System.out.println("Name: " + human.getName() + ", Chips: " + human.getTotalGain());
         }
+        retrieve.dbManager.closeConnections();
     }
 
     public void savedPlayer() {
@@ -88,33 +67,19 @@ public class FileManagement {
      */
     public void updateScore(HumanPlayer human) throws IOException {
         this.humans.put(human.getName(), human);
-        try {
-            // overwrite the file
-            FileWriter fileReader = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileReader);
-            for (HumanPlayer u : this.humans.values()) {
-                bufferedWriter.write(u.getName() + " " + u.getTotalGain() + "\n");
-            }
-            bufferedWriter.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
+        createNewFile();
+        for (HumanPlayer u : this.humans.values()) {
+            dboperations.addData(u.getName(), u.getTotalGain());
         }
+        System.out.println("Data that has been saved: \n");
+        savedPlayer();
     }
 
     /**
      * Create new empty file
      */
     public void createNewFile() {
-        File tempFile = new File("./resources/User.txt");
-        boolean exists = tempFile.exists();
-        if (exists == true) {
-            tempFile.delete();
-            humans.clear();
-        }
-        try {
-            tempFile.createNewFile();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        DBOperations dboperations = new DBOperations();
+        dboperations.createTable();
     }
 }

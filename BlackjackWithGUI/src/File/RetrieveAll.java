@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class RetrieveAll {
 
     DBManager dbManager;
+    private DBOperations dboperations = new DBOperations();
 
     public RetrieveAll() {
         dbManager = new DBManager();
@@ -32,7 +33,7 @@ public class RetrieveAll {
         try {
             while (rs.next()) {
                 String name = rs.getString("name");
-                double gain = rs.getInt("chip");
+                double gain = rs.getDouble("chips");
 
                 HumanPlayer human = new HumanPlayer(name, gain);
                 humanList.add(human);
@@ -55,7 +56,7 @@ public class RetrieveAll {
 
         try {
             while (rs.next()) {
-                human.setTotalGain(rs.getDouble("chip"));
+                human.setTotalGain(rs.getDouble("chips"));
             }
 
         } catch (SQLException ex) {

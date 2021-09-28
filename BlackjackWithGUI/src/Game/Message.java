@@ -26,10 +26,9 @@ public class Message {
                 break;
             case 2:
                 messageString = "Select from the following options: \n"
-                        + "1. Delete all current saved game and start new \n"
-                        + "2. Load the game or start new game without deleting saved game \n"
-                        + "Note: u can start new game without delete all current saved game by entering name that is not in the saved list. \n"
-                        + "please type either (1) or (2)";
+                        + "1. Start new game \n"
+                        + "2. Load the game \n"
+                        + "Pslease type either (1) or (2)";
                 break;
             case 3:
                 messageString = "Please type either (1) or (2)";

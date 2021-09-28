@@ -4,12 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/PreparedStatement.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Game/Message.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/DBOperations.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Game/Deck.java</file>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/DBManager.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Game/Hand.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Players/Participant.java</file>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/RetrieveAll.java</file>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Game/GameRunner.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Cards/Rank.java</file>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Game/Blackjack.java</file>
             <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/FileManagement.java</file>
-            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/File/DBOperations.java</file>
+            <file>file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/src/Cards/Card.java</file>
         </group>
     </open-files>
 </project-private>

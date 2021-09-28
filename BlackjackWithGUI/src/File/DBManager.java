@@ -58,7 +58,7 @@ public final class DBManager {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-                System.out.println(URL + "   CONNECTED....");
+//                System.out.println(URL + "   CONNECTED....");
 
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());

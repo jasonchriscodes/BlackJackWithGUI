@@ -23,7 +23,7 @@ public class PreparedStatement {
     public int updateHuman(HumanPlayer human) {
         int rowCount = 0;
         java.sql.PreparedStatement pstmt;
-        String sql = "UPDATE PLAYERS SET CHIP=? WHERE NAME=?";
+        String sql = "UPDATE PLAYERS SET CHIPS=? WHERE NAME=?";
         try {
             pstmt = dbManager.getConnection().prepareStatement(sql);
             pstmt.setString(2, human.getName());
