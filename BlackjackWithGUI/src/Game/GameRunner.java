@@ -5,6 +5,7 @@ package Game;
 
 import File.FileManagement;
 import Graphic.BlackjackFrame;
+import Graphic.NewGamePanel;
 import Graphic.WelcomePanel;
 import Players.BotDealer;
 import Players.BotPlayer;
@@ -46,11 +47,11 @@ public class GameRunner {
             public void run() {
                 BlackjackFrame gameFrame = new BlackjackFrame();
                 WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
-//                NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
+                NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
 //                LoadGamePanel loadGamePanel = new LoadGamePanel(IMG_SRC);
 //                GamePanel gamePanel = new GamePanel();
                 gameFrame.add("welcome", welcomePanel);
-//                gameFrame.add("newgame", newGamePanel);
+                gameFrame.add("newgame", newGamePanel);
 //                gameFrame.add("loadgame", loadGamePanel);
 //                gameFrame.add("game", gamePanel);
                 gameFrame.setVisible(true);

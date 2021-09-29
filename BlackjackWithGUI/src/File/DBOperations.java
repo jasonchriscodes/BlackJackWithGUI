@@ -76,48 +76,60 @@ public class DBOperations {
         }
     }
 
-    public void getQuery() {
-        ResultSet rs = null;
+    public boolean addUser(String name) {
         try {
-            System.out.println("Please wait.... getting query....");
-            Statement statement = dbManager.getConnection().createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
-
-            String nm = "Jason";
-            String sqlQuery = "select chips from players "
-                    + "where name ='" + nm + "'";
-
-            rs = statement.executeQuery(sqlQuery);
-            rs.beforeFirst();
-            while (rs.next()) {
-                Double chips = rs.getDouble(1);
-                System.out.println(nm + ":  " + chips + " chips");
-            }
-
+            statement = dbManager.getConnection().createStatement();
+            String sqlInsert = "insert into " + newTableName + "(name, chips) " + " values("
+                    + "'" + name + "', 100)";
+            statement.executeUpdate(sqlInsert);
+//            System.out.println("Data has been saved");
         } catch (SQLException ex) {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
+        return true;
     }
 
-    public void updateTable() {
-        try {
-            Statement statement = dbManager.getConnection().createStatement();
-            String newTableName = "PDC.PLAYERS";
-
-            String sqlUpdateTable = "update " + newTableName + " set chips=20 "
-                    + "where name='Jason'";
-            statement.executeUpdate(sqlUpdateTable);
-
-            //statement.close();
-            System.out.println("Table updated");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DBOperations.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+//    public void getQuery() {
+//        ResultSet rs = null;
+//        try {
+//            System.out.println("Please wait.... getting query....");
+//            Statement statement = dbManager.getConnection().createStatement(
+//                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+//                    ResultSet.CONCUR_READ_ONLY);
+//
+//            String nm = "Jason";
+//            String sqlQuery = "select chips from players "
+//                    + "where name ='" + nm + "'";
+//
+//            rs = statement.executeQuery(sqlQuery);
+//            rs.beforeFirst();
+//            while (rs.next()) {
+//                Double chips = rs.getDouble(1);
+//                System.out.println(nm + ":  " + chips + " chips");
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    public void updateTable() {
+//        try {
+//            Statement statement = dbManager.getConnection().createStatement();
+//            String newTableName = "PDC.PLAYERS";
+//
+//            String sqlUpdateTable = "update " + newTableName + " set chips=20 "
+//                    + "where name='Jason'";
+//            statement.executeUpdate(sqlUpdateTable);
+//
+//            //statement.close();
+//            System.out.println("Table updated");
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBOperations.class
+//                    .getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     public void checkExistedTable(String name) {
         try {
             DatabaseMetaData dbmd = this.conn.getMetaData();
@@ -162,13 +174,61 @@ public class DBOperations {
         return false;
     }
 
-    public static void main(String[] args) {
-        DBOperations dboperations = new DBOperations();
-        dboperations.createTable();
-        dboperations.addData("Jason", 50);
-        dboperations.getQuery();
-        dboperations.updateTable();
-        dboperations.getQuery();
-        dboperations.dbManager.closeConnections();
+    /**
+     * Check username.
+     *
+     * @param name the name
+     * @return true, if the username is illegal
+     */
+    public static boolean checkName(String name) {
+        for (char aChar : name.toCharArray()) {
+            if (!((aChar >= 'a' && aChar <= 'z') || (aChar >= 'A' && aChar <= 'Z'))) {
+                System.out.println(aChar);
+                return false;
+            }
+        }
+        return true;
     }
+
+    /**
+     * Checks for user in database.
+     *
+     * @param name the name
+     * @return true, if the user exists in database
+     */
+    public boolean hasUser(String name) {
+        try {
+            Statement statement = dbManager.getConnection().createStatement();
+            String sqlCheckUser = "SELECT NAME FROM PLAYERS";
+
+            ResultSet nameSet = statement.executeQuery(sqlCheckUser);
+
+            while (nameSet.next()) {
+                String s = nameSet.getString("NAME");
+                if (s.toLowerCase().equals(name.toLowerCase())) {
+                    return true;
+                }
+                System.out.println(s);
+                System.out.println(name);
+            }
+        } catch (SQLException sqle) {
+            return true;
+        }
+        return false;
+    }
+//
+
+//    public static void main(String[] args) {
+//        DBOperations dboperations = new DBOperations();
+////        dboperations.createTable();
+////        dboperations.addData("Jason", 50);
+////        dboperations.getQuery();
+////        dboperations.updateTable();
+////        dboperations.getQuery();
+////        if (dboperations.hasUser("Jason")) {
+////            System.out.println("User already exist");
+////        }
+////        System.out.println("User NOT exist");
+////        dboperations.dbManager.closeConnections();
+//    }
 }
