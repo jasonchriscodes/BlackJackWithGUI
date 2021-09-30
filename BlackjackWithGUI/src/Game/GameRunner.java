@@ -25,11 +25,10 @@ public class GameRunner {
 
     private List<Participant> players;
     private Participant dealer;
-    FileManagement file;
-    int number;
-    Message message = new Message(number);
-    NewGamePanel newGamePanel = new NewGamePanel();
-    JOptionPane Popup;
+    private FileManagement file;
+    private int number;
+    private Message message = new Message(number);
+    private JOptionPane Popup;
 
     /**
      * The Constant IMG_SRC.
@@ -48,7 +47,7 @@ public class GameRunner {
             ex.printStackTrace();
         }
 
-        Popup.showMessageDialog(null, message.printRule(1), "Message", JOptionPane.PLAIN_MESSAGE);
+        Popup.showMessageDialog(null, message.printRule(1), "Message", JOptionPane.INFORMATION_MESSAGE);
 
         BlackjackFrame gameFrame = new BlackjackFrame();
         WelcomePanel welcomePanel = new WelcomePanel(BG_SRC);
@@ -63,10 +62,6 @@ public class GameRunner {
 
         players = new ArrayList<>();
         message.printingMessage(2);
-
-        if (newGamePanel.getPlayButton().getModel().isPressed()) {
-            System.out.println("Button is pressed");
-        }
 
         String loadAnswer = Utils.scanner.next();
         while ((!loadAnswer.equals("1") && !loadAnswer.equals("2"))) {
