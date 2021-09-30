@@ -21,7 +21,6 @@ import java.util.List;
  */
 public class NewGamePanel extends BasePanel {
 
-    private List<Participant> players;
     /**
      * The name label.
      */

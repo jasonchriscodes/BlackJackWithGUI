@@ -6,6 +6,7 @@ package Game;
 import File.FileManagement;
 import Graphic.BlackjackFrame;
 import Graphic.NewGamePanel;
+import Graphic.RulesGamePanel;
 import Graphic.WelcomePanel;
 import Players.BotDealer;
 import Players.BotPlayer;
@@ -15,6 +16,7 @@ import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,10 +30,13 @@ public class GameRunner {
     int number;
     Message message = new Message(number);
     NewGamePanel newGamePanel = new NewGamePanel();
+    JOptionPane Popup;
+
     /**
      * The Constant IMG_SRC.
      */
-    private static final String IMG_SRC = "image/background.png";
+    private static final String BG_SRC = "image/background.png";
+    private static final String RULES_SRC = "image/rules.png";
 
     /**
      * Initialize human player and bot dealer
@@ -44,12 +49,16 @@ public class GameRunner {
             ex.printStackTrace();
         }
 
+        Popup.showMessageDialog(null, message.printRule(1), "Message", JOptionPane.PLAIN_MESSAGE);
+
         BlackjackFrame gameFrame = new BlackjackFrame();
-        WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
-        NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
+        WelcomePanel welcomePanel = new WelcomePanel(BG_SRC);
+        RulesGamePanel rulesGamePanel = new RulesGamePanel(RULES_SRC);
+        NewGamePanel newGamePanel = new NewGamePanel(BG_SRC);
 //                LoadGamePanel loadGamePanel = new LoadGamePanel(IMG_SRC);
 //                GamePanel gamePanel = new GamePanel();
         gameFrame.add("welcome", welcomePanel);
+        gameFrame.add("rules", rulesGamePanel);
         gameFrame.add("newgame", newGamePanel);
 //                gameFrame.add("loadgame", loadGamePanel);
 //                gameFrame.add("game", gamePanel);
