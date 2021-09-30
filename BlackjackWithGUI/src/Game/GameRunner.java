@@ -27,6 +27,7 @@ public class GameRunner {
     FileManagement file;
     int number;
     Message message = new Message(number);
+    NewGamePanel newGamePanel = new NewGamePanel();
     /**
      * The Constant IMG_SRC.
      */
@@ -42,30 +43,32 @@ public class GameRunner {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                BlackjackFrame gameFrame = new BlackjackFrame();
-                WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
-                NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
+
+        BlackjackFrame gameFrame = new BlackjackFrame();
+        WelcomePanel welcomePanel = new WelcomePanel(IMG_SRC);
+        NewGamePanel newGamePanel = new NewGamePanel(IMG_SRC);
 //                LoadGamePanel loadGamePanel = new LoadGamePanel(IMG_SRC);
 //                GamePanel gamePanel = new GamePanel();
-                gameFrame.add("welcome", welcomePanel);
-                gameFrame.add("newgame", newGamePanel);
+        gameFrame.add("welcome", welcomePanel);
+        gameFrame.add("newgame", newGamePanel);
 //                gameFrame.add("loadgame", loadGamePanel);
 //                gameFrame.add("game", gamePanel);
-                gameFrame.setVisible(true);
-            }
-        });
+        gameFrame.setVisible(true);
+
         players = new ArrayList<>();
-        message.printingMessage(1);
-        file.savedPlayer();
         message.printingMessage(2);
+
+        if (newGamePanel.getPlayButton().getModel().isPressed()) {
+            System.out.println("Button is pressed");
+        }
+
         String loadAnswer = Utils.scanner.next();
-        while (!loadAnswer.equals("1") && !loadAnswer.equals("2")) {
+        while ((!loadAnswer.equals("1") && !loadAnswer.equals("2"))) {
             message.printingMessage(3);
             loadAnswer = Utils.scanner.next();
         }
+        message.printingMessage(1);
+        file.savedPlayer();
         message.printingMessage(4);
         String name = Utils.scanner.next();
         while (!name.matches("[a-zA-Z]+")) {

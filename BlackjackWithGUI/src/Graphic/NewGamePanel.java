@@ -4,9 +4,16 @@
 package Graphic;
 
 import File.DBOperations;
+import File.FileManagement;
+import Players.HumanPlayer;
+import Players.Participant;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import java.util.List;
 
 /**
  *
@@ -14,6 +21,7 @@ import javax.swing.*;
  */
 public class NewGamePanel extends BasePanel {
 
+    private List<Participant> players;
     /**
      * The name label.
      */
@@ -38,6 +46,13 @@ public class NewGamePanel extends BasePanel {
      * The msg box.
      */
     private JDialog msgBox;
+
+    /**
+     * Empty constructor
+     */
+    public NewGamePanel() {
+
+    }
 
     /**
      * Instantiates a new new game panel.
@@ -72,46 +87,60 @@ public class NewGamePanel extends BasePanel {
 
         DBOperations dboperations = new DBOperations();
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nameField.setText("");
-                playButton.setEnabled(true);
-                BlackjackFrame.cardLayout.show(getParent(), "welcome");
-            }
-        });
+        FileManagement file;
 
-        playButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playButton.setEnabled(false);
-                if (nameField.getText().isEmpty()) {
-                    nameField.setText("Empty name!");
-                } else if (!dboperations.checkName(nameField.getText())) {
-                    nameField.setText("Characters only!");
-                } else if (dboperations.hasUser(nameField.getText())) {
-                    nameField.setText("User already exists!");
-                } else {
-                    if (dboperations.addUser(nameField.getText())) {
-                        BlackjackFrame.cardLayout.show(getParent(), "game");
+        try {
+            file = new FileManagement();
+
+            backButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    nameField.setText("");
+                    playButton.setEnabled(true);
+                    BlackjackFrame.cardLayout.show(getParent(), "welcome");
+                }
+            });
+
+            playButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    playButton.setEnabled(false);
+                    if (nameField.getText().isEmpty()) {
+                        nameField.setText("Empty name!");
+                    } else if (!dboperations.checkName(nameField.getText())) {
+                        nameField.setText("Characters only!");
+                    } else if (dboperations.hasUser(nameField.getText())) {
+                        nameField.setText("User already exists!");
                     } else {
-                        nameField.setText("Failed creating player!");
+                        if (dboperations.addUser(nameField.getText())) {
+                            BlackjackFrame.cardLayout.show(getParent(), "game");
+                            String name = nameField.getText();
+                        } else {
+                            nameField.setText("Failed creating player!");
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        nameField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                nameField.setText("");
-                playButton.setEnabled(true);
-            }
+            nameField.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    nameField.setText("");
+                    playButton.setEnabled(true);
+                }
 
-            @Override
-            public void focusLost(FocusEvent e) {
+                @Override
+                public void focusLost(FocusEvent e) {
 
-            }
-        });
+                }
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(NewGamePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    public JButton getPlayButton() {
+        return playButton;
+    }
+
 }
