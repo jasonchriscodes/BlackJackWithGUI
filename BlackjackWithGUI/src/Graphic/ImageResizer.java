@@ -3,6 +3,9 @@
  */
 package Graphic;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Jason Christian - 21136899
