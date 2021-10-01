@@ -23,6 +23,7 @@ import javax.swing.border.LineBorder;
 public class View {
 
     public static final DefaultFont FONT;
+    public static final Palette PALETTE = new DarkPalette();
     public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
 
     private final Map<String, JButton> betOptions;
@@ -105,6 +106,16 @@ public class View {
 
             map.put(options[i], option);
             panel.add(option, gbc);
+        }
+    }
+
+    private void setIcon(AbstractButton label, String fileName, int size) {
+        String path = IMG_PATH + fileName;
+        try {
+            ImageIcon icon = new ImageIcon(View.class.getResource(path));
+            label.setIcon(ImageResizer.getScaledImage(icon, size));
+        } catch (NullPointerException ex) {
+            System.err.println("Could not find " + path);
         }
     }
 
