@@ -27,9 +27,11 @@ public class View {
     public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
 
     private final Map<String, JButton> betOptions;
+    private final Map<String, JButton> playOptions;
 
     private final JFrame frame;
     private final JPanel betOptionsPanel;
+    private final JPanel playOptionsPanel;
 
     static {
         loadFont();
@@ -39,7 +41,9 @@ public class View {
     public View() {
         frame = new JFrame("Blackjack");
         betOptions = new HashMap<>();
+        playOptions = new HashMap<>();
         betOptionsPanel = new JPanel();
+        playOptionsPanel = new JPanel();
     }
 
     private static void loadFont() {
@@ -128,6 +132,14 @@ public class View {
     public void displayFrame() {
         frame.setVisible(true);
         SwingUtilities.invokeLater(View::new);
+    }
+
+    public void initPlayOptions(String[] options) {
+        initOptions("CHOICES", // Name of the panel, i.e. the header
+                options, // The text on the buttons
+                this.playOptions, // The buttons
+                playOptionsPanel, // The panel containing the buttons
+                false);             // If the text has an icon next to it
     }
 
 }
