@@ -21,6 +21,11 @@ public class View {
     private final Map<String, JButton> betOptions;
     private final JPanel betOptionsPanel;
 
+    static {
+        loadFont();
+        FONT = new DefaultFont("IBM Plex Sans");
+    }
+
     public void initBetOptions(int[] options) {
         String[] stringOptions = new String[options.length];
         for (int i = 0; i < stringOptions.length; i++) {
