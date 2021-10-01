@@ -12,6 +12,9 @@ package Graphic;
 public class Model {
 
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
+    private static final String[] CHOICES = {
+        "Hit", "Hold"
+    };
 
     /**
      * Returns the possible types of chips a player may bet.
@@ -26,6 +29,15 @@ public class Model {
      */
     public static final int[] chips() {
         return CHIPS.clone();
+    }
+
+    /**
+     * Returns the possible choices for the player when they are playing.
+     *
+     * @return the choices
+     */
+    public static final String[] choices() {
+        return CHOICES.clone();
     }
 
 }
