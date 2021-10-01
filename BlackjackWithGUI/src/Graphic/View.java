@@ -6,6 +6,8 @@
 package Graphic;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -17,6 +19,7 @@ import javax.swing.border.LineBorder;
 public class View {
 
     public static final DefaultFont FONT;
+    public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
 
     private final Map<String, JButton> betOptions;
     private final JPanel betOptionsPanel;
@@ -24,6 +27,18 @@ public class View {
     static {
         loadFont();
         FONT = new DefaultFont("IBM Plex Sans");
+    }
+
+    private static void loadFont() {
+        String path = IMG_PATH + "IBMPlexSans-Regular.ttf";
+        try {
+            GraphicsEnvironment ge = GraphicsEnvironment
+                    .getLocalGraphicsEnvironment();
+            InputStream in = View.class.getResourceAsStream(path);
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, in));
+        } catch (IOException | FontFormatException e) {
+            System.err.println("Could not register font " + path);
+        }
     }
 
     public void initBetOptions(int[] options) {
