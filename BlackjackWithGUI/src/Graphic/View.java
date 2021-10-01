@@ -28,10 +28,12 @@ public class View {
 
     private final Map<String, JButton> betOptions;
     private final Map<String, JButton> playOptions;
+    private final Map<String, JButton> handOptions;
 
     private final JFrame frame;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
+    private final JPanel handOptionsPanel;
 
     static {
         loadFont();
@@ -42,8 +44,10 @@ public class View {
         frame = new JFrame("Blackjack");
         betOptions = new HashMap<>();
         playOptions = new HashMap<>();
+        handOptions = new HashMap<>();
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
+        handOptionsPanel = new JPanel();
     }
 
     private static void loadFont() {
@@ -140,6 +144,10 @@ public class View {
                 this.playOptions, // The buttons
                 playOptionsPanel, // The panel containing the buttons
                 false);             // If the text has an icon next to it
+    }
+
+    public void initHandOptions(String[] options) {
+        initOptions("OPTIONS", options, this.handOptions, handOptionsPanel, false);
     }
 
 }
