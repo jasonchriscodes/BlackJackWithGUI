@@ -26,10 +26,30 @@ public class Controller {
     }
 
     private void initController() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        view.initBetOptions(Model.chips());
+        view.initPlayOptions(Model.choices());
+        view.initHandOptions(Model.options());
+
+        view.initButtonActionListener("Play", new PlayAction());
+
+        view.initButtonActionListener("Hit", new HitAction());
+        view.initButtonActionListener("Stand", new StandAction());
+        view.initButtonActionListener("Double Down", new DoubleDownAction());
+        view.initButtonActionListener("Surrender", new SurrenderAction());
+
+        view.initButtonActionListener("Deal", new DealAction());
+        view.initButtonActionListener("Hint", new HintAction());
+        view.initButtonActionListener("Next Hand", new NextHandAction());
+        view.initButtonActionListener("New Game", new NewGameAction());
+        view.initButtonActionListener("Quit Game", new QuitGameAction());
+
+        view.getBetOptions().forEach((betOption) -> {
+            int value = Integer.parseInt(betOption.getText());
+            betOption.addActionListener(new BetAction(value));
+        });
     }
 
     private void initView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        view.displaySettings();
     }
 }
