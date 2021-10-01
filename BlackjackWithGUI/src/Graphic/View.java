@@ -6,8 +6,12 @@
 package Graphic;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -27,6 +31,11 @@ public class View {
     static {
         loadFont();
         FONT = new DefaultFont("IBM Plex Sans");
+    }
+
+    public View() {
+        betOptions = new HashMap<>();
+        betOptionsPanel = new JPanel();
     }
 
     private static void loadFont() {
