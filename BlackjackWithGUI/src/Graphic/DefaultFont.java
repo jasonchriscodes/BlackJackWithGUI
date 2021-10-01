@@ -3,6 +3,8 @@
  */
 package Graphic;
 
+import java.awt.Font;
+
 /**
  *
  * @author Jason Christian - 21136899
