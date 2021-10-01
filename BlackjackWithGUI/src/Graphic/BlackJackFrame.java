@@ -1,5 +1,5 @@
 /*
- * Class represents the basic frame of the game
+ * Class represents the basic frame of the game (view class)
  */
 package Graphic;
 
