@@ -27,6 +27,8 @@ public class View {
     public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
 
     private final Map<String, JButton> betOptions;
+
+    private final JFrame frame;
     private final JPanel betOptionsPanel;
 
     static {
@@ -35,6 +37,7 @@ public class View {
     }
 
     public View() {
+        frame = new JFrame("Blackjack");
         betOptions = new HashMap<>();
         betOptionsPanel = new JPanel();
     }
@@ -117,6 +120,14 @@ public class View {
         } catch (NullPointerException ex) {
             System.err.println("Could not find " + path);
         }
+    }
+
+    /**
+     * Displays the frame.
+     */
+    public void displayFrame() {
+        frame.setVisible(true);
+        SwingUtilities.invokeLater(View::new);
     }
 
 }
