@@ -15,6 +15,9 @@ public class Model {
     private static final String[] CHOICES = {
         "Hit", "Hold"
     };
+    private static final String[] OPTIONS = {
+        "Deal", "Next Round", "New Game", "Quit Game"
+    };
 
     /**
      * Returns the possible types of chips a player may bet.
@@ -40,4 +43,12 @@ public class Model {
         return CHOICES.clone();
     }
 
+    /**
+     * Returns the possible options for the player regarding the game.
+     *
+     * @return the options
+     */
+    public static final String[] options() {
+        return OPTIONS.clone();
+    }
 }
