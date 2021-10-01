@@ -11,4 +11,25 @@ package Graphic;
  */
 public class Controller {
 
+    private final Model model;
+    private final View view;
+
+    public Controller(Model model, View view) {
+        this.model = model;
+        this.view = view;
+        initController();
+        initView();
+    }
+
+    public void run() {
+        view.displayFrame();
+    }
+
+    private void initController() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void initView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

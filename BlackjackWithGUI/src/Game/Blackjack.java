@@ -19,10 +19,12 @@ public class Blackjack {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //GUI
         Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);
         controller.run();
+        //CUI
         Utils.printBlackJack();
         GameRunner game = new GameRunner();
         game.start();
