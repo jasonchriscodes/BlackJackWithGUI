@@ -26,6 +26,8 @@ public class View {
     public static final Palette PALETTE = new DarkPalette();
     public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
 
+    private static final int CARD_SIZE = 115;
+
     private final Map<String, JButton> betOptions;
     private final Map<String, JButton> playOptions;
     private final Map<String, JButton> handOptions;
@@ -34,6 +36,8 @@ public class View {
     private final JLabel titleLabel;
     private final JLabel playerHandValueLabel;
     private final JLabel dealerHandValueLabel;
+    private final JLabel[] playerHand;
+    private final JLabel[] dealerHand;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -65,6 +69,8 @@ public class View {
         titleLabel = new JLabel();
         playerHandValueLabel = new JLabel();
         dealerHandValueLabel = new JLabel();
+        playerHand = new JLabel[10];
+        dealerHand = new JLabel[10];
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
@@ -218,6 +224,36 @@ public class View {
         playerHandValueLabel.setIcon(null);
         dealerHandValueLabel.setText(" ");
         dealerHandValueLabel.setIcon(null);
+    }
+
+    /**
+     * Removes all card images on the screen.
+     *
+     * <p>
+     * This method <b>doesn't</b> actually remove every image on the screen, but
+     * rather it replaces the images with a blank image that has the same size
+     * as the card images. This is to keep the table border stretched along the
+     * length of the screen even if no cards are displayed.
+     */
+    public void clearCards() {
+        String path = IMG_PATH + "blank.png";
+        try {
+            ImageIcon icon = new ImageIcon(View.class.getResource(path));
+            resetImages(ImageResizer.getScaledImage(icon, CARD_SIZE),
+                    playerHand);
+            resetImages(ImageResizer.getScaledImage(icon, CARD_SIZE),
+                    dealerHand);
+        } catch (NullPointerException ex) {
+            resetImages(null, playerHand);
+            resetImages(null, dealerHand);
+            System.err.println("Could not find " + path);
+        }
+    }
+
+    private void resetImages(ImageIcon image, JLabel[] playerHand) {
+        Arrays.asList(playerHand).forEach((label) -> {
+            label.setIcon(image);
+        });
     }
 
 }
