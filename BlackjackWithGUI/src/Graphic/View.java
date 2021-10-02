@@ -348,4 +348,15 @@ public class View {
         String mode = (PALETTE instanceof LightPalette) ? "light/" : "dark/";
         setIcon(messageHeader, mode + filename, size);
     }
+
+    /**
+     * Displays all bet options.
+     */
+    public void enableAllChips() {
+        betOptionsPanel.setVisible(true);
+        betOptions.values().forEach((betOption) -> {
+            betOption.setEnabled(true);
+            betOption.setVisible(true);
+        });
+    }
 }
