@@ -39,6 +39,26 @@ public class SettingsPanel extends JPanel {
         initPanel(logo);
     }
 
+    public Object[] getSettings() {
+        Object[] settings = {
+            name(),
+            botSpinner(),
+            minimumBet(),};
+        return settings;
+    }
+
+    private String name() {
+        return nameTextField.getText();
+    }
+
+    private int botSpinner() {
+        return (int) botSpinner.getValue();
+    }
+
+    private int minimumBet() {
+        return (int) betSpinner.getValue();
+    }
+
     private void initPanel(ImageIcon logo) {
         menuItemsPanel = new JPanel();
         logoLabel = new JLabel();
