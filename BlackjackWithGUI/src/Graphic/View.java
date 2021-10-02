@@ -378,4 +378,15 @@ public class View {
             }
         }
     }
+
+    /**
+     * Removes all play options from the display.
+     */
+    public void disableAllChoices() {
+        playOptionsPanel.setVisible(false);
+        playOptions.values().forEach((playOption) -> {
+            playOption.setEnabled(false);
+            playOption.setVisible(false);
+        });
+    }
 }
