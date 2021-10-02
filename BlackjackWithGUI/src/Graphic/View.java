@@ -36,6 +36,7 @@ public class View {
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
     private final JPanel backgroundPanel;
+    private final JPanel startPanel;
     private final SettingsPanel settingsPanel;
 
     static {
@@ -52,6 +53,7 @@ public class View {
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
         handOptionsPanel = new JPanel();
+        startPanel = new JPanel();
         titleLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
