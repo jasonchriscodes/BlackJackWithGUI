@@ -5,6 +5,8 @@
  */
 package Graphic;
 
+import Cards.CardContainer;
+import Cards.Shoe;
 import Players.HumanPlayer;
 
 /**
@@ -15,6 +17,8 @@ public class Model {
 
     private HumanPlayer player;
     private int minimumBet;
+    private CardContainer shoe;
+    private int runningCount;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
         "Hit", "Hold"
@@ -64,6 +68,25 @@ public class Model {
             player = new HumanPlayer(name, 100);
         }
         minimumBet = (int) settings[2];
+    }
+
+    /**
+     * Returns the true count of cards played in the shoe.
+     *
+     * <p>
+     * The true count is calculated by dividing the running count by the number
+     * of decks remaining.
+     *
+     * @return the true count
+     */
+    public int getTrueCount() {
+        if (shoe.getClass() == Shoe.class) {
+            Shoe s = (Shoe) this.shoe;
+            if (s.deckCount() > 0) {
+                return Math.round(runningCount / s.deckCount());
+            }
+        }
+        return runningCount;
     }
 
     public double playerChips() {
