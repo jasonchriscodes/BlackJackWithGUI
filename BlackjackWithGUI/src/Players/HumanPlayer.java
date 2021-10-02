@@ -12,6 +12,8 @@ import java.util.InputMismatchException;
  */
 public class HumanPlayer extends Participant {
 
+    private double bankroll;
+
     /**
      * HumanPlayer constructor
      *
@@ -55,5 +57,14 @@ public class HumanPlayer extends Participant {
             res = Utils.scanner.next();
         }
         return res.equals("hit") ? Action.HIT : Action.HOLD;
+    }
+
+    /**
+     * Returns this player's bankroll
+     *
+     * @return this player's bankroll
+     */
+    public double getBankroll() {
+        return bankroll;
     }
 }
