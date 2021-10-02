@@ -51,6 +51,7 @@ public class View {
     private final JPanel topPanel;
     private final JPanel tablePanel;
     private final JPanel optionsPanel;
+    private final JPanel messagePanel;
     private final SettingsPanel settingsPanel;
 
     static {
@@ -71,6 +72,8 @@ public class View {
         tablePanel = new JPanel();
         optionsPanel = new JPanel();
         startPanel = new JPanel();
+        messagePanel = new JPanel();
+
         titleLabel = new JLabel();
         playerHandValueLabel = new JLabel();
         dealerHandValueLabel = new JLabel();
@@ -292,5 +295,30 @@ public class View {
      */
     public void updateDeckCount(int count) {
         deckCountLabel.setText(count + "");
+    }
+
+    /**
+     * Displays a message on the screen with a message bubble icon.
+     *
+     * @param message the message
+     */
+    public void displayMessage(String message) {
+        displayMessage("MESSAGE", message, "message.png");
+    }
+
+    /**
+     * Displays a message on the screen with the specified icon.
+     *
+     * @param header the type of message
+     * @param message the message
+     * @param filename the filename of the icon
+     */
+    public void displayMessage(String header, String message, String filename) {
+        messagePanel.setVisible(true);
+        messageHeader.setText(header);
+        messageLabel.setText(message);
+        int size = messageHeader.getFont().getSize();
+        String mode = (PALETTE instanceof LightPalette) ? "light/" : "dark/";
+        setIcon(messageHeader, mode + filename, size);
     }
 }

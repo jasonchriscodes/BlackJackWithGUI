@@ -99,4 +99,8 @@ public class Message {
         }
         return messageString;
     }
+
+    public static String welcome() {
+        return "Welcome to Blackjack! Place a bet.";
+    }
 }
