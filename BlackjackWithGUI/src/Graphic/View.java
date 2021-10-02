@@ -188,4 +188,8 @@ public class View {
         backgroundPanel.repaint();
     }
 
+    public Object[] getSettings() {
+        return settingsPanel.getSettings();
+    }
+
 }
