@@ -50,6 +50,7 @@ public class View {
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
         handOptionsPanel = new JPanel();
+        titleLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
