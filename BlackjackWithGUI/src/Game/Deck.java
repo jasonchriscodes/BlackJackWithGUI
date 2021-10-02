@@ -69,4 +69,9 @@ public class Deck {
         position = 0;
         shuffle();
     }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
 }
