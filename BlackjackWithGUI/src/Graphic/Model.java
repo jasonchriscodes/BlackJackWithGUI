@@ -109,4 +109,13 @@ public class Model {
         }
         return 1;
     }
+
+    /**
+     * Checks if the player's current bet has reached the minimum bet.
+     *
+     * @return true if player's bet has reached the minimum bet
+     */
+    public boolean betIsSufficient() {
+        return player.getTotalGain() >= minimumBet;
+    }
 }
