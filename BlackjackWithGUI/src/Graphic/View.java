@@ -359,4 +359,23 @@ public class View {
             betOption.setVisible(true);
         });
     }
+
+    /**
+     * Updates the bet options according to the player's remaining chips.
+     *
+     * @param chips the player's remaining chips
+     * @param betValues the possible bet options
+     */
+    public void updateChips(double chips, int[] betValues) {
+        for (int i = 0, len = betValues.length; i < len; i++) {
+            String betValue = String.valueOf(betValues[i]);
+            if (chips < betValues[i]) {
+                betOptions.get(betValue).setEnabled(false);
+                betOptions.get(betValue).setVisible(false);
+            } else {
+                betOptions.get(betValue).setEnabled(true);
+                betOptions.get(betValue).setVisible(true);
+            }
+        }
+    }
 }
