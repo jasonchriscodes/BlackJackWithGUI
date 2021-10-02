@@ -192,4 +192,12 @@ public class View {
         return settingsPanel.getSettings();
     }
 
+    public void displayTable() {
+        backgroundPanel.removeAll();
+        backgroundPanel.add(topPanel, BorderLayout.NORTH);
+        backgroundPanel.add(tablePanel, BorderLayout.CENTER);
+        backgroundPanel.add(optionsPanel, BorderLayout.SOUTH);
+        backgroundPanel.repaint();
+    }
+
 }
