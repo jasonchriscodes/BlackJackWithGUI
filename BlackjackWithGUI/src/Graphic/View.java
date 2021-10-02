@@ -43,6 +43,7 @@ public class View {
     private final JLabel currentBetValueLabel;
     private final JLabel trueCountLabel;
     private final JLabel deckCountLabel;
+
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -52,6 +53,9 @@ public class View {
     private final JPanel tablePanel;
     private final JPanel optionsPanel;
     private final JPanel messagePanel;
+    private final JLabel messageHeader;
+    private final JLabel messageLabel;
+
     private final SettingsPanel settingsPanel;
 
     static {
@@ -73,6 +77,8 @@ public class View {
         optionsPanel = new JPanel();
         startPanel = new JPanel();
         messagePanel = new JPanel();
+        messageHeader = new JLabel("MESSAGE");
+        messageLabel = new JLabel();
 
         titleLabel = new JLabel();
         playerHandValueLabel = new JLabel();
