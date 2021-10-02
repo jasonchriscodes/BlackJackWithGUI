@@ -32,6 +32,8 @@ public class View {
 
     private final JFrame frame;
     private final JLabel titleLabel;
+    private final JLabel playerHandValueLabel;
+    private final JLabel dealerHandValueLabel;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -61,6 +63,8 @@ public class View {
         optionsPanel = new JPanel();
         startPanel = new JPanel();
         titleLabel = new JLabel();
+        playerHandValueLabel = new JLabel();
+        dealerHandValueLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
@@ -204,6 +208,16 @@ public class View {
         backgroundPanel.add(tablePanel, BorderLayout.CENTER);
         backgroundPanel.add(optionsPanel, BorderLayout.SOUTH);
         backgroundPanel.repaint();
+    }
+
+    /**
+     * Clears the player and dealer's hand value.
+     */
+    public void resetHandValue() {
+        playerHandValueLabel.setText(" ");
+        playerHandValueLabel.setIcon(null);
+        dealerHandValueLabel.setText(" ");
+        dealerHandValueLabel.setIcon(null);
     }
 
 }
