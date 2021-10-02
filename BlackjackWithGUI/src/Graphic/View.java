@@ -42,6 +42,7 @@ public class View {
     private final JLabel chipsLabel;
     private final JLabel currentBetValueLabel;
     private final JLabel trueCountLabel;
+    private final JLabel deckCountLabel;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -78,6 +79,7 @@ public class View {
         chipsLabel = new JLabel();
         currentBetValueLabel = new JLabel();
         trueCountLabel = new JLabel();
+        deckCountLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }

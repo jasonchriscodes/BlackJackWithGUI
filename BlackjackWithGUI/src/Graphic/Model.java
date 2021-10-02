@@ -96,4 +96,17 @@ public class Model {
     public double playerBet() {
         return player.getTotalGain();
     }
+
+    /**
+     * Returns the number of decks in the shoe.
+     *
+     * @return the number of decks
+     */
+    public int deckCount() {
+        if (shoe.getClass() == Shoe.class) {
+            Shoe s = (Shoe) shoe;
+            return s.deckCount();
+        }
+        return 1;
+    }
 }
