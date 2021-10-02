@@ -26,6 +26,7 @@ public class View {
     public static final Palette PALETTE = new DarkPalette();
     public static final String FNT_PATH = "/font/";
     public static final String IMG_PATH = "/image/";
+    public static final String CARD_PATH = "/image/Cards/";
 
     private static final int CARD_SIZE = 115;
 
@@ -43,6 +44,8 @@ public class View {
     private final JLabel currentBetValueLabel;
     private final JLabel trueCountLabel;
     private final JLabel deckCountLabel;
+    private final JLabel messageHeader;
+    private final JLabel messageLabel;
 
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
@@ -53,8 +56,6 @@ public class View {
     private final JPanel tablePanel;
     private final JPanel optionsPanel;
     private final JPanel messagePanel;
-    private final JLabel messageHeader;
-    private final JLabel messageLabel;
 
     private final SettingsPanel settingsPanel;
 
@@ -91,6 +92,9 @@ public class View {
         deckCountLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
+
+        messageHeader.setForeground(PALETTE.heading());
+        messageHeader.setFont(FONT.generate(12, Font.BOLD));
     }
 
     private static void loadFont() {
@@ -170,6 +174,23 @@ public class View {
             label.setIcon(ImageResizer.getScaledImage(icon, size));
         } catch (NullPointerException ex) {
             System.err.println("Could not find " + path);
+        }
+    }
+
+    private void setIcon(JLabel label, String fileName, int size) {
+        String path1 = IMG_PATH + fileName;
+        try {
+            ImageIcon icon = new ImageIcon(View.class.getResource(path1));
+            label.setIcon(ImageResizer.getScaledImage(icon, size));
+        } catch (NullPointerException e) {
+            String path2 = CARD_PATH + fileName;
+            try {
+                ImageIcon icon = new ImageIcon(View.class.getResource(path2));
+                label.setIcon(ImageResizer.getScaledImage(icon, size));
+            } catch (NullPointerException ex) {
+                System.err.println("Could not find " + path1);
+                System.err.println("Could not find " + path2);
+            }
         }
     }
 
