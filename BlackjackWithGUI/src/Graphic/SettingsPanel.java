@@ -30,11 +30,8 @@ public class SettingsPanel extends JPanel {
     private JTextField nameTextField;
     private JSpinner botSpinner;
     private JSpinner betSpinner;
-    private ButtonGroup dealerBehaviorGroup;
     private JCheckBox displayHandValue;
-    private JButton newGameButton;
-    private JButton loadGameButton;
-    private JButton quitButton;
+    private JButton playOptionsPanel;
     private final static int HIT = 0;
     private final static int HOLD = 1;
 
@@ -53,11 +50,8 @@ public class SettingsPanel extends JPanel {
         nameTextField = new JTextField();
         botSpinner = new JSpinner();
         betSpinner = new JSpinner();
-        dealerBehaviorGroup = new ButtonGroup();
         displayHandValue = new JCheckBox("Show hand value");
-        newGameButton = new JButton("New Game");
-        loadGameButton = new JButton("Load Game");
-        quitButton = new JButton("Quit");
+        playOptionsPanel = new JButton("PLAY");
 
         logoLabel.setIcon(ImageResizer.getScaledImage(logo, 150));
 
@@ -83,9 +77,7 @@ public class SettingsPanel extends JPanel {
         botSpinner.setFont(View.FONT.generate(14));
         betSpinner.setFont(View.FONT.generate(14));
         displayHandValue.setFont(View.FONT.generate(14));
-        newGameButton.setFont(View.FONT.generate(14, Font.BOLD));
-        loadGameButton.setFont(View.FONT.generate(14, Font.BOLD));
-        quitButton.setFont(View.FONT.generate(14, Font.BOLD));
+        playOptionsPanel.setFont(View.FONT.generate(14, Font.BOLD));
 
         playerLabel.setForeground(View.PALETTE.heading());
         nameLabel.setForeground(View.PALETTE.text());
@@ -94,9 +86,7 @@ public class SettingsPanel extends JPanel {
         minimumBetLabel.setForeground(View.PALETTE.text());
         nameTextField.setForeground(View.PALETTE.text());
         displayHandValue.setForeground(View.PALETTE.text());
-        newGameButton.setForeground(View.PALETTE.menu());
-        loadGameButton.setForeground(View.PALETTE.menu());
-        quitButton.setForeground(View.PALETTE.menu());
+        playOptionsPanel.setForeground(View.PALETTE.menu());
 
         EmptyBorder eb = new EmptyBorder(1, 1, 1, 1);
         LineBorder lb = new LineBorder(View.PALETTE.separator());
@@ -109,9 +99,7 @@ public class SettingsPanel extends JPanel {
         betSpinner.setBackground(View.PALETTE.separator());
         menuItemsPanel.setBackground(View.PALETTE.menu());
         displayHandValue.setBackground(View.PALETTE.menu());
-        newGameButton.setBackground(View.PALETTE.button());
-        loadGameButton.setBackground(View.PALETTE.button());
-        quitButton.setBackground(View.PALETTE.button());
+        playOptionsPanel.setBackground(View.PALETTE.button());
         menuItemsPanel.setBorder(new LineBorder(View.PALETTE.separator()));
         setOpaque(false);
 
@@ -186,17 +174,8 @@ public class SettingsPanel extends JPanel {
         innerGBC.gridy++;
         innerGBC.fill = GridBagConstraints.NONE;
         innerGBC.insets = new Insets(10, 10, 0, 10);
-        menuItemsPanel.add(newGameButton, innerGBC);
+        menuItemsPanel.add(playOptionsPanel, innerGBC);
 
-        innerGBC.gridy++;
-        innerGBC.fill = GridBagConstraints.NONE;
-        innerGBC.insets = new Insets(0, 10, 10, 10);
-        menuItemsPanel.add(loadGameButton, innerGBC);
-
-        innerGBC.gridy++;
-        innerGBC.fill = GridBagConstraints.NONE;
-        innerGBC.insets = new Insets(10, 10, 10, 10);
-        menuItemsPanel.add(quitButton, innerGBC);
     }
 
     private JSeparator createSeparator(Color fg) {
@@ -207,6 +186,6 @@ public class SettingsPanel extends JPanel {
     }
 
     public void initPlayActionListener(ActionListener l) {
-        newGameButton.addActionListener(l);
+        playOptionsPanel.addActionListener(l);
     }
 }
