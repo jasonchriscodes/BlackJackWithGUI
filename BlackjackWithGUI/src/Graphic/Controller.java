@@ -82,13 +82,4 @@ public class Controller {
         }
     }
 
-    /**
-     * Updates the number of decks displayed on screen.
-     *
-     * @param count the number of decks
-     */
-    public void updateDeckCount(int count) {
-        deckCountLabel.setText(count + "");
-    }
-
 }
