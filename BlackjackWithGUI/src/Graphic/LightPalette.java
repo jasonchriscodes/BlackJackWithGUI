@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Graphic;
+
+import java.awt.Color;
+
+/**
+ *
+ * @author Jason Christian - 21136899
+ */
+public class LightPalette implements Palette {
+
+    @Override
+    public Color background() {
+        return new Color(218, 224, 230);
+    }
+
+    @Override
+    public Color menu() {
+        return new Color(255, 255, 255);
+    }
+
+    @Override
+    public Color separator() {
+        return new Color(185, 179, 179);
+    }
+
+    @Override
+    public Color heading() {
+        return new Color(119, 98, 95);
+    }
+
+    @Override
+    public Color text() {
+        return new Color(43, 43, 43);
+    }
+
+    @Override
+    public Color button() {
+        return new LightPalette().red();
+    }
+
+    @Override
+    public Color altButton() {
+        return new LightPalette().menu();
+    }
+}
