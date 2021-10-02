@@ -31,9 +31,11 @@ public class View {
     private final Map<String, JButton> handOptions;
 
     private final JFrame frame;
+    private final JLabel titleLabel;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
+    private final SettingsPanel settingsPanel;
 
     static {
         loadFont();
@@ -48,6 +50,8 @@ public class View {
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
         handOptionsPanel = new JPanel();
+
+        settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
 
     private static void loadFont() {
@@ -148,6 +152,29 @@ public class View {
 
     public void initHandOptions(String[] options) {
         initOptions("OPTIONS", options, this.handOptions, handOptionsPanel, false);
+    }
+
+    /**
+     * Adds an ActionListener to a button.
+     *
+     * <p>
+     * This methods checks if the key is an option button or a choice button.
+     * Options include: {@code Deal}, {@code Next Round}, {@code Quit Game}.
+     * Choices include: {@code Hit}, {@code Hold}.
+     *
+     * @param key the name of the button
+     * @param l the ActionListener
+     */
+    public void initButtonActionListener(String key, ActionListener l) {
+        if (handOptions.containsKey(key)) {
+            handOptions.get(key).addActionListener(l);
+        } else if (playOptions.containsKey(key)) {
+            playOptions.get(key).addActionListener(l);
+        } else if (key.equals("Play")) {
+            settingsPanel.initPlayActionListener(l);
+        } else {
+            System.err.println("Invalid key: " + key);
+        }
     }
 
 }

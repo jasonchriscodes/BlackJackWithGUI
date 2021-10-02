@@ -205,4 +205,8 @@ public class SettingsPanel extends JPanel {
         separator.setBackground(fg);
         return separator;
     }
+
+    public void initPlayActionListener(ActionListener l) {
+        newGameButton.addActionListener(l);
+    }
 }
