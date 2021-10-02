@@ -41,6 +41,7 @@ public class View {
     private final JLabel[] dealerHand;
     private final JLabel chipsLabel;
     private final JLabel currentBetValueLabel;
+    private final JLabel trueCountLabel;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -76,6 +77,7 @@ public class View {
         dealerHand = new JLabel[10];
         chipsLabel = new JLabel();
         currentBetValueLabel = new JLabel();
+        trueCountLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
@@ -270,6 +272,15 @@ public class View {
     public void updateStats(double chips, double bet) {
         chipsLabel.setText(Format.currency(chips));
         currentBetValueLabel.setText(Format.currency(bet));
+    }
+
+    /**
+     * Updates the true count of cards displayed on the screen.
+     *
+     * @param count the true count
+     */
+    public void updateTrueCount(int count) {
+        trueCountLabel.setText(count + "");
     }
 
 }
