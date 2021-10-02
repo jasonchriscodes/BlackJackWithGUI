@@ -39,6 +39,8 @@ public class View {
     private final JLabel dealerHandValueLabel;
     private final JLabel[] playerHand;
     private final JLabel[] dealerHand;
+    private final JLabel chipsLabel;
+    private final JLabel currentBetValueLabel;
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
@@ -72,6 +74,8 @@ public class View {
         dealerHandValueLabel = new JLabel();
         playerHand = new JLabel[10];
         dealerHand = new JLabel[10];
+        chipsLabel = new JLabel();
+        currentBetValueLabel = new JLabel();
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
     }
@@ -255,6 +259,17 @@ public class View {
         Arrays.asList(playerHand).forEach((label) -> {
             label.setIcon(image);
         });
+    }
+
+    /**
+     * Updates the amount of chips and the current bet of the player.
+     *
+     * @param chips the player's chips
+     * @param bet the player's bet
+     */
+    public void updateStats(double chips, double bet) {
+        chipsLabel.setText(Format.currency(chips));
+        currentBetValueLabel.setText(Format.currency(bet));
     }
 
 }
