@@ -65,4 +65,12 @@ public class Model {
         }
         minimumBet = (int) settings[2];
     }
+
+    public double playerChips() {
+        return player.getBankroll();
+    }
+
+    public double playerBet() {
+        return player.getTotalGain();
+    }
 }
