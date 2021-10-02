@@ -5,12 +5,16 @@
  */
 package Graphic;
 
+import Players.HumanPlayer;
+
 /**
  *
  * @author Jason Christian - 21136899
  */
 public class Model {
 
+    private HumanPlayer player;
+    private int minimumBet;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
         "Hit", "Hold"
@@ -50,5 +54,15 @@ public class Model {
      */
     public static final String[] options() {
         return OPTIONS.clone();
+    }
+
+    public void loadSettings(Object[] settings) {
+        String name = (String) settings[0];
+        if (name.isEmpty()) {
+            player = new HumanPlayer();
+        } else {
+            player = new HumanPlayer(name, 100);
+        }
+        minimumBet = (int) settings[2];
     }
 }

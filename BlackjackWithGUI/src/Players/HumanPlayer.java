@@ -27,6 +27,10 @@ public class HumanPlayer extends Participant {
         super(name);
     }
 
+    public HumanPlayer() {
+        this("Player", 100);
+    }
+
     @Override
     int makeABet() {
         System.out.println("How much do you want to bet?");
