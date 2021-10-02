@@ -24,7 +24,8 @@ public class View {
 
     public static final DefaultFont FONT;
     public static final Palette PALETTE = new DarkPalette();
-    public static final String IMG_PATH = "font/IBMPlexSans-Regular.ttf";
+    public static final String FNT_PATH = "/font/";
+    public static final String IMG_PATH = "/image/";
 
     private static final int CARD_SIZE = 115;
 
@@ -76,7 +77,7 @@ public class View {
     }
 
     private static void loadFont() {
-        String path = IMG_PATH + "IBMPlexSans-Regular.ttf";
+        String path = FNT_PATH + "IBMPlexSans-Regular.ttf";
         try {
             GraphicsEnvironment ge = GraphicsEnvironment
                     .getLocalGraphicsEnvironment();
