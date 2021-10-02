@@ -37,6 +37,9 @@ public class View {
     private final JPanel handOptionsPanel;
     private final JPanel backgroundPanel;
     private final JPanel startPanel;
+    private final JPanel topPanel;
+    private final JPanel tablePanel;
+    private final JPanel optionsPanel;
     private final SettingsPanel settingsPanel;
 
     static {
@@ -53,6 +56,9 @@ public class View {
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
         handOptionsPanel = new JPanel();
+        topPanel = new JPanel();
+        tablePanel = new JPanel();
+        optionsPanel = new JPanel();
         startPanel = new JPanel();
         titleLabel = new JLabel();
 
