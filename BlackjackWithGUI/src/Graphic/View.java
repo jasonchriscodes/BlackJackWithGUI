@@ -389,4 +389,28 @@ public class View {
             playOption.setVisible(false);
         });
     }
+
+    /**
+     * Enables and displays a button to the screen.
+     *
+     * <p>
+     * This methods checks if the key is an option button or a choice button.
+     * Options include: {@code Deal}, {@code Next Round}, and {@code Quit Game}.
+     * Choices include: {@code Hit} and {@code Stand}.
+     *
+     * @param keys the names of the buttons
+     */
+    public void enableButton(String... keys) {
+        for (String key : keys) {
+            if (handOptions.containsKey(key)) {
+                handOptions.get(key).setEnabled(true);
+                handOptions.get(key).setVisible(true);
+            } else if (playOptions.containsKey(key)) {
+                playOptions.get(key).setEnabled(true);
+                playOptions.get(key).setVisible(true);
+            } else {
+                System.err.println("Invalid key: " + key);
+            }
+        }
+    }
 }
