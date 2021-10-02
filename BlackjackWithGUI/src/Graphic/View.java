@@ -413,4 +413,29 @@ public class View {
             }
         }
     }
+
+    /**
+     * Disables and removes a button from the screen.
+     *
+     * <p>
+     * This methods checks if the key is an option button or a choice button.
+     * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
+     * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
+     * {@code Double Down}, {@code Surrender} and {@code Stand}.
+     *
+     * @param keys the names of the buttons
+     */
+    public void disableButton(String... keys) {
+        for (String key : keys) {
+            if (handOptions.containsKey(key)) {
+                handOptions.get(key).setEnabled(false);
+                handOptions.get(key).setVisible(false);
+            } else if (playOptions.containsKey(key)) {
+                playOptions.get(key).setEnabled(false);
+                playOptions.get(key).setVisible(false);
+            } else {
+                System.err.println("Invalid key: " + key);
+            }
+        }
+    }
 }
