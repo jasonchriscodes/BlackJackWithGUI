@@ -35,6 +35,7 @@ public class View {
     private final JPanel betOptionsPanel;
     private final JPanel playOptionsPanel;
     private final JPanel handOptionsPanel;
+    private final JPanel backgroundPanel;
     private final SettingsPanel settingsPanel;
 
     static {
@@ -44,6 +45,7 @@ public class View {
 
     public View() {
         frame = new JFrame("Blackjack");
+        backgroundPanel = new Table();
         betOptions = new HashMap<>();
         playOptions = new HashMap<>();
         handOptions = new HashMap<>();
@@ -176,6 +178,12 @@ public class View {
         } else {
             System.err.println("Invalid key: " + key);
         }
+    }
+
+    public void displaySettings() {
+        backgroundPanel.removeAll();
+        backgroundPanel.add(startPanel);
+        backgroundPanel.repaint();
     }
 
 }
