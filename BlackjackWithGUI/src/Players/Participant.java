@@ -141,4 +141,36 @@ public abstract class Participant {
         hand.add(card);
     }
 
+    /**
+     * Counts the maximum value of this player's hand.
+     *
+     * <p>
+     * Initially, any existing ace is counted as 1 regardless if an 11 will bust
+     * the hand. After counting each card, 10 will be added to the total
+     * provided that an ace was found and that it won't bust the hand.
+     *
+     * @return the total value of this player's hand
+     */
+    public int getHandValue() {
+        int total = 0;
+        for (Card card : hand) {
+            total += card.getRanks();
+        }
+
+        if (hasAce() && total < 12) {
+            total += 10;
+        }
+
+        return total;
+    }
+
+    /**
+     * Determines if this player has an ace in their hand.
+     *
+     * @return true if an ace is found
+     */
+    public boolean hasAce() {
+        return hand.stream().anyMatch((card) -> (card instanceof Ace));
+    }
+
 }
