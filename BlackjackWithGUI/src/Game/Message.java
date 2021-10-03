@@ -3,6 +3,8 @@
  */
 package Game;
 
+import Graphic.Format;
+
 /**
  *
  * @author Jason Christian - 21136899
@@ -116,5 +118,17 @@ public class Message {
         return "You pushed for a tie. \nNote: A push is when the player and "
                 + "the dealer have the same hand value so neither players win in a push.";
 
+    }
+
+    public static String playerBlackjack(double bet) {
+        return "You got Blackjack! " + Message.playerWon(bet * 1.5);
+    }
+
+    public static String playerWon(double bet) {
+        if (bet == 0) {
+            return "You won!";
+        }
+        String chips = Format.currency(bet);
+        return "You won " + chips + " Chips!";
     }
 }
