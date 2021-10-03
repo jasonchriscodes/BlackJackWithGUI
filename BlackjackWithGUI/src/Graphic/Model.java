@@ -24,6 +24,7 @@ public class Model {
     private CardContainer shoe;
     private int runningCount;
     private BotDealer dealer;
+    private boolean stand17;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
         "Hit", "Hold"
@@ -201,6 +202,25 @@ public class Model {
 
     public Card holeCard() {
         return dealer.getHand().get(0);
+    }
+
+    /**
+     * Performs a dealer's turn in blackjack.
+     *
+     * <p>
+     * In blackjack, the dealer hits until their hand value is greater than 16.
+     * The dealer may also hit a soft 17 in some games, depending on the casino
+     * rules.
+     */
+    public void dealerTurn() {
+        while (dealer.hasSoft17() || dealer.getHandValue() <= 16) {
+            if ((dealer.hasSoft17() && stand17) || shoe.isEmpty()) {
+                return;
+            }
+            Card card = shoe.drawCard();
+            dealer.hit(card);
+            updateRunningCount(card.getRanks());
+        }
     }
 
 }
