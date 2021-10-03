@@ -161,4 +161,13 @@ public class Model {
         return player.getHandValue();
     }
 
+    /**
+     * Determines if the player has a soft hand.
+     *
+     * @return true if the player has a soft hand
+     */
+    public boolean playerHasSoftHand() {
+        return player.hasSoftHand();
+    }
+
 }
