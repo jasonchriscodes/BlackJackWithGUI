@@ -432,4 +432,11 @@ public class Model {
         shoe.reset(discardDeck);
     }
 
+    /**
+     * Resets the running count to 0.
+     */
+    public void resetRunningCount() {
+        runningCount = 0;
+    }
+
 }
