@@ -153,4 +153,8 @@ public class Model {
         }
     }
 
+    public String playerName() {
+        return player + "";
+    }
+
 }
