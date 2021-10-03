@@ -439,4 +439,12 @@ public class Model {
         runningCount = 0;
     }
 
+    /**
+     * This method resets the player and dealer's hands.
+     */
+    public void resetHand() {
+        player.discardHand(discardDeck);
+        dealer.discardHand(discardDeck);
+    }
+
 }
