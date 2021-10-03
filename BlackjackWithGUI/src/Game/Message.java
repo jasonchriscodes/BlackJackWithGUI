@@ -131,4 +131,16 @@ public class Message {
         String chips = Format.currency(bet);
         return "You won " + chips + " Chips!";
     }
+
+    public static String dealerBlackjack(double bet) {
+        return "The Dealer got Blackjack. " + Message.playerLost(bet);
+    }
+
+    public static String playerLost(double bet) {
+        if (bet == 0) {
+            return "You lost.";
+        }
+        String chips = Format.currency(bet);
+        return "You lost " + chips + " chips.";
+    }
 }
