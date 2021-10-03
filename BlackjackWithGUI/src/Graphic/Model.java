@@ -371,4 +371,13 @@ public class Model {
         return player.getBet() == 0;
     }
 
+    /**
+     * Adds a card to the dealer's hand.
+     *
+     * @param card the card
+     */
+    public void dealerHit(Card card) {
+        dealer.hit(card);
+    }
+
 }
