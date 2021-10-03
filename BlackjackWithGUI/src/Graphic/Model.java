@@ -5,6 +5,7 @@
  */
 package Graphic;
 
+import Cards.Card;
 import Cards.CardContainer;
 import Cards.Shoe;
 import Players.HumanPlayer;
@@ -117,5 +118,14 @@ public class Model {
      */
     public boolean betIsSufficient() {
         return player.getTotalGain() >= minimumBet;
+    }
+
+    /**
+     * This method draws a card from the shoe.
+     *
+     * @return a card
+     */
+    public Card drawCard() {
+        return shoe.drawCard();
     }
 }
