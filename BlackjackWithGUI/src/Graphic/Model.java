@@ -240,4 +240,40 @@ public class Model {
         return dealer.hasSoftHand();
     }
 
+    /**
+     * This method determines if there is a push for a tie.
+     *
+     * <p>
+     * A push is when the player and the dealer have the same hand value.
+     * Neither players win in a push.
+     *
+     * @return true if the player and the dealer have the same hand value
+     */
+    public boolean isTie() {
+        if (bothBelowLimit(player, dealer)) {
+            return isEqualHand(player, dealer);
+        }
+        return false;
+    }
+
+    private boolean bothBelowLimit(Participant player, Participant opponent) {
+        return player.isBelowLimit() && opponent.isBelowLimit();
+    }
+
+    private boolean isEqualHand(Participant player, Participant opponent) {
+        if (player.getHandValue() == 21 && opponent.getHandValue() == 21) {
+            return isDoubleBlackjack(player, opponent)
+                    || noOneHasBlackjack(player, opponent);
+        }
+        return player.getHandValue() == opponent.getHandValue();
+    }
+
+    private boolean isDoubleBlackjack(Participant player, Participant opponent) {
+        return player.hasBlackjack() && opponent.hasBlackjack();
+    }
+
+    private boolean noOneHasBlackjack(Participant player, Participant opponent) {
+        return !player.hasBlackjack() && !opponent.hasBlackjack();
+    }
+
 }
