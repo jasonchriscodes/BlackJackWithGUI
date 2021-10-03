@@ -199,4 +199,42 @@ public class Controller {
         }
     }
 
+    public class HintAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            BasicStrategy.Action action = model.basicStrategy();
+            String hint = null;
+            switch (action) {
+                case DH:
+                    if (!view.isChoiceEnabled("Double Down")) {
+                        hint = BasicStrategy.Action.H.toString();
+                    }
+                    break;
+                case DS:
+                    if (!view.isChoiceEnabled("Double Down")) {
+                        hint = BasicStrategy.Action.HL.toString();
+                    }
+                    break;
+                case RH:
+                    if (!view.isChoiceEnabled("Surrender")) {
+                        hint = BasicStrategy.Action.H.toString();
+                    }
+                    break;
+                case RS:
+                    if (!view.isChoiceEnabled("Surrender")) {
+                        hint = BasicStrategy.Action.HL.toString();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (hint == null) {
+                hint = action.toString();
+            }
+            view.displayMessage("HINT", Message.hint(hint), "hint.png");
+        }
+    }
+    s
+
 }
