@@ -340,4 +340,13 @@ public class Model {
         player.setBet(0);
     }
 
+    /**
+     * This method determines if the dealer has won over the player.
+     *
+     * @return true if the dealer won
+     */
+    public boolean playerLost() {
+        return won(dealer, player);
+    }
+
 }
