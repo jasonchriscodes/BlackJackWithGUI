@@ -317,4 +317,27 @@ public class Model {
         return player.hasBlackjack();
     }
 
+    /**
+     * This method gives the player the chips specified by the payout.
+     *
+     * <p>
+     * A regular payout pays the player the amount of their bet. A blackjack
+     * payout pays the player 3-to-2, or 1.5 times their bet. A half payout
+     * returns half of the player's bet.
+     *
+     * @param type possible values are: {@code REGULAR}, {@code BLACKJACK}, and
+     * {@code HALF}
+     */
+    public void givePayout(Payout type) {
+        player.addChips(type.pay(player.getBet()));
+        resetBet();
+    }
+
+    /**
+     * This method sets the existing bet to 0.
+     */
+    public void resetBet() {
+        player.setBet(0);
+    }
+
 }
