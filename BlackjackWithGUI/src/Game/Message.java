@@ -152,4 +152,15 @@ public class Message {
         return "You're out of chips.";
     }
 
+    public static String deal(String firstCard, String secondCard) {
+        return "Your first two cards are " + firstCard + " and " + secondCard + ".";
+    }
+
+    public static String deal(String[] initialCards) {
+        if (initialCards.length < 2) {
+            return "";
+        }
+        return deal(initialCards[0], initialCards[1]);
+    }
+
 }
