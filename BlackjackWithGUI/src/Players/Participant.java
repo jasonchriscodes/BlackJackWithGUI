@@ -232,4 +232,18 @@ public abstract class Participant {
         return false;
     }
 
+    /**
+     * Discards this player's hand to a discard deck.
+     *
+     * <p>
+     * This method removes every card from this player's hand and set them
+     * aside.
+     *
+     * @param discardDeck the discardDeck where the hand will be returned to
+     */
+    public void discardHand(List<Card> discardDeck) {
+        hand.forEach(discardDeck::add);
+        hand.clear();
+    }
+
 }
