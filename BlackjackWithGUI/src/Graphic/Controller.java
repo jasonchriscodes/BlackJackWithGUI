@@ -213,7 +213,7 @@ public class Controller {
                     break;
                 case DS:
                     if (!view.isChoiceEnabled("Double Down")) {
-                        hint = BasicStrategy.Action.HL.toString();
+                        hint = BasicStrategy.Action.S.toString();
                     }
                     break;
                 case RH:
@@ -223,7 +223,7 @@ public class Controller {
                     break;
                 case RS:
                     if (!view.isChoiceEnabled("Surrender")) {
-                        hint = BasicStrategy.Action.HL.toString();
+                        hint = BasicStrategy.Action.S.toString();
                     }
                     break;
                 default:
@@ -235,6 +235,5 @@ public class Controller {
             view.displayMessage("HINT", Message.hint(hint), "hint.png");
         }
     }
-    s
 
 }
