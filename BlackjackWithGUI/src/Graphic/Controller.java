@@ -279,6 +279,8 @@ public class Controller {
 
     public class BetAction implements ActionListener {
 
+        private final int value;
+
         public BetAction(int value) {
             this.value = value;
         }
@@ -297,8 +299,5 @@ public class Controller {
             view.updateStats(model.playerChips(), model.playerBet());
             view.updateChips(model.playerChips(), Model.chips());
         }
-
-        private final int value;
     }
-
 }
