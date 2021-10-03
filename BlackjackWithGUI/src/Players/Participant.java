@@ -173,4 +173,23 @@ public abstract class Participant {
         return hand.stream().anyMatch((card) -> (card instanceof Ace));
     }
 
+    /**
+     * Determines if this player has a soft hand.
+     *
+     * <p>
+     * Any hand that has an ace that is counted as 11 is a soft hand.
+     *
+     * @return true if this player has a soft hand
+     */
+    public boolean hasSoftHand() {
+        if (hasAce()) {
+            int total = 0;
+            for (Card card : hand) {
+                total += card.getRanks();
+            }
+            return total < 12;
+        }
+        return false;
+    }
+
 }
