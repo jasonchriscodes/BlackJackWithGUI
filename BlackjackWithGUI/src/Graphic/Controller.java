@@ -5,6 +5,7 @@
  */
 package Graphic;
 
+import Cards.Card;
 import Game.Message;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,5 +83,32 @@ public class Controller {
             view.disableButton("Next Hand", "Hint");
         }
     }
+
+    public class HitAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Card card = model.drawCard();
+            model.playerHit(card);
+            model.updateRunningCount(card.getRank());
+            view.updateDeckCount(model.deckCount());
+            view.updateTrueCount(model.getTrueCount());
+            view.displayMessage(Message.hit(card + ""));
+            view.updatePlayerHandValue(
+                    model.playerName(),
+                    model.playerHandValue(),
+                    model.playerHasSoftHand()
+            );
+            view.updatePlayerCards(model.playerCardNames());
+            view.disableButton("Surrender");
+            if (model.wentOver() || model.shoeIsEmpty()) {
+                view.disableButton("Hit", "Double Down", "Hint");
+                if (model.shoeIsEmpty()) {
+                    view.displayMessage(Message.deckIsEmpty());
+                }
+            }
+        }
+    }
+    s
 
 }
