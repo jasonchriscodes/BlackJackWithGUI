@@ -188,4 +188,13 @@ public class Model {
         return !player.isBelowLimit();
     }
 
+    /**
+     * Determines if there are any remaining cards in the shoe.
+     *
+     * @return true if there are any remaining cards in the shoe
+     */
+    public boolean shoeIsEmpty() {
+        return shoe.isEmpty();
+    }
+
 }
