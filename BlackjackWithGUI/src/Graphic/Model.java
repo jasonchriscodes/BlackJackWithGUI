@@ -236,4 +236,8 @@ public class Model {
         return dealer.getHandValue();
     }
 
+    public boolean dealerHasSoftHand() {
+        return dealer.hasSoftHand();
+    }
+
 }
