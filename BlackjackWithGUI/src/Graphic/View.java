@@ -28,6 +28,7 @@ public class View {
     public static final String IMG_PATH = "/image/";
     public static final String CARD_PATH = "/image/Cards/";
 
+    private static final String CARD_STYLE = "classic";
     private static final int CARD_SIZE = 115;
 
     private final Map<String, JButton> betOptions;
@@ -453,6 +454,25 @@ public class View {
         String fileName = (soft) ? "soft.png" : "hard.png";
         int size = playerHandValueLabel.getFont().getSize();
         setIcon(playerHandValueLabel, fileName, size);
+    }
+
+    /**
+     * Updates the card images on the player's side of the screen.
+     *
+     * @param cardNames the names of the cards
+     */
+    public void updatePlayerCards(String[] cardNames) {
+        updateImages(cardNames, playerHand);
+    }
+
+    private void updateImages(String[] cardNames, JLabel[] labels) {
+        for (int i = 0; i < cardNames.length; i++) {
+            String[] comp = cardNames[i].split(" ");
+            String value = CARD_STYLE + "_" + comp[0].toLowerCase();
+            String suit = comp[2].toLowerCase();
+            String path = suit + "/" + value + ".png";
+            setIcon(labels[i], path, CARD_SIZE);
+        }
     }
 
 }
