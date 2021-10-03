@@ -171,10 +171,6 @@ public class Controller {
             view.enableButton("Hint");
             view.disableButton("Deal");
 
-            if (model.betIsEmpty() || !model.canDoubleDown()) {
-                view.disableButton("Double Down");
-            }
-
             for (int i = 0; i < 2; i++) {
                 Card playerCard = model.drawCard();
                 Card dealerCard = model.drawCard();
