@@ -38,7 +38,7 @@ public class Controller {
         view.initButtonActionListener("Play", new PlayAction());
 
         view.initButtonActionListener("Hit", new HitAction());
-        view.initButtonActionListener("Stand", new StandAction());
+        view.initButtonActionListener("Stand", new holdAction());
         view.initButtonActionListener("Double Down", new DoubleDownAction());
         view.initButtonActionListener("Surrender", new SurrenderAction());
 
@@ -107,6 +107,60 @@ public class Controller {
                     view.displayMessage(Message.deckIsEmpty());
                 }
             }
+        }
+    }
+
+    public class holdAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.disableAllChoices();
+            view.disableButton("Hint");
+            view.revealHoleCard(model.holeCard());
+
+            model.dealerTurn();
+            view.updateDeckCount(model.deckCount());
+            view.updateTrueCount(model.getTrueCount());
+
+            view.updatePlayerCards(model.playerCardNames());
+            view.updateDealerCards(model.dealerCardNames());
+
+            view.updatePlayerHandValue(model.playerName(),
+                    model.playerHandValue(),
+                    model.playerHasSoftHand());
+            view.updateDealerHandValue(model.dealerHandValue(),
+                    model.dealerHasSoftHand());
+
+            String message;
+            if (model.isTie()) {
+                view.displayMessage(Message.tie());
+                model.returnBet();
+            } else if (model.playerWon()) {
+                if (model.playerHasBlackjack()) {
+                    message = Message.playerBlackjack(model.playerBet());
+                    model.givePayout(Payout.BLACKJACK);
+                } else {
+                    message = Message.playerWon(model.playerBet());
+                    model.givePayout(Payout.REGULAR);
+                }
+                view.displayMessage(message);
+            } else if (model.playerLost()) {
+                message = (model.dealerHasBlackjack())
+                        ? Message.dealerBlackjack(model.playerBet())
+                        : Message.playerLost(model.playerBet());
+                view.displayMessage(message);
+                model.resetBet();
+            } else {
+                view.displayMessage(Message.bothOver());
+            }
+
+            if (model.outOfChips()) {
+                view.displayMessage(Message.outOfChips());
+            } else {
+                view.enableButton("Next Hand");
+            }
+
+            view.updateStats(model.playerChips(), model.playerBet());
         }
     }
 
