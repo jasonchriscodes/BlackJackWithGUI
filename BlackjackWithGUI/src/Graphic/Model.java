@@ -223,4 +223,13 @@ public class Model {
         }
     }
 
+    public String[] dealerCardNames() {
+        int handSize = dealer.getHand().size();
+        String[] cardNames = new String[handSize];
+        for (int i = 0; i < handSize; i++) {
+            cardNames[i] = dealer.getHand().get(i).toString();
+        }
+        return cardNames;
+    }
+
 }
