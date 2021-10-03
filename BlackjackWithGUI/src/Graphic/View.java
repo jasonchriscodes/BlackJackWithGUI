@@ -505,4 +505,15 @@ public class View {
         setIcon(dealerHandValueLabel, fileName, size);
     }
 
+    /**
+     * Removes all bet options from display.
+     */
+    public void disableAllChips() {
+        betOptionsPanel.setVisible(false);
+        betOptions.values().forEach((betOption) -> {
+            betOption.setEnabled(false);
+            betOption.setVisible(false);
+        });
+    }
+
 }
