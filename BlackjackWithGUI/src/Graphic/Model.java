@@ -8,7 +8,9 @@ package Graphic;
 import Cards.Card;
 import Cards.CardContainer;
 import Cards.Shoe;
+import Game.Hand;
 import Players.HumanPlayer;
+import Players.Participant;
 
 /**
  *
@@ -128,4 +130,14 @@ public class Model {
     public Card drawCard() {
         return shoe.drawCard();
     }
+
+    /**
+     * Adds a card to the player's hand.
+     *
+     * @param card the card to be added
+     */
+    public void playerHit(Card card) {
+        player.hit(card);
+    }
+
 }

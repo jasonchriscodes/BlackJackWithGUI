@@ -102,7 +102,7 @@ public class Controller {
             view.updatePlayerCards(model.playerCardNames());
             view.disableButton("Surrender");
             if (model.wentOver() || model.shoeIsEmpty()) {
-                view.disableButton("Hit", "Double Down", "Hint");
+                view.disableButton("Hit"); //changes
                 if (model.shoeIsEmpty()) {
                     view.displayMessage(Message.deckIsEmpty());
                 }

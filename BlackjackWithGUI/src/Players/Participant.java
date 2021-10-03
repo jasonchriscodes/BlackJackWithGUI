@@ -3,6 +3,7 @@
  */
 package Players;
 
+import Cards.Card;
 import Game.Deck;
 import Game.Hand;
 import Game.Utils;
@@ -18,6 +19,7 @@ public abstract class Participant {
     private String name;
     private List<Hand> hands;
     private double totalGain;
+    private final List<Card> hand;
 
     /**
      * Participant constructor.
@@ -28,6 +30,7 @@ public abstract class Participant {
         this.name = name;
         hands = new ArrayList<>();
         totalGain = 100;
+        this.hand = new ArrayList<>();
     }
 
     /**
@@ -39,6 +42,7 @@ public abstract class Participant {
     public Participant(String name, double totalGain) {
         this.name = name;
         this.totalGain = totalGain;
+        this.hand = new ArrayList<>();
     }
 
     public String getName() {
@@ -124,4 +128,17 @@ public abstract class Participant {
 
         HIT, HOLD
     }
+
+    /**
+     * Adds a card to this player's hand.
+     *
+     * <p>
+     * A hit is when a player takes another card and adds it to their hand.
+     *
+     * @param card the card
+     */
+    public void hit(Card card) {
+        hand.add(card);
+    }
+
 }
