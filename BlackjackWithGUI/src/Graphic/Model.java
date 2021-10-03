@@ -100,7 +100,7 @@ public class Model {
     }
 
     public double playerBet() {
-        return player.getTotalGain();
+        return player.getBet();
     }
 
     /**
@@ -122,7 +122,7 @@ public class Model {
      * @return true if player's bet has reached the minimum bet
      */
     public boolean betIsSufficient() {
-        return player.getTotalGain() >= minimumBet;
+        return player.getBet() >= minimumBet;
     }
 
     /**
