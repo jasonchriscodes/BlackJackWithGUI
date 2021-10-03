@@ -497,4 +497,12 @@ public class View {
         updateImages(cardNames, dealerHand);
     }
 
+    public void updateDealerHandValue(int dealerHandValue, boolean isSoft) {
+        dealerHandValueLabel.setText(dealerHandValue + " â€” Dealer");
+
+        String fileName = (isSoft) ? "soft.png" : "hard.png";
+        int size = dealerHandValueLabel.getFont().getSize();
+        setIcon(dealerHandValueLabel, fileName, size);
+    }
+
 }
