@@ -556,4 +556,8 @@ public class View {
             System.err.println("Could not find " + path);
         }
     }
+
+    public boolean isChoiceEnabled(String choice) {
+        return playOptions.get(choice).isEnabled();
+    }
 }
