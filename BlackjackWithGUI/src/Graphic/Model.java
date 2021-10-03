@@ -170,4 +170,13 @@ public class Model {
         return player.hasSoftHand();
     }
 
+    public String[] playerCardNames() {
+        int handSize = player.getHand().size();
+        String[] cardNames = new String[handSize];
+        for (int i = 0; i < handSize; i++) {
+            cardNames[i] = player.getHand().get(i).toString();
+        }
+        return cardNames;
+    }
+
 }
