@@ -202,4 +202,17 @@ public abstract class Participant {
         return hand;
     }
 
+    /**
+     * Checks if this player's hand has not bust.
+     *
+     * <p>
+     * In blackjack, a bust means that the value of the hand went over 21. A
+     * player loses when they bust.
+     *
+     * @return true if this player's hand has not bust
+     */
+    public boolean isBelowLimit() {
+        return getHandValue() <= 21;
+    }
+
 }
