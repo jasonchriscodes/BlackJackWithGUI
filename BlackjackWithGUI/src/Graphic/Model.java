@@ -380,4 +380,11 @@ public class Model {
         dealer.hit(card);
     }
 
+    public String[] initialCards() {
+        String[] firstTwoCards = new String[2];
+        firstTwoCards[0] = player.getHand().get(0).toString();
+        firstTwoCards[1] = player.getHand().get(1).toString();
+        return firstTwoCards;
+    }
+
 }
