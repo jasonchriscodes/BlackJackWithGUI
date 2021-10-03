@@ -175,10 +175,10 @@ public class Controller {
                 Card playerCard = model.drawCard();
                 Card dealerCard = model.drawCard();
                 model.playerHit(playerCard);
-                model.updateRunningCount(playerCard.getRank());
+                model.updateRunningCount(playerCard.getRanks());
                 model.dealerHit(dealerCard);
                 if (i != 0) {
-                    model.updateRunningCount(dealerCard.getRank());
+                    model.updateRunningCount(dealerCard.getRanks());
                 }
             }
             view.updateTrueCount(model.getTrueCount());
