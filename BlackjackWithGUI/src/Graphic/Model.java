@@ -349,4 +349,13 @@ public class Model {
         return won(dealer, player);
     }
 
+    /**
+     * Determines if the dealer has blackjack.
+     *
+     * @return true if the dealer has blackjack
+     */
+    public boolean dealerHasBlackjack() {
+        return dealer.hasBlackjack();
+    }
+
 }
