@@ -25,6 +25,7 @@ public class Model {
     private int runningCount;
     private BotDealer dealer;
     private boolean stand17;
+    private static final int NUMBER_OF_DECKS = 4;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
         "Hit", "Hold"
@@ -405,6 +406,21 @@ public class Model {
         int p = player.getHandValue();
         int d = dealer.getHand().get(1).getRanks();
         return BasicStrategy.generate(!stand17, softHand, p, d);
+    }
+
+    /**
+     * Determines if the remaining cards in the deck is sufficient.
+     *
+     * <p>
+     * This remaining cards are considered sufficient if the current size of the
+     * shoe is more than one-fourth of the original size. This is to ensure that
+     * the shoe will always contain cards without having to reshuffle every
+     * time.
+     *
+     * @return true if the remaining cards in the shoe is sufficient
+     */
+    public boolean shoeIsSufficient() {
+        return shoe.size() > ((NUMBER_OF_DECKS * 52) * 0.25);
     }
 
 }
