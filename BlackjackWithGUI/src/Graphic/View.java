@@ -24,9 +24,9 @@ public class View {
 
     public static final DefaultFont FONT;
     public static final Palette PALETTE = new DarkPalette();
-    public static final String FNT_PATH = "/font/";
-    public static final String IMG_PATH = "/image/";
-    public static final String CARD_PATH = "/image/Cards/";
+    public static final String FNT_PATH = "font/";
+    public static final String IMG_PATH = "image/";
+    public static final String CARD_PATH = "image/Cards/";
 
     private static final String CARD_STYLE = "classic";
     private static final int CARD_SIZE = 115;
