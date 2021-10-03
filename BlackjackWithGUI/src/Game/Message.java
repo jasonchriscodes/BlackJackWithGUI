@@ -143,4 +143,8 @@ public class Message {
         String chips = Format.currency(bet);
         return "You lost " + chips + " chips.";
     }
+
+    public static String bothOver() {
+        return "You both went over.";
+    }
 }
