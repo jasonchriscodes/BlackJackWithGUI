@@ -527,4 +527,17 @@ public class View {
         });
     }
 
+    /**
+     * Updates the maximum value of the dealer's hand.
+     *
+     * @param dealerHandValue the dealer's hand value
+     */
+    public void updateDealerHandValue(int dealerHandValue) {
+        dealerHandValueLabel.setText(dealerHandValue + "Dealer");
+
+        String path = "question.png";
+        int size = dealerHandValueLabel.getFont().getSize();
+        setIcon(dealerHandValueLabel, path, size);
+    }
+
 }
