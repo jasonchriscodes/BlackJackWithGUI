@@ -176,4 +176,8 @@ public class Message {
     public static String nextHand() {
         return "Place a bet.";
     }
+
+    public static String reshuffle() {
+        return "Deck is reshuffled.";
+    }
 }
