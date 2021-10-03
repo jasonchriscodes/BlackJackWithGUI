@@ -179,4 +179,13 @@ public class Model {
         return cardNames;
     }
 
+    /**
+     * This method determines if the player's hand has busted.
+     *
+     * @return true if player's hand has busted
+     */
+    public boolean wentOver() {
+        return !player.isBelowLimit();
+    }
+
 }
