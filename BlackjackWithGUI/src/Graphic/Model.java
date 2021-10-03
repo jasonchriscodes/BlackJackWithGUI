@@ -456,4 +456,13 @@ public class Model {
         player.addBet(amount);
     }
 
+    /**
+     * The required amount of chips for the player to be able to play.
+     *
+     * @return the minimum bet
+     */
+    public int minimumBet() {
+        return minimumBet;
+    }
+
 }
