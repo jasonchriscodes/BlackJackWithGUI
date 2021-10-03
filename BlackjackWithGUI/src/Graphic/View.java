@@ -488,4 +488,13 @@ public class View {
         revealHoleCard(holeCardName.toString());
     }
 
+    /**
+     * Updates the card images on the dealer's side of the screen.
+     *
+     * @param cardNames the names of the cards
+     */
+    public void updateDealerCards(String[] cardNames) {
+        updateImages(cardNames, dealerHand);
+    }
+
 }
