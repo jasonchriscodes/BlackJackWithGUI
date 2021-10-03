@@ -163,4 +163,14 @@ public class Message {
         return deal(initialCards[0], initialCards[1]);
     }
 
+    public static String hint(String action) {
+        String[] templates = {
+            "You should " + action.toLowerCase() + ".",
+            "Your best option is to " + action.toLowerCase() + ".",
+            action + " is your best option.",
+            "The cards dictate that you should " + action.toLowerCase() + "."
+        };
+        return templates[(int) (Math.random() * templates.length)];
+    }
+
 }
