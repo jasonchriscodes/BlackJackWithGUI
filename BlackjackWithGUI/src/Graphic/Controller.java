@@ -39,12 +39,10 @@ public class Controller {
 
         view.initButtonActionListener("Hit", new HitAction());
         view.initButtonActionListener("Stand", new holdAction());
-        view.initButtonActionListener("Double Down", new DoubleDownAction());
-        view.initButtonActionListener("Surrender", new SurrenderAction());
 
         view.initButtonActionListener("Deal", new DealAction());
         view.initButtonActionListener("Hint", new HintAction());
-        view.initButtonActionListener("Next Hand", new NextHandAction());
+        view.initButtonActionListener("Next Round", new NextRoundAction());
         view.initButtonActionListener("New Game", new NewGameAction());
         view.initButtonActionListener("Quit Game", new QuitGameAction());
 
@@ -161,6 +159,47 @@ public class Controller {
             }
 
             view.updateStats(model.playerChips(), model.playerBet());
+        }
+    }
+
+    public class DealAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.disableAllChips();
+            view.enableAllChoices();
+            view.enableButton("Hint");
+            view.disableButton("Deal");
+
+            if (model.betIsEmpty() || !model.canDoubleDown()) {
+                view.disableButton("Double Down");
+            }
+
+            for (int i = 0; i < 2; i++) {
+                Card playerCard = model.drawCard();
+                Card dealerCard = model.drawCard();
+                model.playerHit(playerCard);
+                model.updateRunningCount(playerCard.getRank());
+                model.dealerHit(dealerCard);
+                if (i != 0) {
+                    model.updateRunningCount(dealerCard.getRank());
+                }
+            }
+            view.updateTrueCount(model.getTrueCount());
+
+            view.displayMessage(Message.deal(model.initialCards()));
+
+            view.updatePlayerHandValue(
+                    model.playerName(),
+                    model.playerHandValue(),
+                    model.playerHasSoftHand()
+            );
+            view.updateDealerHandValue(model.dealerFrontCard());
+
+            view.updatePlayerCards(model.playerCardNames());
+            view.updateDealerCards(model.dealerCardNames());
+            view.hideHoleCard();
+            view.updateDeckCount(model.deckCount());
         }
     }
 
