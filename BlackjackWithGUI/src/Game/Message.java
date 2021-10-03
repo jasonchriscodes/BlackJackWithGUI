@@ -147,4 +147,9 @@ public class Message {
     public static String bothOver() {
         return "You both went over.";
     }
+
+    public static String outOfChips() {
+        return "You're out of chips.";
+    }
+
 }
