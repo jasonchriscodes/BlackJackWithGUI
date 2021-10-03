@@ -12,6 +12,7 @@ import Game.Hand;
 import Players.BotDealer;
 import Players.HumanPlayer;
 import Players.Participant;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Model {
     private int runningCount;
     private BotDealer dealer;
     private boolean stand17;
+    private List<Card> discardDeck;
     private static final int NUMBER_OF_DECKS = 4;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
@@ -421,6 +423,13 @@ public class Model {
      */
     public boolean shoeIsSufficient() {
         return shoe.size() > ((NUMBER_OF_DECKS * 52) * 0.25);
+    }
+
+    /**
+     * Returns all the discarded cards back to the shoe.
+     */
+    public void shuffleDeck() {
+        shoe.reset(discardDeck);
     }
 
 }
