@@ -276,4 +276,12 @@ public class Model {
         return !player.hasBlackjack() && !opponent.hasBlackjack();
     }
 
+    /**
+     * This method returns the player's bet.
+     */
+    public void returnBet() {
+        player.addChips(player.getBet());
+        player.setBet(0);
+    }
+
 }
