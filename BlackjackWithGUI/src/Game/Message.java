@@ -107,4 +107,8 @@ public class Message {
     public static String hit(String card) {
         return "You draw " + card + ".";
     }
+
+    public static String deckIsEmpty() {
+        return "The deck is empty. The Dealer will reshuffle in the next hand";
+    }
 }
