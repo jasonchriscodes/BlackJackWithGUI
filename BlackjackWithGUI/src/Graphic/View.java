@@ -516,4 +516,15 @@ public class View {
         });
     }
 
+    /**
+     * Displays all play options.
+     */
+    public void enableAllChoices() {
+        playOptionsPanel.setVisible(true);
+        playOptions.values().forEach((playOption) -> {
+            playOption.setEnabled(true);
+            playOption.setVisible(true);
+        });
+    }
+
 }
