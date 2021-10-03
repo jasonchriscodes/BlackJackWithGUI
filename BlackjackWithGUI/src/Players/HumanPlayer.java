@@ -13,24 +13,37 @@ import java.util.InputMismatchException;
 public class HumanPlayer extends Participant {
 
     private double bankroll;
+    private double bet;
 
     /**
      * HumanPlayer constructor
      *
      * @param name
-     * @param gain
+     * @param bankroll
      */
-    public HumanPlayer(String name, double gain) {
+    public HumanPlayer(String name, double bankroll) {
         super(name);
-        setTotalGain(gain);
+        setTotalGain(bankroll);
+        this.bankroll = bankroll;
+        this.bet = 0;
     }
 
     public HumanPlayer(String name) {
-        super(name);
+        super(name, 100);
     }
 
     public HumanPlayer() {
         this("Player", 100);
+    }
+
+    /**
+     * Creates a new {@code BlackjackPlayer} named Player with the specified
+     * amount of chips.
+     *
+     * @param bankroll the starting amount of chips
+     */
+    public HumanPlayer(double bankroll) {
+        this("Player", bankroll);
     }
 
     @Override
@@ -60,11 +73,68 @@ public class HumanPlayer extends Participant {
     }
 
     /**
+     * Adds to the existing bet of this player.
+     *
+     * @param amount the desired bet
+     */
+    public void addBet(double amount) {
+        if (amount <= bankroll) {
+            bankroll -= amount;
+        } else {
+            amount = bankroll;
+            bankroll = 0;
+        }
+        bet += amount;
+    }
+
+    /**
+     * Adds to this player's bankroll.
+     *
+     * @param amount the desired amount
+     */
+    public void addChips(double amount) {
+        bankroll += amount;
+    }
+
+    /**
+     * Doubles this player's current bet.
+     */
+    public void doubleBet() {
+        if (bet <= bankroll) {
+            addBet(bet);
+        }
+    }
+
+    /**
+     * Bets the specified amount of chips.
+     *
+     * @param amount the desired amount of chips
+     */
+    public void setBet(double amount) {
+        if (amount <= bankroll) {
+            bankroll -= amount;
+        } else {
+            amount = bankroll;
+            bankroll = 0;
+        }
+        bet = amount;
+    }
+
+    /**
      * Returns this player's bankroll
      *
      * @return this player's bankroll
      */
     public double getBankroll() {
         return bankroll;
+    }
+
+    /**
+     * Returns this player's bet
+     *
+     * @return this player's bet
+     */
+    public double getBet() {
+        return bet;
     }
 }
