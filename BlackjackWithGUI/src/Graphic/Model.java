@@ -157,4 +157,8 @@ public class Model {
         return player + "";
     }
 
+    public int playerHandValue() {
+        return player.getHandValue();
+    }
+
 }
