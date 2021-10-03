@@ -140,4 +140,17 @@ public class Model {
         player.hit(card);
     }
 
+    /**
+     * Add a card to the running count.
+     *
+     * @param rank the card's value
+     */
+    public void updateRunningCount(int rank) {
+        if (rank >= 2 && rank <= 6) {
+            runningCount++;
+        } else if (rank == 1 || rank == 10) {
+            runningCount--;
+        }
+    }
+
 }

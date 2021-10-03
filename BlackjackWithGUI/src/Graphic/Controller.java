@@ -90,7 +90,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Card card = model.drawCard();
             model.playerHit(card);
-            model.updateRunningCount(card.getRank());
+            model.updateRunningCount(card.getRanks());
             view.updateDeckCount(model.deckCount());
             view.updateTrueCount(model.getTrueCount());
             view.displayMessage(Message.hit(card + ""));
