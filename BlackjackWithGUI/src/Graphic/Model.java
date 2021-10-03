@@ -303,4 +303,18 @@ public class Model {
         return player.isBelowLimit();
     }
 
+    /**
+     * This method determines if the player has blackjack.
+     *
+     * <p>
+     * A blackjack is defined as two cards totaling 21. These two cards are a
+     * ten-value card, such as a 10, king, queen or jack, and an ace. This is
+     * also known as a <b>natural 21</b>.
+     *
+     * @return true if the player has blackjack
+     */
+    public boolean playerHasBlackjack() {
+        return player.hasBlackjack();
+    }
+
 }
