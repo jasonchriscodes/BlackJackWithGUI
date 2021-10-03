@@ -567,4 +567,17 @@ public class View {
         );
         return option == 0;
     }
+
+    /**
+     * Returns a collection of bet options.
+     *
+     * <p>
+     * This method exists so that each button can have an action event without
+     * having to write code every time a new button is added.
+     *
+     * @return the bet options
+     */
+    public Collection<JButton> getBetOptions() {
+        return betOptions.values();
+    }
 }
