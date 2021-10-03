@@ -236,4 +236,35 @@ public class Controller {
         }
     }
 
+    public class NextRoundAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.displayMessage(Message.nextHand());
+            view.clearCards();
+
+            if (!model.shoeIsSufficient()) {
+                model.shuffleDeck();
+                model.resetRunningCount();
+                view.displayMessage(Message.reshuffle());
+            }
+
+            view.resetHandValue();
+            view.disableButton("Next Hand", "Hint");
+            model.resetHand();
+
+            view.disableAllChoices();
+            if (model.betIsSufficient()) {
+                view.enableButton("Deal");
+            } else {
+                view.disableButton("Deal");
+            }
+
+            view.enableAllChips();
+            view.updateChips(model.playerChips(), Model.chips());
+            view.updateStats(model.playerChips(), model.playerBet());
+            view.updateDeckCount(model.deckCount());
+        }
+    }
+
 }
