@@ -387,4 +387,12 @@ public class Model {
         return firstTwoCards;
     }
 
+    public int dealerFrontCard() {
+        int value = dealer.getHand().get(1).getRanks();
+        if (value == 1) {
+            return 11;
+        }
+        return value;
+    }
+
 }
