@@ -284,4 +284,23 @@ public class Model {
         player.setBet(0);
     }
 
+    /**
+     * This method determines if the player has won.
+     *
+     * @return true if the player has won
+     */
+    public boolean playerWon() {
+        return won(player, dealer);
+    }
+
+    private boolean won(Participant player, Participant opponent) {
+        if (player.hasBlackjack()) {
+            return !opponent.hasBlackjack();
+        }
+        if (bothBelowLimit(player, opponent)) {
+            return player.getHandValue() > opponent.getHandValue();
+        }
+        return player.isBelowLimit();
+    }
+
 }
