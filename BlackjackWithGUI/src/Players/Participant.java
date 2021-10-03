@@ -193,4 +193,13 @@ public abstract class Participant {
         return false;
     }
 
+    /**
+     * Returns this player's hand.
+     *
+     * @return this player's hand
+     */
+    public List<Card> getHand() {
+        return hand;
+    }
+
 }
