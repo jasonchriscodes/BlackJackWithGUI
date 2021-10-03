@@ -43,7 +43,6 @@ public class Controller {
         view.initButtonActionListener("Deal", new DealAction());
         view.initButtonActionListener("Hint", new HintAction());
         view.initButtonActionListener("Next Round", new NextRoundAction());
-        view.initButtonActionListener("New Game", new NewGameAction());
         view.initButtonActionListener("Quit Game", new QuitGameAction());
 
         view.getBetOptions().forEach((betOption) -> {
@@ -264,6 +263,17 @@ public class Controller {
             view.updateChips(model.playerChips(), Model.chips());
             view.updateStats(model.playerChips(), model.playerBet());
             view.updateDeckCount(model.deckCount());
+        }
+    }
+
+    public class QuitGameAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (model.outOfChips()
+                    || view.prompt(Message.quit(), "Quit Game")) {
+                System.exit(0);
+            }
         }
     }
 
