@@ -174,6 +174,15 @@ public class Model {
         }
     }
 
+    /**
+     * Return the running count.
+     *
+     * @return the running count
+     */
+    public int getRunningCount() {
+        return runningCount;
+    }
+
     public String playerName() {
         return player + "";
     }
