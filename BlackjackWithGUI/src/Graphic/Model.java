@@ -9,6 +9,7 @@ import Cards.Card;
 import Cards.CardContainer;
 import Cards.Shoe;
 import Game.Hand;
+import Players.BotDealer;
 import Players.HumanPlayer;
 import Players.Participant;
 
@@ -22,6 +23,7 @@ public class Model {
     private int minimumBet;
     private CardContainer shoe;
     private int runningCount;
+    private BotDealer dealer;
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private static final String[] CHOICES = {
         "Hit", "Hold"
@@ -195,6 +197,10 @@ public class Model {
      */
     public boolean shoeIsEmpty() {
         return shoe.isEmpty();
+    }
+
+    public Card holeCard() {
+        return dealer.getHand().get(0);
     }
 
 }
