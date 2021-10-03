@@ -9,6 +9,8 @@ package Cards;
  */
 public class Card {
 
+    private final int ranks;
+
     /**
      * Suit value of Card.
      */
@@ -35,6 +37,21 @@ public class Card {
     public Card(Rank face, Suit suit) {
         this.rank = face;
         this.suit = suit;
+        this.ranks = 0;
+    }
+
+    /**
+     * Another card constructor.
+     *
+     * @param ranks
+     * @param suit suit of the card
+     */
+    public Card(int ranks, Suit suit) {
+        if (ranks < 1 || ranks > 10) {
+            throw new IllegalArgumentException("Rank invalid");
+        }
+        this.ranks = ranks;
+        this.suit = suit;
     }
 
     /**
@@ -44,6 +61,15 @@ public class Card {
      */
     public Rank getRank() {
         return rank;
+    }
+
+    /**
+     * Return the rank of the card
+     *
+     * @return the rank
+     */
+    public int getRanks() {
+        return ranks;
     }
 
     /**
@@ -146,5 +172,10 @@ public class Card {
                 // execute here should be impossible since SUIT has only those 4 possible values
                 throw new RuntimeException("something is incredibly wrong");
         }
+    }
+
+    @Override
+    public String toString() {
+        return ranks + " of " + suit;
     }
 }
