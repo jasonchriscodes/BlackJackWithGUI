@@ -8,10 +8,10 @@ package Graphic;
 import Cards.Card;
 import Cards.CardContainer;
 import Cards.Shoe;
-import Game.Hand;
 import Players.BotDealer;
 import Players.HumanPlayer;
 import Players.Participant;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,8 +33,19 @@ public class Model {
         "Hit", "Hold"
     };
     private static final String[] OPTIONS = {
-        "Deal", "Next Round", "New Game", "Quit Game"
+        "Deal", "Next Round", "Hint", "New Game", "Quit Game"
     };
+
+    /**
+     * The initial amount of chips the player has at the start of the game
+     */
+    public static final int BANKROLL = 1000;
+
+    public Model() {
+        player = new HumanPlayer(BANKROLL);
+        dealer = new BotDealer();
+        discardDeck = new ArrayList<>();
+    }
 
     /**
      * Returns the possible types of chips a player may bet.
