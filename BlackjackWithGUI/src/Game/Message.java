@@ -103,4 +103,8 @@ public class Message {
     public static String welcome() {
         return "Welcome to Blackjack! Place a bet.";
     }
+
+    public static String hit(String card) {
+        return "You draw " + card + ".";
+    }
 }
