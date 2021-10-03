@@ -277,4 +277,28 @@ public class Controller {
         }
     }
 
+    public class BetAction implements ActionListener {
+
+        public BetAction(int value) {
+            this.value = value;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            model.bet(value);
+
+            if (model.betIsSufficient()) {
+                view.clearMessage();
+                view.enableButton("Deal");
+            } else {
+                view.displayMessage(Message.minimumBet(model.minimumBet()));
+            }
+
+            view.updateStats(model.playerChips(), model.playerBet());
+            view.updateChips(model.playerChips(), Model.chips());
+        }
+
+        private final int value;
+    }
+
 }
