@@ -173,4 +173,7 @@ public class Message {
         return templates[(int) (Math.random() * templates.length)];
     }
 
+    public static String nextHand() {
+        return "Place a bet.";
+    }
 }
