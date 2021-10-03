@@ -438,4 +438,21 @@ public class View {
             }
         }
     }
+
+    /**
+     * Updates the maximum value and the type of the player's hand.
+     *
+     * @param name the player's name
+     * @param value the player's hand value
+     * @param soft if true, an S indicating a soft hand will be displayed next
+     * to the value, else an H for a hard hand
+     */
+    public void updatePlayerHandValue(String name, int value, boolean soft) {
+        playerHandValueLabel.setText(value + " â€” " + name);
+
+        String fileName = (soft) ? "soft.png" : "hard.png";
+        int size = playerHandValueLabel.getFont().getSize();
+        setIcon(playerHandValueLabel, fileName, size);
+    }
+
 }
