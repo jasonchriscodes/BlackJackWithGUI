@@ -367,4 +367,8 @@ public class Model {
         return player.getBankroll() < minimumBet;
     }
 
+    public boolean betIsEmpty() {
+        return player.getBet() == 0;
+    }
+
 }
