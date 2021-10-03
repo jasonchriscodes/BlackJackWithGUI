@@ -395,4 +395,16 @@ public class Model {
         return value;
     }
 
+    /**
+     * Returns an action based on the basic strategy for blackjack.
+     *
+     * @return an action
+     */
+    public BasicStrategy.Action basicStrategy() {
+        boolean softHand = player.hasSoftHand();
+        int p = player.getHandValue();
+        int d = dealer.getHand().get(1).getRanks();
+        return BasicStrategy.generate(!stand17, softHand, p, d);
+    }
+
 }
