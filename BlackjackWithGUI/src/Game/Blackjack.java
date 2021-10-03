@@ -25,8 +25,8 @@ public class Blackjack {
         Controller controller = new Controller(model, view);
         controller.run();
         //CUI
-        Utils.printBlackJack();
-        GameRunner game = new GameRunner();
-        game.start();
+//        Utils.printBlackJack();
+//        GameRunner game = new GameRunner();
+//        game.start();
     }
 }
