@@ -14,7 +14,11 @@ public class BasicStrategy {
     public enum Action {
 
         H("Hit"),
-        HL("Stand"),
+        S("Stand"),
+        DH("Double Down"),
+        DS("Double Down"),
+        RS("Surrender"),
+        RH("Surrender"),
         NONE("N/A");
 
         private final String s;
@@ -37,38 +41,38 @@ public class BasicStrategy {
                 case 8:
                     return H;
                 case 9:
-                    return (d >= 3 && d <= 6) ? H : HL;
+                    return (d >= 3 && d <= 6) ? DH : H;
                 case 10:
-                    return (d >= 2 && d <= 9) ? H : HL;
+                    return (d >= 2 && d <= 9) ? DH : H;
                 case 11:
-                    return (d >= 2 && d <= 10) ? H : HL;
+                    return (d >= 2 && d <= 10) ? DH : H;
                 case 12:
-                    return (d >= 4 && d <= 6) ? H : HL;
+                    return (d >= 4 && d <= 6) ? S : H;
                 case 13:
                 case 14:
-                    return (d >= 2 && d <= 6) ? H : HL;
+                    return (d >= 2 && d <= 6) ? S : H;
                 case 15:
                     if (d >= 2 && d <= 6) {
-                        return HL;
+                        return S;
                     } else if ((d >= 7 && d <= 9) || d == 1) {
                         return H;
                     } else {
-                        return HL;
+                        return RH;
                     }
                 case 16:
                     if (d >= 2 && d <= 6) {
-                        return HL;
+                        return S;
                     } else if (d == 7 || d == 8) {
                         return H;
                     } else {
-                        return HL;
+                        return RH;
                     }
                 case 17:
                 case 18:
                 case 19:
                 case 20:
                 case 21:
-                    return HL;
+                    return S;
                 default:
                     return NONE;
             }
@@ -80,24 +84,24 @@ public class BasicStrategy {
                     return hardH17(p, d);
                 case 13:
                 case 14:
-                    return (d == 5 || d == 6) ? H : HL;
+                    return (d == 5 || d == 6) ? DH : H;
                 case 15:
                 case 16:
-                    return (d >= 4 && d <= 6) ? H : HL;
+                    return (d >= 4 && d <= 6) ? DH : H;
                 case 17:
-                    return (d >= 3 && d <= 6) ? H : HL;
+                    return (d >= 3 && d <= 6) ? DH : H;
                 case 18:
                     if (d >= 3 && d <= 6) {
-                        return H;
+                        return DS;
                     } else if (d == 7 || d == 8 || d == 2) {
-                        return HL;
+                        return S;
                     } else {
                         return H;
                     }
                 case 19:
                 case 20:
                 case 21:
-                    return HL;
+                    return S;
                 default:
                     return NONE;
             }
@@ -112,39 +116,39 @@ public class BasicStrategy {
                 case 8:
                     return H;
                 case 9:
-                    return (d >= 3 && d <= 6) ? H : HL;
+                    return (d >= 3 && d <= 6) ? DH : H;
                 case 10:
-                    return (d >= 2 && d <= 9) ? H : HL;
+                    return (d >= 2 && d <= 9) ? DH : H;
                 case 11:
-                    return H;
+                    return DH;
                 case 12:
-                    return (d >= 4 && d <= 6) ? HL : H;
+                    return (d >= 4 && d <= 6) ? S : H;
                 case 13:
                 case 14:
-                    return (d >= 2 && d <= 6) ? HL : H;
+                    return (d >= 2 && d <= 6) ? S : H;
                 case 15:
                     if (d >= 2 && d <= 6) {
-                        return HL;
+                        return S;
                     } else if (d >= 7 && d <= 9) {
                         return H;
                     } else {
-                        return HL;
+                        return RH;
                     }
                 case 16:
                     if (d >= 2 && d <= 6) {
-                        return HL;
+                        return S;
                     } else if (d == 7 || d == 8) {
                         return H;
                     } else {
-                        return HL;
+                        return RH;
                     }
                 case 17:
-                    return (d != 1) ? HL : H;
+                    return (d != 1) ? S : RS;
                 case 18:
                 case 19:
                 case 20:
                 case 21:
-                    return HL;
+                    return S;
                 default:
                     return NONE;
             }
@@ -156,25 +160,25 @@ public class BasicStrategy {
                     return hardH17(p, d);
                 case 13:
                 case 14:
-                    return (d == 5 || d == 6) ? H : HL;
+                    return (d == 5 || d == 6) ? DH : H;
                 case 15:
                 case 16:
-                    return (d >= 4 && d <= 6) ? H : HL;
+                    return (d >= 4 && d <= 6) ? DH : H;
                 case 17:
-                    return (d >= 3 && d <= 6) ? H : HL;
+                    return (d >= 3 && d <= 6) ? DH : H;
                 case 18:
                     if (d >= 2 && d <= 6) {
-                        return H;
+                        return DH;
                     } else if (d == 7 || d == 8) {
-                        return HL;
+                        return S;
                     } else {
                         return H;
                     }
                 case 19:
-                    return (d == 6) ? H : HL;
+                    return (d == 6) ? DS : S;
                 case 20:
                 case 21:
-                    return HL;
+                    return S;
                 default:
                     return NONE;
             }
