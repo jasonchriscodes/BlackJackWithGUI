@@ -111,4 +111,10 @@ public class Message {
     public static String deckIsEmpty() {
         return "The deck is empty. The Dealer will reshuffle in the next hand";
     }
+
+    public static String tie() {
+        return "You pushed for a tie. \nNote: A push is when the player and "
+                + "the dealer have the same hand value so neither players win in a push.";
+
+    }
 }
