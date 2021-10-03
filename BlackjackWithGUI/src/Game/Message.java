@@ -185,4 +185,8 @@ public class Message {
         return "Are you sure you want to quit? "
                 + "You will lose your current winnings.";
     }
+
+    public static String minimumBet(int amount) {
+        return "You need to bet a minimum of " + amount + " chips to play.";
+    }
 }
