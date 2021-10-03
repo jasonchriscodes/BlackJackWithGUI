@@ -580,4 +580,13 @@ public class View {
     public Collection<JButton> getBetOptions() {
         return betOptions.values();
     }
+
+    /**
+     * Removes any message displayed on the screen.
+     */
+    public void clearMessage() {
+        messageLabel.setText("");
+        messageLabel.setIcon(null);
+        messagePanel.setVisible(false);
+    }
 }
