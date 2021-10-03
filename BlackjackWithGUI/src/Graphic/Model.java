@@ -85,9 +85,13 @@ public class Model {
         if (name.isEmpty()) {
             player = new HumanPlayer();
         } else {
-            player = new HumanPlayer(name, 100);
+            player = new HumanPlayer(name);
         }
+        int deckAmount = (int) settings[1];
         minimumBet = (int) settings[2];
+        stand17 = (int) settings[3] == 1;
+        shoe = new Shoe(deckAmount);
+        shoe.shuffle();
     }
 
     /**
