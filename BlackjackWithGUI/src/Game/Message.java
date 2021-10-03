@@ -180,4 +180,9 @@ public class Message {
     public static String reshuffle() {
         return "Deck is reshuffled.";
     }
+
+    public static String quit() {
+        return "Are you sure you want to quit? "
+                + "You will lose your current winnings.";
+    }
 }
