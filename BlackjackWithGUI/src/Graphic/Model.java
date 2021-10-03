@@ -447,4 +447,13 @@ public class Model {
         dealer.discardHand(discardDeck);
     }
 
+    /**
+     * Increases the player's existing bet.
+     *
+     * @param amount to increase bet by
+     */
+    public void bet(double amount) {
+        player.addBet(amount);
+    }
+
 }
