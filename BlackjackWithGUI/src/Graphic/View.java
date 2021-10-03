@@ -560,4 +560,11 @@ public class View {
     public boolean isChoiceEnabled(String choice) {
         return playOptions.get(choice).isEnabled();
     }
+
+    public boolean prompt(String message, String title) {
+        int option = JOptionPane.showConfirmDialog(
+                frame, message, title, JOptionPane.YES_NO_OPTION
+        );
+        return option == 0;
+    }
 }
