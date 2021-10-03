@@ -358,4 +358,13 @@ public class Model {
         return dealer.hasBlackjack();
     }
 
+    /**
+     * Determines if the player has enough chips to continue playing.
+     *
+     * @return true if the chips are less than the minimum bet
+     */
+    public boolean outOfChips() {
+        return player.getBankroll() < minimumBet;
+    }
+
 }
