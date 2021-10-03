@@ -215,4 +215,21 @@ public abstract class Participant {
         return getHandValue() <= 21;
     }
 
+    /**
+     * Determines if this player has blackjack.
+     *
+     * <p>
+     * A blackjack is defined as two cards totaling 21. These two cards are a
+     * ten-value card, such as a 10, king, queen or jack, and an ace. This is
+     * also known as a <b>natural 21</b>.
+     *
+     * @return true if this player has blackjack
+     */
+    public boolean hasBlackjack() {
+        if (hand.size() == 2 && hasAce()) {
+            return hand.get(0).getRanks() == 10 || hand.get(1).getRanks() == 10;
+        }
+        return false;
+    }
+
 }
