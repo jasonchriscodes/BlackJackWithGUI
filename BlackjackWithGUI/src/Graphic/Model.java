@@ -232,4 +232,8 @@ public class Model {
         return cardNames;
     }
 
+    public int dealerHandValue() {
+        return dealer.getHandValue();
+    }
+
 }
