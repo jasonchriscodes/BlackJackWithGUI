@@ -540,4 +540,20 @@ public class View {
         setIcon(dealerHandValueLabel, path, size);
     }
 
+    /**
+     * Places the front side of the dealer's hole card down.
+     *
+     * <p>
+     * In blackjack, the dealer will hide one of his two cards after the initial
+     * deal. This hidden card is called the hole card.
+     */
+    public void hideHoleCard() {
+        String path = IMG_PATH + CARD_STYLE + "_back.png";
+        try {
+            ImageIcon icon = new ImageIcon(View.class.getResource(path));
+            dealerHand[0].setIcon(ImageResizer.getScaledImage(icon, CARD_SIZE));
+        } catch (NullPointerException ex) {
+            System.err.println("Could not find " + path);
+        }
+    }
 }
