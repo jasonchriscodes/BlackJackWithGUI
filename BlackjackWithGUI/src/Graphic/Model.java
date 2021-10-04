@@ -489,4 +489,11 @@ public class Model {
         return minimumBet;
     }
 
+    public void restartGame() {
+        // player = new BlackjackPlayer(BANKROLL);
+        dealer = new BotDealer();
+        discardDeck = new ArrayList<>();
+        runningCount = 0;
+    }
+
 }
