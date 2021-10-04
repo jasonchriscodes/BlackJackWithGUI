@@ -613,8 +613,12 @@ public class View {
      *
      * @param holeCardName the name of the hole card
      */
-    public void revealHoleCard(Object holeCardName) {
-        revealHoleCard(holeCardName.toString());
+    public void revealHoleCard(String holeCardName) {
+        String[] comp = holeCardName.split(" ");
+        String value = CARD_STYLE + "_" + comp[0].toLowerCase();
+        String suit = comp[2].toLowerCase();
+        String path = suit + "/" + value + ".png";
+        setIcon(dealerHand[0], path, CARD_SIZE);
     }
 
     /**
