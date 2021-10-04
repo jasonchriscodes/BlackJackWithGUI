@@ -117,6 +117,15 @@ public class View {
         } catch (NullPointerException ex) {
             System.err.println("Could not find " + path);
         }
+
+        // Styling for the option pane
+        UIManager.put("OptionPane.messageFont", FONT.generate(14));
+        UIManager.put("OptionPane.background", PALETTE.menu());
+        UIManager.put("OptionPane.messageForeground", PALETTE.text());
+        UIManager.put("Panel.background", PALETTE.menu());
+        UIManager.put("OptionPane.buttonFont", FONT.generate(12));
+        UIManager.put("Button.foreground", PALETTE.menu());
+        UIManager.put("Button.background", PALETTE.button());
     }
 
     private static void loadFont() {
