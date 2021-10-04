@@ -126,6 +126,8 @@ public class View {
         UIManager.put("OptionPane.buttonFont", FONT.generate(12));
         UIManager.put("Button.foreground", PALETTE.menu());
         UIManager.put("Button.background", PALETTE.button());
+
+        setIcon(titleLabel, "default_logo.png", 150);
     }
 
     private static void loadFont() {
