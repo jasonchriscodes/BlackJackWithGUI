@@ -59,6 +59,7 @@ public class View {
     private final JPanel messagePanel;
     private final JPanel dealerPanel;
     private final JPanel playerPanel;
+    private final JPanel currentBetPanel;
 
     private final SettingsPanel settingsPanel;
 
@@ -83,9 +84,10 @@ public class View {
         messagePanel = new JPanel();
         dealerPanel = new JPanel();
         playerPanel = new JPanel();
+        currentBetPanel = new JPanel();
+
         messageHeader = new JLabel("MESSAGE");
         messageLabel = new JLabel();
-
         titleLabel = new JLabel();
         playerHandValueLabel = new JLabel();
         dealerHandValueLabel = new JLabel();
