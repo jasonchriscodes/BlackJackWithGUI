@@ -5,7 +5,7 @@ package Players;
 
 import Cards.Ace;
 import Cards.Card;
-import Game.Deck;
+import Game.Decks;
 import Game.Hand;
 import Game.Utils;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public abstract class Participant {
      *
      * @param deck
      */
-    public void play(Deck deck) {
+    public void play(Decks deck) {
         System.out.println("==================");
         System.out.println(name + " is playing");
         int bet = makeABet();

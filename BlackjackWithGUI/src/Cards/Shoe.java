@@ -5,7 +5,7 @@
  */
 package Cards;
 
-import Game.Deck;
+import Game.Decks;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Shoe implements CardContainer {
             throw new NegativeArraySizeException();
         }
         shoe = new ArrayList<>();
-        Deck deck = new Deck();
+        Decks deck = new Decks();
         for (int i = 0; i < decks; i++) {
             shoe.addAll(deck.getDeck());
         }

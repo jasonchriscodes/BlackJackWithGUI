@@ -128,7 +128,7 @@ public class GameRunner {
             }
         } while (!isValid);
         // create a new deck of cards
-        Deck deck = new Deck();
+        Decks deck = new Decks();
         String result;
         result = "0";
 
