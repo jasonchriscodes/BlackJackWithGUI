@@ -11,8 +11,20 @@ import Graphic.Format;
  */
 public class Message {
 
+    /**
+     * Message constructor
+     *
+     * @param number
+     */
     public Message(int number) {
         printingMessage(number);
+    }
+
+    /**
+     * Another constructor
+     */
+    private Message() {
+        throw new AssertionError();
     }
 
     /**
