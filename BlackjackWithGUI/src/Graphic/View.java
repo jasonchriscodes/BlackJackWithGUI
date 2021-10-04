@@ -76,9 +76,11 @@ public class View {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         backgroundPanel = new Table();
+
         betOptions = new HashMap<>();
         playOptions = new HashMap<>();
         handOptions = new HashMap<>();
+
         betOptionsPanel = new JPanel();
         playOptionsPanel = new JPanel();
         handOptionsPanel = new JPanel();
@@ -105,9 +107,6 @@ public class View {
 
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
 
-        messageHeader.setForeground(PALETTE.heading());
-        messageHeader.setFont(FONT.generate(12, Font.BOLD));
-
         String path;
 
         path = IMG_PATH + "logo2.png";
@@ -128,6 +127,104 @@ public class View {
         UIManager.put("Button.background", PALETTE.button());
 
         setIcon(titleLabel, "default_logo.png", 150);
+
+        messageHeader.setForeground(PALETTE.heading());
+        messageHeader.setFont(FONT.generate(12, Font.BOLD));
+
+        messagePanel.setBorder(new LineBorder(PALETTE.separator()));
+        messagePanel.setBackground(PALETTE.menu());
+        messagePanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 2, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        messagePanel.add(messageHeader, gbc);
+
+        JSeparator separator = new JSeparator();
+        separator.setForeground(PALETTE.separator());
+        separator.setBackground(PALETTE.separator());
+
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 10, 10, 10);
+        messagePanel.add(separator, gbc);
+
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 10, 10, 10);
+        messagePanel.add(messageLabel, gbc);
+
+        topPanel.setBackground(PALETTE.table());
+        messageLabel.setForeground(PALETTE.text());
+        messageLabel.setFont(FONT.generate(18));
+
+        chipsLabel.setForeground(Color.WHITE);
+        chipsLabel.setFont(FONT.generate(36));
+
+        setIcon(chipsLabel, "chip.png", 36);
+        String mode = (PALETTE instanceof LightPalette) ? "light" : "dark";
+        setIcon(deckCountLabel, mode + "/deck.png", 36);
+        setIcon(trueCountLabel, mode + "/card_count.png", 36);
+        setIcon(currentBetValueLabel, mode + "/bet.png", 36);
+
+        tablePanel.setBackground(PALETTE.table());
+        dealerHandValueLabel.setForeground(Color.WHITE);
+        dealerPanel.setBackground(PALETTE.table());
+        playerHandValueLabel.setForeground(Color.WHITE);
+        playerPanel.setBackground(PALETTE.table());
+        dealerHandValueLabel.setFont(FONT.generate(16));
+        playerHandValueLabel.setFont(FONT.generate(16));
+
+        startPanel.setBackground(PALETTE.table());
+        optionsPanel.setBackground(PALETTE.table());
+        currentBetPanel.setBackground(PALETTE.table());
+        betOptionsPanel.setBackground(PALETTE.menu());
+        playOptionsPanel.setBackground(PALETTE.menu());
+        handOptionsPanel.setBackground(PALETTE.menu());
+        deckCountLabel.setForeground(PALETTE.text());
+        trueCountLabel.setForeground(PALETTE.text());
+        currentBetValueLabel.setForeground(PALETTE.text());
+        deckCountLabel.setFont(FONT.generate(36));
+        trueCountLabel.setFont(FONT.generate(36));
+        currentBetValueLabel.setFont(FONT.generate(36));
+
+        frame.add(backgroundPanel, BorderLayout.CENTER);
+
+        backgroundPanel.setLayout(new BorderLayout());
+
+        layoutStartPanel();
+        layoutTopPanel();
+        layoutTablePanel();
+
+        dealerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 20, 20));
+        playerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 20, 20));
+
+        /*
+        Images are displayed using ten labels each for the player and dealer.
+        Ten labels are persistently on the screen instead of being dynamically
+        added. Unless the player or dealer gets ten aces straight, ten labels
+        should suffice.
+         */
+        for (int i = 0; i < dealerHand.length; i++) {
+            JLabel dealerCard = new JLabel();
+            JLabel playerCard = new JLabel();
+            dealerHand[i] = dealerCard;
+            playerHand[i] = playerCard;
+            dealerPanel.add(dealerCard);
+            playerPanel.add(playerCard);
+        }
+
+        layoutOptionsPanel();
+
+        // Remove background from every panel so texture can be seen
+        if (backgroundPanel.getBackground() != PALETTE.table()) {
+            startPanel.setOpaque(false);
+            playerPanel.setOpaque(false);
+            dealerPanel.setOpaque(false);
+            topPanel.setOpaque(false);
+            tablePanel.setOpaque(false);
+            optionsPanel.setBackground(PALETTE.background());
+            currentBetPanel.setOpaque(false);
+        }
     }
 
     private static void loadFont() {
@@ -621,4 +718,99 @@ public class View {
         messageLabel.setIcon(null);
         messagePanel.setVisible(false);
     }
+
+    private void layoutStartPanel() {
+        startPanel.setLayout(new GridBagLayout());
+        GridBagConstraints placeholderConstraints = new GridBagConstraints();
+        placeholderConstraints.gridx = 0;
+        placeholderConstraints.gridy = 0;
+        placeholderConstraints.anchor = GridBagConstraints.CENTER;
+        startPanel.add(settingsPanel, placeholderConstraints);
+    }
+
+    private void layoutTopPanel() {
+        topPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(10, 20, 10, 0);
+        topPanel.add(titleLabel, gbc);
+
+        gbc.gridx++;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        topPanel.add(messagePanel, gbc);
+
+        gbc.gridx++;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 20);
+        topPanel.add(chipsLabel, gbc);
+    }
+
+    private void layoutTablePanel() {
+        tablePanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 20, 0, 0);
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        tablePanel.add(dealerHandValueLabel, gbc);
+
+        gbc.gridy++;
+        gbc.gridwidth = 2;
+        gbc.ipadx = 100;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        tablePanel.add(dealerPanel, gbc);
+
+        gbc.gridy++;
+        gbc.gridwidth = 1;
+        gbc.ipadx = 0;
+        gbc.weightx = 0;
+        gbc.insets = new Insets(0, 20, 0, 0);
+        tablePanel.add(playerHandValueLabel, gbc);
+
+        gbc.gridy++;
+        gbc.gridwidth = 2;
+        gbc.ipadx = 100;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        tablePanel.add(playerPanel, gbc);
+    }
+
+    private void layoutOptionsPanel() {
+        optionsPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(10, 0, 10, 0);
+        optionsPanel.add(currentBetPanel, gbc);
+
+        gbc.gridx++;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        optionsPanel.add(betOptionsPanel, gbc);
+        optionsPanel.add(playOptionsPanel, gbc);
+
+        gbc.gridx++;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.insets = new Insets(10, 0, 10, 20);
+        optionsPanel.add(handOptionsPanel, gbc);
+
+        currentBetPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0));
+        currentBetPanel.add(deckCountLabel);
+        currentBetPanel.add(trueCountLabel);
+        currentBetPanel.add(currentBetValueLabel);
+    }
+
 }
