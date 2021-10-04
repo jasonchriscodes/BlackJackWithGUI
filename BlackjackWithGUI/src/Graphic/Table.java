@@ -3,7 +3,6 @@
  */
 package Graphic;
 
-import Graphic.DarkPalette;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
