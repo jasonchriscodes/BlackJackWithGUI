@@ -77,36 +77,6 @@ public class View {
 
         backgroundPanel = new Table();
 
-        betOptions = new HashMap<>();
-        playOptions = new HashMap<>();
-        handOptions = new HashMap<>();
-
-        betOptionsPanel = new JPanel();
-        playOptionsPanel = new JPanel();
-        handOptionsPanel = new JPanel();
-        topPanel = new JPanel();
-        tablePanel = new JPanel();
-        optionsPanel = new JPanel();
-        startPanel = new JPanel();
-        messagePanel = new JPanel();
-        dealerPanel = new JPanel();
-        playerPanel = new JPanel();
-        currentBetPanel = new JPanel();
-
-        messageHeader = new JLabel("MESSAGE");
-        messageLabel = new JLabel();
-        titleLabel = new JLabel();
-        playerHandValueLabel = new JLabel();
-        dealerHandValueLabel = new JLabel();
-        playerHand = new JLabel[10];
-        dealerHand = new JLabel[10];
-        chipsLabel = new JLabel();
-        currentBetValueLabel = new JLabel();
-        trueCountLabel = new JLabel();
-        deckCountLabel = new JLabel();
-
-        settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
-
         String path;
 
         path = IMG_PATH + "logo2.png";
@@ -126,7 +96,15 @@ public class View {
         UIManager.put("Button.foreground", PALETTE.menu());
         UIManager.put("Button.background", PALETTE.button());
 
+        startPanel = new JPanel();
+        topPanel = new JPanel();
+        titleLabel = new JLabel();
+
         setIcon(titleLabel, "default_logo.png", 150);
+
+        messagePanel = new JPanel();
+        messageHeader = new JLabel("MESSAGE");
+        messageLabel = new JLabel();
 
         messageHeader.setForeground(PALETTE.heading());
         messageHeader.setFont(FONT.generate(12, Font.BOLD));
@@ -152,6 +130,30 @@ public class View {
         gbc.gridy++;
         gbc.insets = new Insets(0, 10, 10, 10);
         messagePanel.add(messageLabel, gbc);
+
+        chipsLabel = new JLabel();
+
+        settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
+
+        tablePanel = new JPanel();
+        dealerHandValueLabel = new JLabel();
+        dealerPanel = new JPanel();
+        dealerHand = new JLabel[10];
+        playerHandValueLabel = new JLabel();
+        playerPanel = new JPanel();
+        playerHand = new JLabel[10];
+
+        optionsPanel = new JPanel();
+        currentBetPanel = new JPanel();
+        deckCountLabel = new JLabel();
+        trueCountLabel = new JLabel();
+        currentBetValueLabel = new JLabel();
+        betOptionsPanel = new JPanel();
+        betOptions = new HashMap<>();
+        playOptionsPanel = new JPanel();
+        playOptions = new HashMap<>();
+        handOptionsPanel = new JPanel();
+        handOptions = new HashMap<>();
 
         topPanel.setBackground(PALETTE.table());
         messageLabel.setForeground(PALETTE.text());
