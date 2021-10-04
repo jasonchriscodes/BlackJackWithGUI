@@ -107,6 +107,16 @@ public class View {
 
         messageHeader.setForeground(PALETTE.heading());
         messageHeader.setFont(FONT.generate(12, Font.BOLD));
+
+        String path;
+
+        path = IMG_PATH + "logo2.png";
+        try {
+            ImageIcon icon = new ImageIcon(View.class.getResource(path));
+            frame.setIconImage(icon.getImage());
+        } catch (NullPointerException ex) {
+            System.err.println("Could not find " + path);
+        }
     }
 
     private static void loadFont() {
