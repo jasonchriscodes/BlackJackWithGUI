@@ -23,9 +23,12 @@ public class SettingsPanel extends JPanel {
     private JLabel playerLabel;
     private JLabel nameLabel;
     private JLabel gameSettingLabel;
+    private JLabel deckAmountLabel;
+    private JLabel botSettings;
     private JLabel noOfBotLabel;
     private JLabel minimumBetLabel;
     private JTextField nameTextField;
+    private JSpinner deckSpinner;
     private JSpinner botSpinner;
     private JSpinner betSpinner;
     private JCheckBox displayHandValue;
@@ -40,8 +43,9 @@ public class SettingsPanel extends JPanel {
     public Object[] getSettings() {
         Object[] settings = {
             name(),
-            botSpinner(),
-            minimumBet(),};
+            deckAmount(),
+            minimumBet(),
+            botSpinner(),};
         return settings;
     }
 
@@ -57,15 +61,22 @@ public class SettingsPanel extends JPanel {
         return (int) betSpinner.getValue();
     }
 
+    private int deckAmount() {
+        return (int) deckSpinner.getValue();
+    }
+
     private void initPanel(ImageIcon logo) {
         menuItemsPanel = new JPanel();
         logoLabel = new JLabel();
         playerLabel = new JLabel("PLAYER");
         nameLabel = new JLabel("Name");
         gameSettingLabel = new JLabel("GAME SETTING");
+        deckAmountLabel = new JLabel("Number of decks");
+        botSettings = new JLabel("BOT SETTING");
         noOfBotLabel = new JLabel("Number of bots");
         minimumBetLabel = new JLabel("Minimum bet");
         nameTextField = new JTextField();
+        deckSpinner = new JSpinner();
         botSpinner = new JSpinner();
         betSpinner = new JSpinner();
         displayHandValue = new JCheckBox("Show hand value");
@@ -75,23 +86,33 @@ public class SettingsPanel extends JPanel {
 
         displayHandValue.setSelected(true);
 
+        deckSpinner.setModel(new SpinnerNumberModel(3, 1, 5, 1));
         botSpinner.setModel(new SpinnerNumberModel(1, 1, 3, 1));
         betSpinner.setModel(new SpinnerNumberModel(25, 0, 100, 5));
         int len = botSpinner.getEditor().getComponentCount();
         for (int i = 0; i < len; i++) {
-            Component dc = botSpinner.getEditor().getComponent(i);
-            dc.setBackground(View.PALETTE.menu());
-            dc.setForeground(View.PALETTE.text());
+            Component bt = botSpinner.getEditor().getComponent(i);
+            bt.setBackground(View.PALETTE.menu());
+            bt.setForeground(View.PALETTE.text());
 
             Component bc = betSpinner.getEditor().getComponent(i);
             bc.setBackground(View.PALETTE.menu());
             bc.setForeground(View.PALETTE.text());
+
+            Component dc = deckSpinner.getEditor().getComponent(i);
+            dc.setBackground(View.PALETTE.menu());
+            dc.setForeground(View.PALETTE.text());
         }
 
         playerLabel.setFont(View.FONT.generate(12, Font.BOLD));
         nameLabel.setFont(View.FONT.generate(14));
         gameSettingLabel.setFont(View.FONT.generate(12, Font.BOLD));
+        deckAmountLabel.setFont(View.FONT.generate(14));
+        noOfBotLabel.setFont(View.FONT.generate(14));
+        minimumBetLabel.setFont(View.FONT.generate(14));
         nameTextField.setFont(View.FONT.generate(14));
+        deckSpinner.setFont(View.FONT.generate(14));
+        botSettings.setFont(View.FONT.generate(12, Font.BOLD));
         botSpinner.setFont(View.FONT.generate(14));
         betSpinner.setFont(View.FONT.generate(14));
         displayHandValue.setFont(View.FONT.generate(14));
@@ -100,6 +121,8 @@ public class SettingsPanel extends JPanel {
         playerLabel.setForeground(View.PALETTE.heading());
         nameLabel.setForeground(View.PALETTE.text());
         gameSettingLabel.setForeground(View.PALETTE.heading());
+        deckAmountLabel.setForeground(View.PALETTE.text());
+        botSettings.setForeground(View.PALETTE.heading());
         noOfBotLabel.setForeground(View.PALETTE.text());
         minimumBetLabel.setForeground(View.PALETTE.text());
         nameTextField.setForeground(View.PALETTE.text());
@@ -109,10 +132,12 @@ public class SettingsPanel extends JPanel {
         EmptyBorder eb = new EmptyBorder(1, 1, 1, 1);
         LineBorder lb = new LineBorder(View.PALETTE.separator());
         nameTextField.setBorder(new CompoundBorder(lb, eb));
+        deckSpinner.setBorder(eb);
         botSpinner.setBorder(eb);
         betSpinner.setBorder(eb);
 
         nameTextField.setBackground(View.PALETTE.menu());
+        deckSpinner.setBackground(View.PALETTE.separator());
         botSpinner.setBackground(View.PALETTE.separator());
         betSpinner.setBackground(View.PALETTE.separator());
         menuItemsPanel.setBackground(View.PALETTE.menu());
@@ -174,7 +199,7 @@ public class SettingsPanel extends JPanel {
 
         innerGBC.gridx++;
         innerGBC.insets = new Insets(10, 0, 10, 10);
-        menuItemsPanel.add(botSpinner, innerGBC);
+        menuItemsPanel.add(deckSpinner, innerGBC);
 
         innerGBC.gridx = 0;
         innerGBC.gridy++;
@@ -185,9 +210,19 @@ public class SettingsPanel extends JPanel {
         innerGBC.insets = new Insets(0, 0, 10, 10);
         menuItemsPanel.add(betSpinner, innerGBC);
 
+        innerGBC.gridx = 0;
+        innerGBC.gridy++;
+        innerGBC.gridwidth = 2;
+        innerGBC.insets = new Insets(10, 10, 2, 10);
+        menuItemsPanel.add(botSettings, innerGBC);
+
         innerGBC.gridy++;
         innerGBC.insets = new Insets(0, 10, 10, 10);
         menuItemsPanel.add(createSeparator(View.PALETTE.separator()), innerGBC);
+
+        innerGBC.gridx++;
+        innerGBC.insets = new Insets(0, 10, 0, 10);
+        menuItemsPanel.add(botSpinner, innerGBC);
 
         innerGBC.gridy++;
         innerGBC.fill = GridBagConstraints.NONE;
