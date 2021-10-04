@@ -246,7 +246,7 @@ public class Model {
             }
             Card card = shoe.drawCard();
             dealer.hit(card);
-            updateRunningCount(card.getRanks());
+            updateRunningCount(card.getRank());
         }
     }
 
@@ -415,7 +415,7 @@ public class Model {
     }
 
     public int dealerFrontCard() {
-        int value = dealer.getHand().get(1).getRanks();
+        int value = dealer.getHand().get(1).getRank();
         if (value == 1) {
             return 11;
         }
@@ -430,7 +430,7 @@ public class Model {
     public BasicStrategy.Action basicStrategy() {
         boolean softHand = player.hasSoftHand();
         int p = player.getHandValue();
-        int d = dealer.getHand().get(1).getRanks();
+        int d = dealer.getHand().get(1).getRank();
         return BasicStrategy.generate(!stand17, softHand, p, d);
     }
 

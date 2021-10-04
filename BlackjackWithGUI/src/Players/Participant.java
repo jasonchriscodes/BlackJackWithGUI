@@ -155,7 +155,7 @@ public abstract class Participant {
     public int getHandValue() {
         int total = 0;
         for (Card card : hand) {
-            total += card.getRanks();
+            total += card.getRank();
         }
 
         if (hasAce() && total < 12) {
@@ -186,7 +186,7 @@ public abstract class Participant {
         if (hasAce()) {
             int total = 0;
             for (Card card : hand) {
-                total += card.getRanks();
+                total += card.getRank();
             }
             return total < 12;
         }
@@ -227,7 +227,7 @@ public abstract class Participant {
      */
     public boolean hasBlackjack() {
         if (hand.size() == 2 && hasAce()) {
-            return hand.get(0).getRanks() == 10 || hand.get(1).getRanks() == 10;
+            return hand.get(0).getRank() == 10 || hand.get(1).getRank() == 10;
         }
         return false;
     }

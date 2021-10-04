@@ -9,7 +9,7 @@ package Cards;
  */
 public class Card {
 
-    private final int ranks;
+    private final int rank;
 
     /**
      * Suit value of Card.
@@ -19,7 +19,7 @@ public class Card {
     /**
      * Rank value of Card.
      */
-    private Rank rank;
+    private Rank ranks;
 
     /**
      * Type of suits
@@ -35,22 +35,22 @@ public class Card {
      * @param suit suit of the card
      */
     public Card(Rank face, Suit suit) {
-        this.rank = face;
+        this.ranks = face;
         this.suit = suit;
-        this.ranks = 0;
+        this.rank = 0;
     }
 
     /**
      * Another card constructor.
      *
-     * @param ranks
+     * @param rank
      * @param suit suit of the card
      */
-    public Card(int ranks, Suit suit) {
-        if (ranks < 1 || ranks > 10) {
+    public Card(int rank, Suit suit) {
+        if (rank < 1 || rank > 10) {
             throw new IllegalArgumentException("Rank invalid");
         }
-        this.ranks = ranks;
+        this.rank = rank;
         this.suit = suit;
     }
 
@@ -59,8 +59,8 @@ public class Card {
      *
      * @return the rank
      */
-    public Rank getRank() {
-        return rank;
+    public Rank getRanks() {
+        return ranks;
     }
 
     /**
@@ -68,8 +68,8 @@ public class Card {
      *
      * @return the rank
      */
-    public int getRanks() {
-        return ranks;
+    public int getRank() {
+        return rank;
     }
 
     /**
@@ -102,7 +102,7 @@ public class Card {
     public char[][] getCardToPrint() {
         // reuse template, do not create additional objects
         // the 10 card is a special case because 10 has 2 digits
-        if (rank == Rank.TEN) {
+        if (ranks == Rank.TEN) {
             // fill the template
             template[1][1] = convertIntToChar(1);
             template[1][2] = convertIntToChar(0);
@@ -138,7 +138,7 @@ public class Card {
      * @return
      */
     private char getPrintableRank() {
-        switch (rank) {
+        switch (ranks) {
             case ACE:
                 return 'A';
             case JACK:
@@ -148,7 +148,7 @@ public class Card {
             case KING:
                 return 'K';
             default:
-                return convertIntToChar(rank.value);
+                return convertIntToChar(ranks.value);
         }
     }
 
@@ -176,6 +176,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return ranks + " of " + suit;
+        return rank + " of " + suit;
     }
 }

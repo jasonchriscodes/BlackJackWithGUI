@@ -65,7 +65,7 @@ public class Hand {
     public void addCard(Card c) {
         cards.add(c);
         // every time a card is added, update the score
-        score = score + c.getRank().value;
+        score = score + c.getRanks().value;
         checkIfAcesShouldBeOne();
     }
 
@@ -80,7 +80,7 @@ public class Hand {
                 score = 0;
                 // recount from scratch because some ACEs might be counted as 11
                 for (Card card : cards) {
-                    score = score + card.getRank().value;
+                    score = score + card.getRanks().value;
                 }
                 while (score > 21 && numAces > 0) {
                     // ACES can have score 11 or 1
@@ -100,7 +100,7 @@ public class Hand {
     public int countAces() {
         int count = 0;
         for (Card c : cards) {
-            if (c.getRank() == Rank.ACE) {
+            if (c.getRanks() == Rank.ACE) {
                 count++;
             }
         }

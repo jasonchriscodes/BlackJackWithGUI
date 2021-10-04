@@ -87,7 +87,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Card card = model.drawCard();
             model.playerHit(card);
-            model.updateRunningCount(card.getRanks());
+            model.updateRunningCount(card.getRank());
             view.updateDeckCount(model.deckCount());
             view.updateTrueCount(model.getTrueCount());
             view.displayMessage(Message.hit(card + ""));
@@ -174,10 +174,10 @@ public class Controller {
                 Card playerCard = model.drawCard();
                 Card dealerCard = model.drawCard();
                 model.playerHit(playerCard);
-                model.updateRunningCount(playerCard.getRanks());
+                model.updateRunningCount(playerCard.getRank());
                 model.dealerHit(dealerCard);
                 if (i != 0) {
-                    model.updateRunningCount(dealerCard.getRanks());
+                    model.updateRunningCount(dealerCard.getRank());
                 }
             }
             view.updateTrueCount(model.getTrueCount());
