@@ -5,8 +5,6 @@
  */
 package Graphic;
 
-import Graphic.ImageResizer;
-import Graphic.View;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
