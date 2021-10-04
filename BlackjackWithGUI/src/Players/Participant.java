@@ -246,4 +246,9 @@ public abstract class Participant {
         hand.clear();
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
