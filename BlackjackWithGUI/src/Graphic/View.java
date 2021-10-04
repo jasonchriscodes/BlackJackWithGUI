@@ -578,7 +578,7 @@ public class View {
      * to the value, else an H for a hard hand
      */
     public void updatePlayerHandValue(String name, int value, boolean soft) {
-        playerHandValueLabel.setText(value + " â€” " + name);
+        playerHandValueLabel.setText(value + "  " + name);
 
         String fileName = (soft) ? "soft.png" : "hard.png";
         int size = playerHandValueLabel.getFont().getSize();
