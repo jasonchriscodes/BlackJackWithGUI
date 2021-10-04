@@ -70,6 +70,11 @@ public class View {
 
     public View() {
         frame = new JFrame("Blackjack");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1366, 725);
+        frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         backgroundPanel = new Table();
         betOptions = new HashMap<>();
         playOptions = new HashMap<>();
