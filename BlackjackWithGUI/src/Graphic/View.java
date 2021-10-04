@@ -622,6 +622,19 @@ public class View {
     }
 
     /**
+     * Flips over the dealer's hole card.
+     *
+     * <p>
+     * The dealer's hole card is usually revealed after the player has finished
+     * their turn.
+     *
+     * @param holeCardName the name of the hole card
+     */
+    public void revealHoleCard(Object holeCardName) {
+        revealHoleCard(holeCardName.toString());
+    }
+
+    /**
      * Updates the card images on the dealer's side of the screen.
      *
      * @param cardNames the names of the cards
