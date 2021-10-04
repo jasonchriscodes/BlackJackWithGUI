@@ -100,7 +100,7 @@ public class View {
         topPanel = new JPanel();
         titleLabel = new JLabel();
 
-        setIcon(titleLabel, "default_logo.png", 150);
+        setIcon(titleLabel, "blackjacklogo.png", 150);
 
         messagePanel = new JPanel();
         messageHeader = new JLabel("MESSAGE");
