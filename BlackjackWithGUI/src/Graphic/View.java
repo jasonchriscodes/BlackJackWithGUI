@@ -566,7 +566,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Stand}.
+     * {@code Double Down}, {@code Surrender} and {@code Hold}.
      *
      * @param key the name of the button
      * @param l the ActionListener
@@ -590,7 +590,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Stand}.
+     * {@code Double Down}, {@code Surrender} and {@code Hold}.
      *
      * @param keys the names of the buttons
      */
@@ -615,7 +615,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Stand}.
+     * {@code Double Down}, {@code Surrender} and {@code Hold}.
      *
      * @param keys the names of the buttons
      */
