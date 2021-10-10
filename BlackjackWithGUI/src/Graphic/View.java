@@ -778,7 +778,7 @@ public class View {
     }
 
     private static void loadFont() {
-        String path = IMG_PATH + "IBMPlexSans-Regular.ttf";
+        String path = FNT_PATH + "IBMPlexSans-Regular.ttf";
         try {
             GraphicsEnvironment ge = GraphicsEnvironment
                     .getLocalGraphicsEnvironment();
