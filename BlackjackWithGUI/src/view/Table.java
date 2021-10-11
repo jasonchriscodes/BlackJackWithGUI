@@ -31,7 +31,7 @@ public class Table extends JPanel {
     }
 
     private void loadTexture() {
-        String path = View.IMG_PATH + "table2.png";
+        String path = View.IMG_PATH + "table.png";
         try {
             ImageIcon icon = new ImageIcon(View.class.getResource(path));
             texture = icon.getImage();
