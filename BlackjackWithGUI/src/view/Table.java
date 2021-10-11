@@ -25,13 +25,13 @@ public class Table extends JPanel {
     private void initTable() {
         loadTexture();
 
-        int w = (texture != null) ? texture.getWidth(this) : 1600;
-        int h = (texture != null) ? texture.getHeight(this) : 900;
+        int w = (texture != null) ? texture.getWidth(this) : 1920; //1600
+        int h = (texture != null) ? texture.getHeight(this) : 1080; //900
         setPreferredSize(new Dimension(w, h));
     }
 
     private void loadTexture() {
-        String path = View.IMG_PATH + "table.png";
+        String path = View.IMG_PATH + "table2.png";
         try {
             ImageIcon icon = new ImageIcon(View.class.getResource(path));
             texture = icon.getImage();
