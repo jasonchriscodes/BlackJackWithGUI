@@ -257,7 +257,8 @@ public class Model {
     }
 
     /**
-     * Add a card to the running count.
+     * Add a card to the running count. Running count for 2 -> 6 = 1. Running
+     * count for 7 -> 9 = 0, Running count 10 or 1 = -1
      *
      * @param rank the card's value
      */
