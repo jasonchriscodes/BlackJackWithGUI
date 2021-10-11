@@ -27,6 +27,43 @@ public class View {
     public static final String IMG_PATH = "/image/";
     public static final String FNT_PATH = "/font/";
 
+    private final JFrame frame;
+    private final JPanel startPanel;
+    private final JPanel backgroundPanel;
+    private final JPanel topPanel;
+    private final JLabel titleLabel;
+    private final JPanel messagePanel;
+    private final JLabel messageHeader;
+    private final JLabel messageLabel;
+    private final JPanel totalChipsPanel;
+    private final JLabel totalChipsTitle;
+    private final JLabel chipsLabel;
+    private final JPanel tablePanel;
+    private final SettingsPanel settingsPanel;
+    private final JLabel dealerHandValueLabel;
+    private final JPanel dealerPanel;
+    private final JLabel[] dealerHand;
+    private final JLabel playerHandValueLabel;
+    private final JPanel playerPanel;
+    private final JLabel[] playerHand;
+    private final JPanel optionsPanel;
+    private final JPanel currentBetPanel;
+    private final JLabel deckCountLabel;
+    private final JLabel deckCountTitle;
+    private final JLabel trueCountLabel;
+    private final JLabel trueCountTitle;
+    private final JLabel currentBetValueLabel;
+    private final JLabel currentBetValueTitle;
+    private final JPanel betOptionsPanel;
+    private final Map<String, JButton> betOptions;
+    private final JPanel playOptionsPanel;
+    private final Map<String, JButton> playOptions;
+    private final JPanel handOptionsPanel;
+    private final Map<String, JButton> handOptions;
+
+    private static final String CARD_STYLE = "classic";
+    private static final int CARD_SIZE = 115;
+
     static {
         loadFont();
         FONT = new DefaultFont("IBM Plex Sans");
@@ -126,6 +163,8 @@ public class View {
         messageLabel.setForeground(PALETTE.text());
         messageLabel.setFont(FONT.generate(18));
 
+        totalChipsPanel = new JPanel();
+        totalChipsTitle = new JLabel("Total Chips: ");
         chipsLabel.setForeground(Color.WHITE);
         chipsLabel.setFont(FONT.generate(30));
 
@@ -149,12 +188,15 @@ public class View {
         betOptionsPanel.setBackground(PALETTE.menu());
         playOptionsPanel.setBackground(PALETTE.menu());
         handOptionsPanel.setBackground(PALETTE.menu());
+        totalChipsTitle.setForeground(PALETTE.text());
         deckCountLabel.setForeground(PALETTE.text());
         deckCountTitle.setForeground(PALETTE.text());
         trueCountLabel.setForeground(PALETTE.text());
         trueCountTitle.setForeground(PALETTE.text());
         currentBetValueLabel.setForeground(PALETTE.text());
         currentBetValueTitle.setForeground(PALETTE.text());
+        totalChipsPanel.setBackground(PALETTE.table());
+        totalChipsTitle.setFont(FONT.generate(30));
         deckCountLabel.setFont(FONT.generate(30));
         deckCountTitle.setFont(FONT.generate(30));
         trueCountLabel.setFont(FONT.generate(30));
@@ -686,7 +728,11 @@ public class View {
         gbc.gridx++;
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 20);
-        topPanel.add(chipsLabel, gbc);
+        topPanel.add(totalChipsPanel, gbc);
+
+        totalChipsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0));
+        totalChipsPanel.add(totalChipsTitle);
+        totalChipsPanel.add(chipsLabel);
     }
 
     private void layoutTablePanel() {
@@ -809,39 +855,4 @@ public class View {
             setIcon(labels[i], path, CARD_SIZE);
         }
     }
-
-    private final JFrame frame;
-    private final JPanel startPanel;
-    private final JPanel backgroundPanel;
-    private final JPanel topPanel;
-    private final JLabel titleLabel;
-    private final JPanel messagePanel;
-    private final JLabel messageHeader;
-    private final JLabel messageLabel;
-    private final JLabel chipsLabel;
-    private final JPanel tablePanel;
-    private final SettingsPanel settingsPanel;
-    private final JLabel dealerHandValueLabel;
-    private final JPanel dealerPanel;
-    private final JLabel[] dealerHand;
-    private final JLabel playerHandValueLabel;
-    private final JPanel playerPanel;
-    private final JLabel[] playerHand;
-    private final JPanel optionsPanel;
-    private final JPanel currentBetPanel;
-    private final JLabel deckCountLabel;
-    private final JLabel deckCountTitle;
-    private final JLabel trueCountLabel;
-    private final JLabel trueCountTitle;
-    private final JLabel currentBetValueLabel;
-    private final JLabel currentBetValueTitle;
-    private final JPanel betOptionsPanel;
-    private final Map<String, JButton> betOptions;
-    private final JPanel playOptionsPanel;
-    private final Map<String, JButton> playOptions;
-    private final JPanel handOptionsPanel;
-    private final Map<String, JButton> handOptions;
-
-    private static final String CARD_STYLE = "classic";
-    private static final int CARD_SIZE = 115;
 }
