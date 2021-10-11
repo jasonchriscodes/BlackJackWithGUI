@@ -1,8 +1,9 @@
-/*
- * Class represents table template
+/**
+ * Class represents a table template.
  */
-package Graphic;
+package View;
 
+import Graphic.DarkPalette;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;

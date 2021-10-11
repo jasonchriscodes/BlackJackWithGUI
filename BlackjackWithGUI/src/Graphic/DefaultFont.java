@@ -1,5 +1,5 @@
-/*
- * Class represents a default font
+/**
+ * Class represents a font for streamlined use.
  */
 package Graphic;
 
@@ -10,8 +10,6 @@ import java.awt.Font;
  * @author Jason Christian - 21136899
  */
 public class DefaultFont {
-
-    private final String name;
 
     /**
      * Creates a new {@code DefaultFont} with the specified font name.
@@ -43,4 +41,5 @@ public class DefaultFont {
         return new Font(name, style, size);
     }
 
+    private final String name;
 }

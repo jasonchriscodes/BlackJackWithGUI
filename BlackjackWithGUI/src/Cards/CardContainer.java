@@ -1,5 +1,5 @@
-/*
- * Interface represents a card container
+/**
+ * Class represents a card container.
  */
 package Cards;
 

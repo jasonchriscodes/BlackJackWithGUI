@@ -1,5 +1,5 @@
-/*
- * Class represents image resizer tool
+/**
+ * Class represents an ImageIcon resize tool.
  */
 package Graphic;
 

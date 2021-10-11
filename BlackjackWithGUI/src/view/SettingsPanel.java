@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents a panel settings.
  */
-package Graphic;
+package View;
 
+import Graphic.ImageResizer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -17,27 +16,6 @@ import javax.swing.border.LineBorder;
  * @author Jason Christian - 21136899
  */
 public class SettingsPanel extends JPanel {
-
-    private JPanel menuItemsPanel;
-    private JLabel logoLabel;
-    private JLabel playerLabel;
-    private JLabel nameLabel;
-    private JLabel houseRulesLabel;
-    private JLabel deckAmountLabel;
-    private JLabel minimumBetLabel;
-    private JLabel dealerBehaviorLabel;
-    private JLabel standDescriptionLabel;
-    private JLabel hitDescriptionLabel;
-    private JTextField nameTextField;
-    private JSpinner deckSpinner;
-    private JSpinner betSpinner;
-    private JRadioButton standRadioButton;
-    private JRadioButton hitRadioButton;
-    private ButtonGroup dealerBehaviorGroup;
-    private JCheckBox displayHandValue;
-    private JButton playButton;
-    private final static int HIT = 0;
-    private final static int STAND = 1;
 
     public SettingsPanel(ImageIcon logo) {
         initPanel(logo);
@@ -266,4 +244,25 @@ public class SettingsPanel extends JPanel {
     public void initPlayActionListener(ActionListener l) {
         playButton.addActionListener(l);
     }
+
+    private JPanel menuItemsPanel;
+    private JLabel logoLabel;
+    private JLabel playerLabel;
+    private JLabel nameLabel;
+    private JLabel houseRulesLabel;
+    private JLabel deckAmountLabel;
+    private JLabel minimumBetLabel;
+    private JLabel dealerBehaviorLabel;
+    private JLabel standDescriptionLabel;
+    private JLabel hitDescriptionLabel;
+    private JTextField nameTextField;
+    private JSpinner deckSpinner;
+    private JSpinner betSpinner;
+    private JRadioButton standRadioButton;
+    private JRadioButton hitRadioButton;
+    private ButtonGroup dealerBehaviorGroup;
+    private JCheckBox displayHandValue;
+    private JButton playButton;
+    private final static int HIT = 0;
+    private final static int STAND = 1;
 }

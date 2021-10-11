@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents a shoe container.
  */
 package Cards;
 
-import Game.Decks;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,9 +29,9 @@ public class Shoe implements CardContainer {
             throw new NegativeArraySizeException();
         }
         shoe = new ArrayList<>();
-        Decks deck = new Decks();
+        Deck deck = new Deck();
         for (int i = 0; i < decks; i++) {
-            shoe.addAll(deck.getDeck());
+            shoe.addAll(deck.getCards());
         }
     }
 

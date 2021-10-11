@@ -1,12 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents a controller class in MVC pattern.
  */
-package Graphic;
+package Controller;
 
 import Cards.Card;
-import Game.Message;
+import Model.BasicStrategy;
+import Model.Model;
+import Model.Payout;
+import View.Message;
+import View.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,9 +17,6 @@ import java.awt.event.ActionListener;
  * @author Jason Christian - 21136899
  */
 public class Controller {
-
-    private final Model model;
-    private final View view;
 
     public Controller(Model model, View view) {
         this.model = model;
@@ -28,31 +27,6 @@ public class Controller {
 
     public void run() {
         view.displayFrame();
-    }
-
-    private void initController() {
-        view.initBetOptions(Model.chips());
-        view.initPlayOptions(Model.choices());
-        view.initHandOptions(Model.options());
-
-        view.initButtonActionListener("Play", new PlayAction());
-
-        view.initButtonActionListener("Hit", new HitAction());
-        view.initButtonActionListener("Stand", new holdAction());
-
-        view.initButtonActionListener("Deal", new DealAction());
-        view.initButtonActionListener("Hint", new HintAction());
-        view.initButtonActionListener("Next Round", new NextRoundAction());
-        view.initButtonActionListener("Quit Game", new QuitGameAction());
-
-        view.getBetOptions().forEach((betOption) -> {
-            int value = Integer.parseInt(betOption.getText());
-            betOption.addActionListener(new BetAction(value));
-        });
-    }
-
-    private void initView() {
-        view.displaySettings();
     }
 
     public class PlayAction implements ActionListener {
@@ -81,6 +55,30 @@ public class Controller {
         }
     }
 
+    public class BetAction implements ActionListener {
+
+        public BetAction(int value) {
+            this.value = value;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            model.bet(value);
+
+            if (model.betIsSufficient()) {
+                view.clearMessage();
+                view.enableButton("Deal");
+            } else {
+                view.displayMessage(Message.minimumBet(model.minimumBet()));
+            }
+
+            view.updateStats(model.playerChips(), model.playerBet());
+            view.updateChips(model.playerChips(), Model.chips());
+        }
+
+        private final int value;
+    }
+
     public class HitAction implements ActionListener {
 
         @Override
@@ -99,7 +97,7 @@ public class Controller {
             view.updatePlayerCards(model.playerCardNames());
             view.disableButton("Surrender");
             if (model.wentOver() || model.shoeIsEmpty()) {
-                view.disableButton("Hit"); //changes
+                view.disableButton("Hit", "Double Down", "Hint");
                 if (model.shoeIsEmpty()) {
                     view.displayMessage(Message.deckIsEmpty());
                 }
@@ -107,7 +105,7 @@ public class Controller {
         }
     }
 
-    public class holdAction implements ActionListener {
+    public class StandAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -161,6 +159,53 @@ public class Controller {
         }
     }
 
+    public class DoubleDownAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            model.doubleBet();
+            Card card = model.drawCard();
+            model.playerHit(card);
+            model.updateRunningCount(card.getRank());
+            view.updateTrueCount(model.getTrueCount());
+
+            view.displayMessage(Message.doubleDown(
+                    model.playerBet(), card + ""
+            ));
+            view.updatePlayerHandValue(
+                    model.playerName(),
+                    model.playerHandValue(),
+                    model.playerHasSoftHand()
+            );
+
+            view.updatePlayerCards(model.playerCardNames());
+
+            view.updateStats(model.playerChips(), model.playerBet());
+            view.updateDeckCount(model.deckCount());
+            view.disableButton("Hit", "Double Down", "Surrender", "Hint");
+        }
+    }
+
+    public class SurrenderAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.displayMessage(Message.surrender(model.playerBet()));
+            model.givePayout(Payout.HALF);
+            model.resetBet();
+            view.revealHoleCard(model.holeCard());
+            model.updateRunningCount(model.holeCard().getRank());
+            view.updateTrueCount(model.getTrueCount());
+            view.updateDealerHandValue(model.dealerHandValue(),
+                    model.dealerHasSoftHand());
+            view.updateStats(model.playerChips(), model.playerBet());
+            view.disableAllChoices();
+            view.enableButton("Next Hand");
+            view.disableButton("Hint");
+            System.out.println();
+        }
+    }
+
     public class DealAction implements ActionListener {
 
         @Override
@@ -169,6 +214,10 @@ public class Controller {
             view.enableAllChoices();
             view.enableButton("Hint");
             view.disableButton("Deal");
+
+            if (model.betIsEmpty() || !model.canDoubleDown()) {
+                view.disableButton("Double Down");
+            }
 
             for (int i = 0; i < 2; i++) {
                 Card playerCard = model.drawCard();
@@ -235,7 +284,7 @@ public class Controller {
         }
     }
 
-    public class NextRoundAction implements ActionListener {
+    public class NextHandAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -266,6 +315,18 @@ public class Controller {
         }
     }
 
+    public class NewGameAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (model.outOfChips()
+                    || view.prompt(Message.newGame(), "New Game")) {
+                initView();
+                model.restartGame();
+            }
+        }
+    }
+
     public class QuitGameAction implements ActionListener {
 
         @Override
@@ -277,27 +338,34 @@ public class Controller {
         }
     }
 
-    public class BetAction implements ActionListener {
+    private void initController() {
+        view.initBetOptions(Model.chips());
+        view.initPlayOptions(Model.choices());
+        view.initHandOptions(Model.options());
 
-        private final int value;
+        view.initButtonActionListener("Play", new PlayAction());
 
-        public BetAction(int value) {
-            this.value = value;
-        }
+        view.initButtonActionListener("Hit", new HitAction());
+        view.initButtonActionListener("Stand", new StandAction());
+        view.initButtonActionListener("Double Down", new DoubleDownAction());
+        view.initButtonActionListener("Surrender", new SurrenderAction());
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            model.bet(value);
+        view.initButtonActionListener("Deal", new DealAction());
+        view.initButtonActionListener("Hint", new HintAction());
+        view.initButtonActionListener("Next Hand", new NextHandAction());
+        view.initButtonActionListener("New Game", new NewGameAction());
+        view.initButtonActionListener("Quit Game", new QuitGameAction());
 
-            if (model.betIsSufficient()) {
-                view.clearMessage();
-                view.enableButton("Deal");
-            } else {
-                view.displayMessage(Message.minimumBet(model.minimumBet()));
-            }
-
-            view.updateStats(model.playerChips(), model.playerBet());
-            view.updateChips(model.playerChips(), Model.chips());
-        }
+        view.getBetOptions().forEach((betOption) -> {
+            int value = Integer.parseInt(betOption.getText());
+            betOption.addActionListener(new BetAction(value));
+        });
     }
+
+    private void initView() {
+        view.displaySettings();
+    }
+
+    private final Model model;
+    private final View view;
 }

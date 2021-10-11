@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents the kinds of payouts used in blackjack.
  */
-package Graphic;
+package Model;
 
 import java.util.function.DoubleUnaryOperator;
 

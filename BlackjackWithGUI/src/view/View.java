@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents a view class in MVC pattern.
  */
-package Graphic;
+package View;
 
+import Graphic.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -24,42 +23,9 @@ public class View {
 
     public static final DefaultFont FONT;
     public static final Palette PALETTE = new DarkPalette();
-    public static final String FNT_PATH = "/font/";
-    public static final String IMG_PATH = "/image/";
     public static final String CARD_PATH = "/image/Cards/";
-
-    private static final String CARD_STYLE = "classic";
-    private static final int CARD_SIZE = 115;
-
-    private final Map<String, JButton> betOptions;
-    private final Map<String, JButton> playOptions;
-    private final Map<String, JButton> handOptions;
-
-    private final JFrame frame;
-    private final JPanel startPanel;
-    private final JPanel backgroundPanel;
-    private final JPanel topPanel;
-    private final JLabel titleLabel;
-    private final JPanel messagePanel;
-    private final JLabel messageHeader;
-    private final JLabel messageLabel;
-    private final JLabel chipsLabel;
-    private final JPanel tablePanel;
-    private final SettingsPanel settingsPanel;
-    private final JLabel dealerHandValueLabel;
-    private final JPanel dealerPanel;
-    private final JLabel[] dealerHand;
-    private final JLabel playerHandValueLabel;
-    private final JPanel playerPanel;
-    private final JLabel[] playerHand;
-    private final JPanel optionsPanel;
-    private final JPanel currentBetPanel;
-    private final JLabel deckCountLabel;
-    private final JLabel trueCountLabel;
-    private final JLabel currentBetValueLabel;
-    private final JPanel betOptionsPanel;
-    private final JPanel playOptionsPanel;
-    private final JPanel handOptionsPanel;
+    public static final String IMG_PATH = "/image/";
+    public static final String FNT_PATH = "/font/";
 
     static {
         loadFont();
@@ -69,7 +35,7 @@ public class View {
     public View() {
         frame = new JFrame("Blackjack");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1366, 725);
+        frame.setSize(1366, 725); //1366, 725
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -98,7 +64,7 @@ public class View {
         topPanel = new JPanel();
         titleLabel = new JLabel();
 
-        setIcon(titleLabel, "default_logo.png", 150);
+        setIcon(titleLabel, "blackjacklogo.png", 150);
 
         messagePanel = new JPanel();
         messageHeader = new JLabel("MESSAGE");
@@ -443,7 +409,7 @@ public class View {
      * @param dealerHandValue the dealer's hand value
      */
     public void updateDealerHandValue(int dealerHandValue) {
-        dealerHandValueLabel.setText(dealerHandValue + " â€” Dealer");
+        dealerHandValueLabel.setText(dealerHandValue + " — Dealer");
 
         String path = "question.png";
         int size = dealerHandValueLabel.getFont().getSize();
@@ -451,7 +417,7 @@ public class View {
     }
 
     public void updateDealerHandValue(int dealerHandValue, boolean isSoft) {
-        dealerHandValueLabel.setText(dealerHandValue + " â€” Dealer");
+        dealerHandValueLabel.setText(dealerHandValue + " — Dealer");
 
         String fileName = (isSoft) ? "soft.png" : "hard.png";
         int size = dealerHandValueLabel.getFont().getSize();
@@ -504,7 +470,7 @@ public class View {
      * to the value, else an H for a hard hand
      */
     public void updatePlayerHandValue(String name, int value, boolean soft) {
-        playerHandValueLabel.setText(value + " â€” " + name);
+        playerHandValueLabel.setText(value + " — " + name);
 
         String fileName = (soft) ? "soft.png" : "hard.png";
         int size = playerHandValueLabel.getFont().getSize();
@@ -566,7 +532,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Hold}.
+     * {@code Double Down}, {@code Surrender} and {@code Stand}.
      *
      * @param key the name of the button
      * @param l the ActionListener
@@ -590,7 +556,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Hold}.
+     * {@code Double Down}, {@code Surrender} and {@code Stand}.
      *
      * @param keys the names of the buttons
      */
@@ -615,7 +581,7 @@ public class View {
      * This methods checks if the key is an option button or a choice button.
      * Options include: {@code Deal}, {@code Next Hand}, {@code Hint},
      * {@code New Game} and {@code Quit Game}. Choices include: {@code Hit},
-     * {@code Double Down}, {@code Surrender} and {@code Hold}.
+     * {@code Double Down}, {@code Surrender} and {@code Stand}.
      *
      * @param keys the names of the buttons
      */
@@ -831,4 +797,36 @@ public class View {
             setIcon(labels[i], path, CARD_SIZE);
         }
     }
+
+    private final JFrame frame;
+    private final JPanel startPanel;
+    private final JPanel backgroundPanel;
+    private final JPanel topPanel;
+    private final JLabel titleLabel;
+    private final JPanel messagePanel;
+    private final JLabel messageHeader;
+    private final JLabel messageLabel;
+    private final JLabel chipsLabel;
+    private final JPanel tablePanel;
+    private final SettingsPanel settingsPanel;
+    private final JLabel dealerHandValueLabel;
+    private final JPanel dealerPanel;
+    private final JLabel[] dealerHand;
+    private final JLabel playerHandValueLabel;
+    private final JPanel playerPanel;
+    private final JLabel[] playerHand;
+    private final JPanel optionsPanel;
+    private final JPanel currentBetPanel;
+    private final JLabel deckCountLabel;
+    private final JLabel trueCountLabel;
+    private final JLabel currentBetValueLabel;
+    private final JPanel betOptionsPanel;
+    private final Map<String, JButton> betOptions;
+    private final JPanel playOptionsPanel;
+    private final Map<String, JButton> playOptions;
+    private final JPanel handOptionsPanel;
+    private final Map<String, JButton> handOptions;
+
+    private static final String CARD_STYLE = "classic";
+    private static final int CARD_SIZE = 115;
 }

@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Class represents a deck of cards.
  */
-package Game;
+package Cards;
 
-import Cards.Ace;
-import Cards.Card;
-import Cards.Card.Suit;
-import Cards.CardContainer;
-import Cards.Face;
-import Cards.FaceCard;
-import Cards.PipCard;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,5 +88,4 @@ public class Deck implements CardContainer {
     }
 
     private final List<Card> deck;
-
 }

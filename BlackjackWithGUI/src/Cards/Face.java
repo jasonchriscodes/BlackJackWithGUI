@@ -1,5 +1,5 @@
-/*
- * Class represents face
+/**
+ * Class represents a face displayed on a face card.
  */
 package Cards;
 

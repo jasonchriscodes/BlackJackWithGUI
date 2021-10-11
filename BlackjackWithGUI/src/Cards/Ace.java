@@ -1,5 +1,5 @@
-/*
- * Class represents ace card
+/**
+ * Class represents an ace playing card.
  */
 package Cards;
 

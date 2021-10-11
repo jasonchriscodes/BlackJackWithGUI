@@ -3,9 +3,9 @@
  */
 package Game;
 
-import Graphic.Controller;
-import Graphic.Model;
-import Graphic.View;
+import Controller.Controller;
+import Model.Model;
+import View.View;
 
 /**
  *
@@ -24,9 +24,5 @@ public class Blackjack {
         View view = new View();
         Controller controller = new Controller(model, view);
         controller.run();
-        //CUI
-//        Utils.printBlackJack();
-//        GameRunner game = new GameRunner();
-//        game.start();
     }
 }

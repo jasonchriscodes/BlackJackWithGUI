@@ -1,39 +1,35 @@
-/*
- * Class that represents a human dealer.
+/**
+ * Class represents a blackjack player with an ability to place bets.
  */
-package Players;
-
-import Game.Utils;
-import java.util.InputMismatchException;
+package Model;
 
 /**
  *
  * @author Jason Christian - 21136899
  */
-public class HumanPlayer extends Participant {
-
-    private double bankroll;
-    private double bet;
+public class BlackjackPlayer extends Player {
 
     /**
-     * HumanPlayer constructor
+     * Creates a new {@code BlackjackPlayer} with the specified name and amount
+     * of chips.
      *
-     * @param name
-     * @param bankroll
+     * @param name the player's name
+     * @param bankroll the starting amount of chips
      */
-    public HumanPlayer(String name, double bankroll) {
+    public BlackjackPlayer(String name, double bankroll) {
         super(name);
-        setTotalGain(bankroll);
         this.bankroll = bankroll;
         this.bet = 0;
     }
 
-    public HumanPlayer(String name) {
-        super(name, 100);
-    }
-
-    public HumanPlayer() {
-        this("Player", 100);
+    /**
+     * Creates a new {@code BlackjackPlayer} with 1,000 chips and the specified
+     * name.
+     *
+     * @param name the player's name
+     */
+    public BlackjackPlayer(String name) {
+        this(name, 1000);
     }
 
     /**
@@ -42,34 +38,15 @@ public class HumanPlayer extends Participant {
      *
      * @param bankroll the starting amount of chips
      */
-    public HumanPlayer(double bankroll) {
+    public BlackjackPlayer(double bankroll) {
         this("Player", bankroll);
     }
 
-    @Override
-    int makeABet() {
-        System.out.println("How much do you want to bet?");
-        int bet = 0;
-        do {
-            try {
-                System.out.println("Please enter a number > 0 and <= 100");
-                bet = Integer.valueOf(Utils.scanner.next());
-            } catch (InputMismatchException | NumberFormatException nf) {
-            }
-        } while (bet <= 0 || bet > 100);
-        return bet;
-    }
-
-    @Override
-    Action decideAction() {
-
-        System.out.println("Decide your action (hit or hold)");
-        String res = Utils.scanner.next();
-        while (!res.equals("hit") && !res.equals("hold")) {
-            System.out.println("please type either \"hit\" or \"hold\"");
-            res = Utils.scanner.next();
-        }
-        return res.equals("hit") ? Action.HIT : Action.HOLD;
+    /**
+     * Creates a new {@code BlackjackPlayer} named Player with 1,000 chips.
+     */
+    public BlackjackPlayer() {
+        this("Player", 1000);
     }
 
     /**
@@ -137,4 +114,7 @@ public class HumanPlayer extends Participant {
     public double getBet() {
         return bet;
     }
+
+    private double bankroll;
+    private double bet;
 }
