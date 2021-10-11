@@ -110,8 +110,11 @@ public class View {
         optionsPanel = new JPanel();
         currentBetPanel = new JPanel();
         deckCountLabel = new JLabel();
+        deckCountTitle = new JLabel("Remaining Deck: ");
         trueCountLabel = new JLabel();
+        trueCountTitle = new JLabel("True Count: ");
         currentBetValueLabel = new JLabel();
+        currentBetValueTitle = new JLabel("Current Bet: ");
         betOptionsPanel = new JPanel();
         betOptions = new HashMap<>();
         playOptionsPanel = new JPanel();
@@ -124,13 +127,13 @@ public class View {
         messageLabel.setFont(FONT.generate(18));
 
         chipsLabel.setForeground(Color.WHITE);
-        chipsLabel.setFont(FONT.generate(36));
+        chipsLabel.setFont(FONT.generate(30));
 
-        setIcon(chipsLabel, "chip.png", 36);
+        setIcon(chipsLabel, "chip.png", 30);
         String mode = (PALETTE instanceof LightPalette) ? "light" : "dark";
-        setIcon(deckCountLabel, mode + "/deck.png", 36);
-        setIcon(trueCountLabel, mode + "/card_count.png", 36);
-        setIcon(currentBetValueLabel, mode + "/bet.png", 36);
+        setIcon(deckCountLabel, mode + "/deck.png", 30);
+        setIcon(trueCountLabel, mode + "/card_count.png", 30);
+        setIcon(currentBetValueLabel, mode + "/bet.png", 30);
 
         tablePanel.setBackground(PALETTE.table());
         dealerHandValueLabel.setForeground(Color.WHITE);
@@ -147,11 +150,17 @@ public class View {
         playOptionsPanel.setBackground(PALETTE.menu());
         handOptionsPanel.setBackground(PALETTE.menu());
         deckCountLabel.setForeground(PALETTE.text());
+        deckCountTitle.setForeground(PALETTE.text());
         trueCountLabel.setForeground(PALETTE.text());
+        trueCountTitle.setForeground(PALETTE.text());
         currentBetValueLabel.setForeground(PALETTE.text());
-        deckCountLabel.setFont(FONT.generate(36));
-        trueCountLabel.setFont(FONT.generate(36));
-        currentBetValueLabel.setFont(FONT.generate(36));
+        currentBetValueTitle.setForeground(PALETTE.text());
+        deckCountLabel.setFont(FONT.generate(30));
+        deckCountTitle.setFont(FONT.generate(30));
+        trueCountLabel.setFont(FONT.generate(30));
+        trueCountTitle.setFont(FONT.generate(30));
+        currentBetValueLabel.setFont(FONT.generate(30));
+        currentBetValueTitle.setFont(FONT.generate(30));
 
         frame.add(backgroundPanel, BorderLayout.CENTER);
 
@@ -616,7 +625,7 @@ public class View {
         gbc.gridy = 0;
         gbc.gridwidth = options.length;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 10, 2, 10);
+        gbc.insets = new Insets(10, 10, 2, 10);// 10,10,2,10 padding
         panel.add(label, gbc);
 
         JSeparator separator = new JSeparator();
@@ -738,8 +747,11 @@ public class View {
         optionsPanel.add(handOptionsPanel, gbc);
 
         currentBetPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0));
+        currentBetPanel.add(deckCountTitle);
         currentBetPanel.add(deckCountLabel);
+        currentBetPanel.add(trueCountTitle);
         currentBetPanel.add(trueCountLabel);
+        currentBetPanel.add(currentBetValueTitle);
         currentBetPanel.add(currentBetValueLabel);
     }
 
@@ -818,8 +830,11 @@ public class View {
     private final JPanel optionsPanel;
     private final JPanel currentBetPanel;
     private final JLabel deckCountLabel;
+    private final JLabel deckCountTitle;
     private final JLabel trueCountLabel;
+    private final JLabel trueCountTitle;
     private final JLabel currentBetValueLabel;
+    private final JLabel currentBetValueTitle;
     private final JPanel betOptionsPanel;
     private final Map<String, JButton> betOptions;
     private final JPanel playOptionsPanel;
