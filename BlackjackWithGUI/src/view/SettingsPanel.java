@@ -277,6 +277,6 @@ public class SettingsPanel extends JPanel {
     }
 
     public void initBackActionListener(ActionListener l) {
-        playButton.addActionListener(l);
+        backButton.addActionListener(l);
     }
 }
