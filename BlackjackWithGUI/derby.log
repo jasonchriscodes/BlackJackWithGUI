@@ -1,20 +1,13 @@
-Fri Oct 01 11:51:16 NZDT 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Oct 01 11:51:20 NZDT 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-38e7-9e4d-ffff9abc3959 
-on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Jason/AUT/Year%202/Sem%202/ENSE600/Lab/Lab%208/db-derby-10.14.2.0-bin/lib/derby.jar
+Tue Oct 12 21:44:12 NZDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-73ac-6c85-00000657eb90 
+on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
+Loaded from file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_291-b10
-user.dir=C:\Jason\AUT\Year 2\Sem 2\ENSE600\Lab\Lab 8\db-derby-10.14.2.0-bin
+user.dir=C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI
+derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Oct 01 14:11:26 NZDT 2021: Shutting down Derby engine
-----------------------------------------------------------------
-Fri Oct 01 14:11:26 NZDT 2021:
-Shutting down instance a816c00e-017c-38e7-9e4d-ffff9abc3959 on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-----------------------------------------------------------------

@@ -19,6 +19,21 @@ public class Model {
      * The initial amount of chips the player has at the start of the game
      */
     public static final int BANKROLL = 1000;
+    private BlackjackPlayer player;
+    private Dealer dealer;
+    private CardContainer shoe;
+    private List<Card> discardDeck;
+    private int minimumBet;
+    private int runningCount;
+    private static final int NUMBER_OF_DECKS = 4;
+    private static final String[] CHOICES = {
+        "Hit", "Double Down", "Surrender", "Stand"
+    };
+    private static final String[] OPTIONS = {
+        "Deal", "Next Hand", "Hint", "New Game", "Quit Game"
+    };
+    private static final int[] CHIPS = {100, 50, 25, 10, 5};
+    private boolean stand17;
 
     public Model() {
         player = new BlackjackPlayer(BANKROLL);
@@ -491,20 +506,4 @@ public class Model {
         }
         return player.isBelowLimit();
     }
-
-    private BlackjackPlayer player;
-    private Dealer dealer;
-    private CardContainer shoe;
-    private List<Card> discardDeck;
-    private int minimumBet;
-    private int runningCount;
-    private static final int NUMBER_OF_DECKS = 4;
-    private static final String[] CHOICES = {
-        "Hit", "Double Down", "Surrender", "Stand"
-    };
-    private static final String[] OPTIONS = {
-        "Deal", "Next Hand", "Hint", "New Game", "Quit Game"
-    };
-    private static final int[] CHIPS = {100, 50, 25, 10, 5};
-    private boolean stand17;
 }
