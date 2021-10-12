@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import view.WelcomeSettingPanel;
 
 /**
  *
@@ -28,6 +29,7 @@ public class View {
     public static final String FNT_PATH = "/font/";
 
     private final JFrame frame;
+    private final JPanel welcomePanel;
     private final JPanel startPanel;
     private final JPanel backgroundPanel;
     private final JPanel topPanel;
@@ -40,6 +42,7 @@ public class View {
     private final JLabel chipsLabel;
     private final JPanel tablePanel;
     private final SettingsPanel settingsPanel;
+    private final WelcomeSettingPanel welcomeSettingPanel;
     private final JLabel dealerHandValueLabel;
     private final JPanel dealerPanel;
     private final JLabel[] dealerHand;
@@ -78,16 +81,6 @@ public class View {
 
         backgroundPanel = new Table();
 
-        String path;
-
-        path = IMG_PATH + "logo2.png";
-        try {
-            ImageIcon icon = new ImageIcon(View.class.getResource(path));
-            frame.setIconImage(icon.getImage());
-        } catch (NullPointerException ex) {
-            System.err.println("Could not find " + path);
-        }
-
         // Styling for the option pane
         UIManager.put("OptionPane.messageFont", FONT.generate(14));
         UIManager.put("OptionPane.background", PALETTE.menu());
@@ -97,6 +90,7 @@ public class View {
         UIManager.put("Button.foreground", PALETTE.menu());
         UIManager.put("Button.background", PALETTE.button());
 
+        welcomePanel = new JPanel();
         startPanel = new JPanel();
         topPanel = new JPanel();
         titleLabel = new JLabel();
@@ -134,6 +128,7 @@ public class View {
 
         chipsLabel = new JLabel();
 
+        welcomeSettingPanel = new WelcomeSettingPanel((ImageIcon) titleLabel.getIcon());
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
 
         tablePanel = new JPanel();
@@ -182,6 +177,7 @@ public class View {
         dealerHandValueLabel.setFont(FONT.generate(16));
         playerHandValueLabel.setFont(FONT.generate(16));
 
+        welcomePanel.setBackground(PALETTE.table());
         startPanel.setBackground(PALETTE.table());
         optionsPanel.setBackground(PALETTE.table());
         currentBetPanel.setBackground(PALETTE.table());
@@ -208,6 +204,7 @@ public class View {
 
         backgroundPanel.setLayout(new BorderLayout());
 
+        layoutWelcomePanel();
         layoutStartPanel();
         layoutTopPanel();
         layoutTablePanel();
@@ -234,6 +231,7 @@ public class View {
 
         // Remove background from every panel so texture can be seen
         if (backgroundPanel.getBackground() != PALETTE.table()) {
+            welcomePanel.setOpaque(false);
             startPanel.setOpaque(false);
             playerPanel.setOpaque(false);
             dealerPanel.setOpaque(false);
@@ -698,6 +696,15 @@ public class View {
             map.put(options[i], option);
             panel.add(option, gbc);
         }
+    }
+
+    private void layoutWelcomePanel() {
+        welcomePanel.setLayout(new GridBagLayout());
+        GridBagConstraints placeholderConstraints = new GridBagConstraints();
+        placeholderConstraints.gridx = 0;
+        placeholderConstraints.gridy = 0;
+        placeholderConstraints.anchor = GridBagConstraints.CENTER;
+        welcomePanel.add(welcomeSettingPanel, placeholderConstraints);
     }
 
     private void layoutStartPanel() {
