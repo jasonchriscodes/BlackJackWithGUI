@@ -29,6 +29,33 @@ public class Controller {
         view.displayFrame();
     }
 
+    public class NewGameAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    }
+
+    public class LoadGameAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    }
+
+    public class ExitGameAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    }
+
     public class PlayAction implements ActionListener {
 
         @Override
@@ -342,6 +369,10 @@ public class Controller {
         view.initBetOptions(Model.chips());
         view.initPlayOptions(Model.choices());
         view.initHandOptions(Model.options());
+
+        view.initButtonActionListener("New Game", new NewGameAction());
+        view.initButtonActionListener("Load Game", new LoadGameAction());
+        view.initButtonActionListener("Exit", new ExitGameAction());
 
         view.initButtonActionListener("Play", new PlayAction());
 
