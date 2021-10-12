@@ -26,6 +26,7 @@ public class Model {
     private int minimumBet;
     private int runningCount;
     private static final int NUMBER_OF_DECKS = 4;
+    private static final String[] WELCOME = {"New Game, Load Game, Exit"};
     private static final String[] CHOICES = {
         "Hit", "Double Down", "Surrender", "Stand"
     };
@@ -39,6 +40,15 @@ public class Model {
         player = new BlackjackPlayer(BANKROLL);
         dealer = new Dealer();
         discardDeck = new ArrayList<>();
+    }
+
+    /**
+     * Returns the possible welcome options for the player in main menu
+     *
+     * @return the choices
+     */
+    public static final String[] welcome() {
+        return WELCOME.clone();
     }
 
     /**
