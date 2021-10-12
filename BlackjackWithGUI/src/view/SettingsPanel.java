@@ -17,6 +17,27 @@ import javax.swing.border.LineBorder;
  */
 public class SettingsPanel extends JPanel {
 
+    private JPanel menuItemsPanel;
+    private JLabel logoLabel;
+    private JLabel playerLabel;
+    private JLabel nameLabel;
+    private JLabel houseRulesLabel;
+    private JLabel deckAmountLabel;
+    private JLabel minimumBetLabel;
+    private JLabel dealerBehaviorLabel;
+    private JLabel standDescriptionLabel;
+    private JLabel hitDescriptionLabel;
+    private JTextField nameTextField;
+    private JSpinner deckSpinner;
+    private JSpinner betSpinner;
+    private JRadioButton standRadioButton;
+    private JRadioButton hitRadioButton;
+    private ButtonGroup dealerBehaviorGroup;
+    private JCheckBox displayHandValue;
+    private JButton playButton;
+    private final static int HIT = 0;
+    private final static int STAND = 1;
+
     public SettingsPanel(ImageIcon logo) {
         initPanel(logo);
     }
@@ -244,25 +265,4 @@ public class SettingsPanel extends JPanel {
     public void initPlayActionListener(ActionListener l) {
         playButton.addActionListener(l);
     }
-
-    private JPanel menuItemsPanel;
-    private JLabel logoLabel;
-    private JLabel playerLabel;
-    private JLabel nameLabel;
-    private JLabel houseRulesLabel;
-    private JLabel deckAmountLabel;
-    private JLabel minimumBetLabel;
-    private JLabel dealerBehaviorLabel;
-    private JLabel standDescriptionLabel;
-    private JLabel hitDescriptionLabel;
-    private JTextField nameTextField;
-    private JSpinner deckSpinner;
-    private JSpinner betSpinner;
-    private JRadioButton standRadioButton;
-    private JRadioButton hitRadioButton;
-    private ButtonGroup dealerBehaviorGroup;
-    private JCheckBox displayHandValue;
-    private JButton playButton;
-    private final static int HIT = 0;
-    private final static int STAND = 1;
 }
