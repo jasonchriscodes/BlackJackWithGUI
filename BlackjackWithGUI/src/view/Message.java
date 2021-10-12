@@ -63,8 +63,8 @@ public class Message {
         return "Place a bet.";
     }
 
-    public static String newGame() {
-        return "Are you sure you want to start a new game? "
+    public static String mainMenu() {
+        return "Are you sure you want to go back to Main Menu? "
                 + "You will lose your current winnings.";
     }
 

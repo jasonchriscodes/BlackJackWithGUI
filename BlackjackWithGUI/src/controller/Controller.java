@@ -315,12 +315,12 @@ public class Controller {
         }
     }
 
-    public class NewGameAction implements ActionListener {
+    public class MainMenuAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             if (model.outOfChips()
-                    || view.prompt(Message.newGame(), "New Game")) {
+                    || view.prompt(Message.mainMenu(), "Main Menu")) {
                 initView();
                 model.restartGame();
             }
@@ -353,7 +353,7 @@ public class Controller {
         view.initButtonActionListener("Deal", new DealAction());
         view.initButtonActionListener("Hint", new HintAction());
         view.initButtonActionListener("Next Hand", new NextHandAction());
-        view.initButtonActionListener("New Game", new NewGameAction());
+        view.initButtonActionListener("Main Menu", new MainMenuAction());
         view.initButtonActionListener("Quit Game", new QuitGameAction());
 
         view.getBetOptions().forEach((betOption) -> {

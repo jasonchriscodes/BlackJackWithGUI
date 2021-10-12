@@ -30,7 +30,7 @@ public class Model {
         "Hit", "Double Down", "Surrender", "Stand"
     };
     private static final String[] OPTIONS = {
-        "Deal", "Next Hand", "Hint", "New Game", "Quit Game"
+        "Deal", "Next Hand", "Hint", "Main Menu", "Quit Game"
     };
     private static final int[] CHIPS = {100, 50, 25, 10, 5};
     private boolean stand17;
