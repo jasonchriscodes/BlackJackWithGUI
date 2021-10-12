@@ -35,6 +35,7 @@ public class SettingsPanel extends JPanel {
     private ButtonGroup dealerBehaviorGroup;
     private JCheckBox displayHandValue;
     private JButton playButton;
+    private JButton backButton;
     private final static int HIT = 0;
     private final static int STAND = 1;
 
@@ -86,6 +87,7 @@ public class SettingsPanel extends JPanel {
         dealerBehaviorGroup = new ButtonGroup();
         displayHandValue = new JCheckBox("Show hand value");
         playButton = new JButton("PLAY");
+        backButton = new JButton("BACK");
 
         logoLabel.setIcon(ImageResizer.getScaledImage(logo, 150));
 
@@ -123,6 +125,7 @@ public class SettingsPanel extends JPanel {
         hitRadioButton.setFont(View.FONT.generate(14));
         displayHandValue.setFont(View.FONT.generate(14));
         playButton.setFont(View.FONT.generate(14, Font.BOLD));
+        backButton.setFont(View.FONT.generate(14, Font.BOLD));
 
         playerLabel.setForeground(View.PALETTE.heading());
         nameLabel.setForeground(View.PALETTE.text());
@@ -137,6 +140,7 @@ public class SettingsPanel extends JPanel {
         hitRadioButton.setForeground(View.PALETTE.text());
         displayHandValue.setForeground(View.PALETTE.text());
         playButton.setForeground(View.PALETTE.menu());
+        backButton.setForeground(View.PALETTE.menu());
 
         EmptyBorder eb = new EmptyBorder(1, 1, 1, 1);
         LineBorder lb = new LineBorder(View.PALETTE.separator());
@@ -152,6 +156,7 @@ public class SettingsPanel extends JPanel {
         hitRadioButton.setBackground(View.PALETTE.menu());
         displayHandValue.setBackground(View.PALETTE.menu());
         playButton.setBackground(View.PALETTE.button());
+        backButton.setBackground(View.PALETTE.button());
         menuItemsPanel.setBorder(new LineBorder(View.PALETTE.separator()));
         setOpaque(false);
 
@@ -253,6 +258,11 @@ public class SettingsPanel extends JPanel {
         innerGBC.fill = GridBagConstraints.NONE;
         innerGBC.insets = new Insets(10, 10, 10, 10);
         menuItemsPanel.add(playButton, innerGBC);
+
+        innerGBC.gridy++;
+        innerGBC.fill = GridBagConstraints.NONE;
+        innerGBC.insets = new Insets(10, 10, 10, 10);
+        menuItemsPanel.add(backButton, innerGBC);
     }
 
     private JSeparator createSeparator(Color fg) {
@@ -263,6 +273,10 @@ public class SettingsPanel extends JPanel {
     }
 
     public void initPlayActionListener(ActionListener l) {
+        playButton.addActionListener(l);
+    }
+
+    public void initBackActionListener(ActionListener l) {
         playButton.addActionListener(l);
     }
 }
