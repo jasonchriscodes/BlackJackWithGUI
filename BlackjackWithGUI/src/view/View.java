@@ -33,6 +33,7 @@ public class View {
     private final JPanel startPanel;
     private final JPanel backgroundPanel;
     private final JPanel topPanel;
+    private final JLabel welcomeLabel;
     private final JLabel titleLabel;
     private final JPanel messagePanel;
     private final JLabel messageHeader;
@@ -58,6 +59,8 @@ public class View {
     private final JLabel currentBetValueLabel;
     private final JLabel currentBetValueTitle;
     private final JPanel betOptionsPanel;
+    private final Map<String, JButton> welcomeOptions;
+    private final JPanel welcomeOptionsPanel;
     private final Map<String, JButton> betOptions;
     private final JPanel playOptionsPanel;
     private final Map<String, JButton> playOptions;
@@ -66,6 +69,7 @@ public class View {
 
     private static final String CARD_STYLE = "classic";
     private static final int CARD_SIZE = 115;
+    private Image texture;
 
     static {
         loadFont();
@@ -93,6 +97,7 @@ public class View {
         welcomePanel = new JPanel();
         startPanel = new JPanel();
         topPanel = new JPanel();
+        welcomeLabel = new JLabel();
         titleLabel = new JLabel();
 
         setIcon(titleLabel, "blackjacklogo.png", 150);
@@ -128,7 +133,7 @@ public class View {
 
         chipsLabel = new JLabel();
 
-        welcomeSettingPanel = new WelcomeSettingPanel((ImageIcon) titleLabel.getIcon());
+        welcomeSettingPanel = new WelcomeSettingPanel("background.png");
         settingsPanel = new SettingsPanel((ImageIcon) titleLabel.getIcon());
 
         tablePanel = new JPanel();
@@ -147,6 +152,8 @@ public class View {
         trueCountTitle = new JLabel("True Count: ");
         currentBetValueLabel = new JLabel();
         currentBetValueTitle = new JLabel("Current Bet: ");
+        welcomeOptionsPanel = new JPanel();
+        welcomeOptions = new HashMap<>();
         betOptionsPanel = new JPanel();
         betOptions = new HashMap<>();
         playOptionsPanel = new JPanel();
@@ -283,9 +290,15 @@ public class View {
         SwingUtilities.invokeLater(View::new);
     }
 
+    public void displayMenu() {
+        backgroundPanel.removeAll();
+        backgroundPanel.add(welcomePanel); // previously startPanel
+        backgroundPanel.repaint();
+    }
+
     public void displaySettings() {
         backgroundPanel.removeAll();
-        backgroundPanel.add(startPanel);
+        backgroundPanel.add(startPanel); // previously startPanel
         backgroundPanel.repaint();
     }
 
@@ -570,6 +583,14 @@ public class View {
                 false);             // If the text has an icon next to it
     }
 
+    public void initWelcomeOptions(String[] options) {
+        initOptions("WELCOME", // Name of the panel, i.e. the header
+                options, // The text on the buttons
+                this.welcomeOptions, // The buttons
+                welcomeOptionsPanel, // The panel containing the buttons
+                false);             // If the text has an icon next to it
+    }
+
     public void initHandOptions(String[] options) {
         initOptions("OPTIONS", options, this.handOptions, handOptionsPanel, false);
     }
@@ -593,6 +614,14 @@ public class View {
             playOptions.get(key).addActionListener(l);
         } else if (key.equals("Play")) {
             settingsPanel.initPlayActionListener(l);
+        } else if (key.equals("Back")) {
+            settingsPanel.initBackActionListener(l);
+//        } else if (key.equals("New Game")) {
+//            welcomeSettingPanel.initNewGameActionListener(l);
+//        } else if (key.equals("Load Game")) {
+//            welcomeSettingPanel.initLoadGameActionListener(l);
+//        } else if (key.equals("Exit")) {
+//            welcomeSettingPanel.initExitActionListener(l);
         } else {
             System.err.println("Invalid key: " + key);
         }
