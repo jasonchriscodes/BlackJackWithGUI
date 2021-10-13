@@ -5,6 +5,7 @@ package view;
 
 import File.DBOperations;
 import Graphic.DarkPalette;
+import View.Table;
 import View.View;
 import java.awt.*;
 import java.awt.event.ActionListener;
