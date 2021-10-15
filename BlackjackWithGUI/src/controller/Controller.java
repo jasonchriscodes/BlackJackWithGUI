@@ -11,6 +11,7 @@ import View.Message;
 import View.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -405,6 +406,7 @@ public class Controller {
     }
 
     private void initView() {
+        JOptionPane.showMessageDialog(null, Message.rule(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
         view.displayMenu();
     }
 
