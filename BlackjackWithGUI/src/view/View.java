@@ -616,12 +616,12 @@ public class View {
             settingsPanel.initPlayActionListener(l);
         } else if (key.equals("Back")) {
             settingsPanel.initBackActionListener(l);
-//        } else if (key.equals("New Game")) {
-//            welcomeSettingPanel.initNewGameActionListener(l);
-//        } else if (key.equals("Load Game")) {
-//            welcomeSettingPanel.initLoadGameActionListener(l);
-//        } else if (key.equals("Exit")) {
-//            welcomeSettingPanel.initExitActionListener(l);
+        } else if (key.equals("New Game")) {
+            welcomeSettingPanel.initNewGameActionListener(l);
+        } else if (key.equals("Load Game")) {
+            welcomeSettingPanel.initLoadGameActionListener(l);
+        } else if (key.equals("Exit")) {
+            welcomeSettingPanel.initExitActionListener(l);
         } else {
             System.err.println("Invalid key: " + key);
         }

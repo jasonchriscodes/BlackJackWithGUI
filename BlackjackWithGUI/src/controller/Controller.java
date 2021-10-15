@@ -33,7 +33,7 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            view.displaySettings();
         }
 
     }
@@ -42,7 +42,7 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            view.displaySettings();
         }
 
     }
@@ -51,7 +51,7 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            System.exit(0);
         }
 
     }
@@ -80,6 +80,16 @@ public class Controller {
             }
             view.disableButton("Next Hand", "Hint");
         }
+    }
+
+    public class BackAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            initView();
+            model.restartGame();
+        }
+
     }
 
     public class BetAction implements ActionListener {
@@ -367,14 +377,15 @@ public class Controller {
 
     private void initController() {
         view.initBetOptions(Model.chips());
+        view.initWelcomeOptions(Model.welcome());
         view.initPlayOptions(Model.choices());
         view.initHandOptions(Model.options());
 
         view.initButtonActionListener("New Game", new NewGameAction());
         view.initButtonActionListener("Load Game", new LoadGameAction());
         view.initButtonActionListener("Exit", new ExitGameAction());
-
         view.initButtonActionListener("Play", new PlayAction());
+        view.initButtonActionListener("Back", new BackAction());
 
         view.initButtonActionListener("Hit", new HitAction());
         view.initButtonActionListener("Stand", new StandAction());
@@ -394,7 +405,7 @@ public class Controller {
     }
 
     private void initView() {
-        view.displaySettings();
+        view.displayMenu();
     }
 
     private final Model model;

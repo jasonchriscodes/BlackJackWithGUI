@@ -16,7 +16,7 @@ import javax.swing.*;
  * @author Jason Christian - 21136899
  */
 public class WelcomeSettingPanel extends JComponent {
-
+    
     private Image bgImage;
     private JPanel welcomePanel;
     private JButton newGameButton;
@@ -24,59 +24,59 @@ public class WelcomeSettingPanel extends JComponent {
     private JButton exitButton;
     private static final int WIDTH = 450;
     private static final int HEIGHT = 600;
-
+    
     public WelcomeSettingPanel(String imgSrc) {
         initPanel(imgSrc);
     }
-
+    
     private void initPanel(String imgSrc) {
         loadBgImg(imgSrc);
         welcomePanel = new JPanel();
         setLayout(null);
-
+        
         newGameButton = new JButton("New Game");
         loadGameButton = new JButton("Load Game");
         exitButton = new JButton("Exit");
-
+        
         newGameButton.setFont(View.FONT.generate(14, Font.BOLD));
         loadGameButton.setFont(View.FONT.generate(14, Font.BOLD));
         exitButton.setFont(View.FONT.generate(14, Font.BOLD));
-
+        
+        welcomePanel.setBackground(View.PALETTE.menu());
         newGameButton.setForeground(View.PALETTE.menu());
         loadGameButton.setForeground(View.PALETTE.menu());
         exitButton.setForeground(View.PALETTE.menu());
-
-        welcomePanel.setBackground(Color.red);
+        
         newGameButton.setBackground(View.PALETTE.button());
         loadGameButton.setBackground(View.PALETTE.button());
         exitButton.setBackground(View.PALETTE.button());
-
+        
         add(newGameButton);
         add(loadGameButton);
         add(exitButton);
-
+        
         newGameButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 30, 120, 42);
         loadGameButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 100, 120, 42);
         exitButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 170, 120, 42);
-
+        
         DBOperations dboperations = new DBOperations();
-
+        
         if (dboperations.isDatabaseEmpty()) {
             loadGameButton.setEnabled(false);
         }
     }
-
-//    public void initNewGameActionListener(ActionListener l) {
-//        newGameButton.addActionListener(l);
-//    }
-//
-//    public void initLoadGameActionListener(ActionListener l) {
-//        loadGameButton.addActionListener(l);
-//    }
-//
-//    public void initExitActionListener(ActionListener l) {
-//        exitButton.addActionListener(l);
-//    }
+    
+    public void initNewGameActionListener(ActionListener l) {
+        newGameButton.addActionListener(l);
+    }
+    
+    public void initLoadGameActionListener(ActionListener l) {
+        loadGameButton.addActionListener(l);
+    }
+    
+    public void initExitActionListener(ActionListener l) {
+        exitButton.addActionListener(l);
+    }
 
     /* (non-Javadoc)
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
@@ -90,7 +90,7 @@ public class WelcomeSettingPanel extends JComponent {
             g.fillRect(0, 0, WIDTH, HEIGHT);
         }
     }
-
+    
     private void loadBgImg(String imgSrc) {
         String path = View.IMG_PATH + imgSrc;
         try {
