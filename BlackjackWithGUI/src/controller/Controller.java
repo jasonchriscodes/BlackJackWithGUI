@@ -24,6 +24,7 @@ public class Controller {
         this.view = view;
         initController();
         initView();
+        JOptionPane.showMessageDialog(null, Message.rule(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void run() {
@@ -406,7 +407,6 @@ public class Controller {
     }
 
     private void initView() {
-        JOptionPane.showMessageDialog(null, Message.rule(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
         view.displayMenu();
     }
 
