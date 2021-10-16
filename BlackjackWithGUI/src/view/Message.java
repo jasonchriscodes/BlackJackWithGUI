@@ -100,7 +100,7 @@ public class Message {
 
     public static String mainMenu() {
         return "Are you sure you want to go back to Main Menu? "
-                + "You will lose your current winnings.";
+                + "Your data will be saved.";
     }
 
     public static String outOfChips() {

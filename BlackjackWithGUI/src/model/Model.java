@@ -208,6 +208,7 @@ public class Model {
         stand17 = (int) settings[3] == 1;
         shoe = new Shoe(deckAmount);
         shoe.shuffle();
+        dboperations.addData(name, 1000);
         JOptionPane.showMessageDialog(null, "You do not have "
                 + "saved data named: " + name + " and you start "
                 + "with: 1000 chips", "Message", JOptionPane.INFORMATION_MESSAGE);

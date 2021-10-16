@@ -1,13 +1,14 @@
+Sat Oct 16 20:24:42 NZDT 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Sat Oct 16 20:21:01 NZDT 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-87f9-b422-0000053cb8b8 
-on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
-Loaded from file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/lib/derby.jar
+Sat Oct 16 20:24:43 NZDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-87fd-1619-ffff9abc3959 
+on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Jason/AUT/Year%202/Sem%202/ENSE600/Lab/Lab%208/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_291-b10
-user.dir=C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI
+user.dir=C:\Jason\AUT\Year 2\Sem 2\ENSE600\Lab\Lab 8\db-derby-10.14.2.0-bin
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=null
+derby.system.home=C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI
 Database Class Loader started - derby.database.classpath=''
