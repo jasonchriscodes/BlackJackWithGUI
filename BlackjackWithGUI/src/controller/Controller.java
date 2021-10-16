@@ -69,6 +69,7 @@ public class Controller {
                 model.loadSettings(view.getSettings());
                 view.displayTable();
                 view.resetHandValue();
+
                 view.clearCards();
                 view.updateStats(model.playerChips(), model.playerBet());
                 view.updateTrueCount(model.getTrueCount());

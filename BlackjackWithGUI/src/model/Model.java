@@ -208,12 +208,15 @@ public class Model {
         stand17 = (int) settings[3] == 1;
         shoe = new Shoe(deckAmount);
         shoe.shuffle();
+        JOptionPane.showMessageDialog(null, "You do not have "
+                + "saved data named: " + name + " and you start "
+                + "with: 1000 chips", "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public boolean nameisWrong(Object[] settings) {
         String textFieldName = (String) settings[0];
         if (textFieldName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Empty name!",
+            JOptionPane.showMessageDialog(null, "Name can not empty!",
                     "Message", JOptionPane.INFORMATION_MESSAGE);
             return false;
         } else if (!dboperations.checkName(textFieldName)) {
