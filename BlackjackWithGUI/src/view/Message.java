@@ -129,7 +129,7 @@ public class Message {
 
     public static String quit() {
         return "Are you sure you want to quit? "
-                + "You will lose your current winnings.";
+                + "Your data will be saved.";
     }
 
     public static String reshuffle() {
