@@ -67,6 +67,26 @@ public class RetrieveAll {
         return human;
     }
 
+    public BlackjackPlayer getChipsByName(String name) {
+        BlackjackPlayer human = new BlackjackPlayer(name);
+        ResultSet rs = dbManager.myQuery("select * from Players where name=" + name);
+
+        if (rs == null) {
+            return null;
+        }
+
+        try {
+            while (rs.next()) {
+                human.setBankroll(rs.getDouble("chips"));
+            }
+
+        } catch (SQLException ex) {
+            return null;
+        }
+
+        return human.getBankroll();
+    }
+
     public static void main(String args[]) {
         RetrieveAll retrieve = new RetrieveAll();
         List<BlackjackPlayer> humanList = retrieve.getAllHumans();
