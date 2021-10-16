@@ -113,23 +113,24 @@ public class DBOperations {
 //            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-//    public void updateTable() {
-//        try {
-//            Statement statement = dbManager.getConnection().createStatement();
-//            String newTableName = "PDC.PLAYERS";
-//
-//            String sqlUpdateTable = "update " + newTableName + " set chips=20 "
-//                    + "where name='Jason'";
-//            statement.executeUpdate(sqlUpdateTable);
-//
-//            //statement.close();
-//            System.out.println("Table updated");
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBOperations.class
-//                    .getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public void updateTable(String name, Double Bankroll) {
+        try {
+            Statement statement = dbManager.getConnection().createStatement();
+            String newTableName = "PDC.PLAYERS";
+
+            String sqlUpdateTable = "update " + newTableName + " set chips=" + Bankroll
+                    + " where name=" + name;
+            statement.executeUpdate(sqlUpdateTable);
+
+            //statement.close();
+            System.out.println("Table updated");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void checkExistedTable(String name) {
         try {
             DatabaseMetaData dbmd = this.conn.getMetaData();
@@ -218,17 +219,17 @@ public class DBOperations {
     }
 //
 
-//    public static void main(String[] args) {
-//        DBOperations dboperations = new DBOperations();
-////        dboperations.createTable();
-////        dboperations.addData("Jason", 50);
-////        dboperations.getQuery();
-////        dboperations.updateTable();
-////        dboperations.getQuery();
-////        if (dboperations.hasUser("Jason")) {
-////            System.out.println("User already exist");
-////        }
-////        System.out.println("User NOT exist");
-////        dboperations.dbManager.closeConnections();
-//    }
+    public static void main(String[] args) {
+        DBOperations dboperations = new DBOperations();
+//        dboperations.createTable();
+//        dboperations.addData("Jason", 50);
+//        dboperations.getQuery();
+        dboperations.updateTable("'Jason'", 80.0);
+//        dboperations.getQuery();
+//        if (dboperations.hasUser("Jason")) {
+//            System.out.println("User already exist");
+//        }
+//        System.out.println("User NOT exist");
+//        dboperations.dbManager.closeConnections();
+    }
 }

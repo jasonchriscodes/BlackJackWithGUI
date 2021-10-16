@@ -9,6 +9,10 @@ package Model;
  */
 public class BlackjackPlayer extends Player {
 
+    private double bankroll;
+    private double bet;
+    private String name;
+
     /**
      * Creates a new {@code BlackjackPlayer} with the specified name and amount
      * of chips.
@@ -20,6 +24,7 @@ public class BlackjackPlayer extends Player {
         super(name);
         this.bankroll = bankroll;
         this.bet = 0;
+        this.name = name;
     }
 
     /**
@@ -30,6 +35,7 @@ public class BlackjackPlayer extends Player {
      */
     public BlackjackPlayer(String name) {
         this(name, 1000);
+        this.name = name;
     }
 
     /**
@@ -115,6 +121,21 @@ public class BlackjackPlayer extends Player {
         return bet;
     }
 
-    private double bankroll;
-    private double bet;
+    /**
+     * Returns this player's name
+     *
+     * @return this player's name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Bankroll the total amount of chips.
+     *
+     * @param bankroll the total amount of chips.
+     */
+    public void setBankroll(double bankroll) {
+        this.bankroll = bankroll;
+    }
 }

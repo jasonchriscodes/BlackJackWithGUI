@@ -14,6 +14,9 @@ import java.util.List;
  */
 abstract public class Player {
 
+    private final String name;
+    private final List<Card> hand;
+
     public Player(String name) {
         this.name = name;
         this.hand = new ArrayList<>();
@@ -139,7 +142,4 @@ abstract public class Player {
     public String toString() {
         return name;
     }
-
-    private final String name;
-    private final List<Card> hand;
 }

@@ -72,6 +72,7 @@ public class Controller {
 
                 view.clearCards();
                 view.updateStats(model.playerChips(), model.playerBet());
+                model.updatePlayer(view.getSettings(), model.playerChips());
                 view.updateTrueCount(model.getTrueCount());
                 view.updateDeckCount(model.deckCount());
                 view.displayMessage(Message.welcome());
@@ -119,6 +120,7 @@ public class Controller {
 
             view.updateStats(model.playerChips(), model.playerBet());
             view.updateChips(model.playerChips(), Model.chips());
+            model.updatePlayer(view.getSettings(), model.playerChips());
         }
 
         private final int value;
@@ -199,8 +201,8 @@ public class Controller {
             } else {
                 view.enableButton("Next Hand");
             }
-
             view.updateStats(model.playerChips(), model.playerBet());
+            model.updatePlayer(view.getSettings(), model.playerChips());
         }
     }
 
@@ -228,6 +230,7 @@ public class Controller {
             view.updateStats(model.playerChips(), model.playerBet());
             view.updateDeckCount(model.deckCount());
             view.disableButton("Hit", "Double Down", "Surrender", "Hint");
+            model.updatePlayer(view.getSettings(), model.playerChips());
         }
     }
 
@@ -244,6 +247,7 @@ public class Controller {
             view.updateDealerHandValue(model.dealerHandValue(),
                     model.dealerHasSoftHand());
             view.updateStats(model.playerChips(), model.playerBet());
+            model.updatePlayer(view.getSettings(), model.playerChips());
             view.disableAllChoices();
             view.enableButton("Next Hand");
             view.disableButton("Hint");
@@ -356,6 +360,7 @@ public class Controller {
             view.enableAllChips();
             view.updateChips(model.playerChips(), Model.chips());
             view.updateStats(model.playerChips(), model.playerBet());
+            model.updatePlayer(view.getSettings(), model.playerChips());
             view.updateDeckCount(model.deckCount());
         }
     }

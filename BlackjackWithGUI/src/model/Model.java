@@ -9,6 +9,7 @@ import java.util.List;
 import Cards.CardContainer;
 import Cards.Shoe;
 import File.DBOperations;
+import File.RetrieveAll;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,8 @@ public class Model {
     /**
      * The initial amount of chips the player has at the start of the game
      */
+    RetrieveAll retrieve = new RetrieveAll();
+    List<BlackjackPlayer> humanList = retrieve.getAllHumans();
     public static final int BANKROLL = 1000;
     private BlackjackPlayer player;
     private Dealer dealer;
@@ -212,6 +215,11 @@ public class Model {
         JOptionPane.showMessageDialog(null, "You do not have "
                 + "saved data named: " + name + " and you start "
                 + "with: 1000 chips", "Message", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void updatePlayer(Object[] settings, Double totalChips) {
+        String name = "'" + (String) settings[0] + "'";
+        dboperations.updateTable(name, totalChips);
     }
 
     public boolean nameisWrong(Object[] settings) {
