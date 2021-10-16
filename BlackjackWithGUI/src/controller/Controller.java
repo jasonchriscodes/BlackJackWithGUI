@@ -62,25 +62,30 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.loadSettings(view.getSettings());
-            view.displayTable();
-            view.resetHandValue();
-            view.clearCards();
-            view.updateStats(model.playerChips(), model.playerBet());
-            view.updateTrueCount(model.getTrueCount());
-            view.updateDeckCount(model.deckCount());
-            view.displayMessage(Message.welcome());
-
-            view.enableAllChips();
-            view.updateChips(model.playerChips(), Model.chips());
-            view.disableAllChoices();
-
-            if (model.betIsSufficient()) {
-                view.enableButton("Deal");
+            if (model.nameisWrong(view.getSettings()) == false) {
+                JOptionPane.showMessageDialog(null, "Enter the right name",
+                        "Message", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                view.disableButton("Deal");
+                model.loadSettings(view.getSettings());
+                view.displayTable();
+                view.resetHandValue();
+                view.clearCards();
+                view.updateStats(model.playerChips(), model.playerBet());
+                view.updateTrueCount(model.getTrueCount());
+                view.updateDeckCount(model.deckCount());
+                view.displayMessage(Message.welcome());
+
+                view.enableAllChips();
+                view.updateChips(model.playerChips(), Model.chips());
+                view.disableAllChoices();
+
+                if (model.betIsSufficient()) {
+                    view.enableButton("Deal");
+                } else {
+                    view.disableButton("Deal");
+                }
+                view.disableButton("Next Hand", "Hint");
             }
-            view.disableButton("Next Hand", "Hint");
         }
     }
 

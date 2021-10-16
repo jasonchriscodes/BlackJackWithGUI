@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Cards.CardContainer;
 import Cards.Shoe;
+import File.DBOperations;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,6 +43,7 @@ public class Model {
         dealer = new Dealer();
         discardDeck = new ArrayList<>();
     }
+    DBOperations dboperations = new DBOperations();
 
     /**
      * Returns the possible welcome options for the player in main menu
@@ -199,16 +202,32 @@ public class Model {
 
     public void loadSettings(Object[] settings) {
         String name = (String) settings[0];
-        if (name.isEmpty()) {
-            player = new BlackjackPlayer();
-        } else {
-            player = new BlackjackPlayer(name);
-        }
+        player = new BlackjackPlayer(name);
         int deckAmount = (int) settings[1];
         minimumBet = (int) settings[2];
         stand17 = (int) settings[3] == 1;
         shoe = new Shoe(deckAmount);
         shoe.shuffle();
+    }
+
+    public boolean nameisWrong(Object[] settings) {
+        String textFieldName = (String) settings[0];
+        if (textFieldName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Empty name!",
+                    "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        } else if (!dboperations.checkName(textFieldName)) {
+            JOptionPane.showMessageDialog(null, "Characters only!",
+                    "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        } else if (dboperations.hasUser(textFieldName)) {
+            JOptionPane.showMessageDialog(null, "User already exists!",
+                    "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        } else {
+            player = new BlackjackPlayer(textFieldName);
+            return true;
+        }
     }
 
     /**
