@@ -87,6 +87,11 @@ public class RetrieveAll {
         return human.getBankroll();
     }
 
+    public void deletePlayerByName(String name) {
+        BlackjackPlayer human = new BlackjackPlayer(name);
+        ResultSet rs = dbManager.myQuery("delete from Players where name=" + name);
+    }
+
     public static void main(String args[]) {
         RetrieveAll retrieve = new RetrieveAll();
         List<BlackjackPlayer> humanList = retrieve.getAllHumans();
