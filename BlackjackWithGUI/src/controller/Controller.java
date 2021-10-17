@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class Controller {
 
+    private final Model model;
+    private final View view;
+
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
@@ -62,10 +65,34 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (model.nameisWrong(view.getSettings()) == false) {
+            if (model.nameisWrong(view.getSettings()) == true) {
                 JOptionPane.showMessageDialog(null, "Enter the right name",
                         "Message", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+            } else if ((model.nameisExist(view.getSettings()) == true) && (view.prompt(Message.playerAlreadyExist(), "New Game"))) {
+                JOptionPane.showMessageDialog(null, "You continue with the existing name",
+                        "Message", JOptionPane.INFORMATION_MESSAGE);
+                model.loadDataTable(view.getSettings());
+                view.displayTable();
+                view.resetHandValue();
+
+                view.clearCards();
+                view.updateStats(model.playerChips(), model.playerBet());
+                model.updatePlayer(view.getSettings(), model.playerChips());
+                view.updateTrueCount(model.getTrueCount());
+                view.updateDeckCount(model.deckCount());
+                view.displayMessage(Message.welcome());
+
+                view.enableAllChips();
+                view.updateChips(model.playerChips(), Model.chips());
+                view.disableAllChoices();
+
+                if (model.betIsSufficient()) {
+                    view.enableButton("Deal");
+                } else {
+                    view.disableButton("Deal");
+                }
+                view.disableButton("Next Hand", "Hint");
+            } else if ((model.nameisWrong(view.getSettings()) == false) && (model.nameisExist(view.getSettings()) == false)) {
                 model.loadSettings(view.getSettings());
                 view.displayTable();
                 view.resetHandValue();
@@ -87,6 +114,9 @@ public class Controller {
                     view.disableButton("Deal");
                 }
                 view.disableButton("Next Hand", "Hint");
+            } else {
+                JOptionPane.showMessageDialog(null, "Enter the right name",
+                        "Message", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
@@ -420,7 +450,4 @@ public class Controller {
     private void initView() {
         view.displayMenu();
     }
-
-    private final Model model;
-    private final View view;
 }
