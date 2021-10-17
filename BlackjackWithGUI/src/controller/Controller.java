@@ -68,31 +68,53 @@ public class Controller {
             if (model.nameisWrong(view.getSettings()) == true) {
                 JOptionPane.showMessageDialog(null, "Enter the right name",
                         "Message", JOptionPane.INFORMATION_MESSAGE);
-            } else if ((model.nameisExist(view.getSettings()) == true) && (view.prompt(Message.playerAlreadyExist(), "New Game"))) {
-                JOptionPane.showMessageDialog(null, "You continue with the existing name",
-                        "Message", JOptionPane.INFORMATION_MESSAGE);
-                model.loadDataTable(view.getSettings());
-                view.displayTable();
-                view.resetHandValue();
+            } else if ((model.nameisExist(view.getSettings()) == true)) {
+                if ((view.promptStartGame(Message.startNewGame(), "New Game"))) {
+                    model.loadSettings(view.getSettings());
+                    view.displayTable();
+                    view.resetHandValue();
 
-                view.clearCards();
-                view.updateStats(model.playerChips(), model.playerBet());
-                model.updatePlayer(view.getSettings(), model.playerChips());
-                view.updateTrueCount(model.getTrueCount());
-                view.updateDeckCount(model.deckCount());
-                view.displayMessage(Message.welcome());
+                    view.clearCards();
+                    view.updateStats(model.playerChips(), model.playerBet());
+                    model.updatePlayer(view.getSettings(), model.playerChips());
+                    view.updateTrueCount(model.getTrueCount());
+                    view.updateDeckCount(model.deckCount());
+                    view.displayMessage(Message.welcome());
 
-                view.enableAllChips();
-                view.updateChips(model.playerChips(), Model.chips());
-                view.disableAllChoices();
+                    view.enableAllChips();
+                    view.updateChips(model.playerChips(), Model.chips());
+                    view.disableAllChoices();
 
-                if (model.betIsSufficient()) {
-                    view.enableButton("Deal");
+                    if (model.betIsSufficient()) {
+                        view.enableButton("Deal");
+                    } else {
+                        view.disableButton("Deal");
+                    }
+                    view.disableButton("Next Hand", "Hint");
                 } else {
-                    view.disableButton("Deal");
+                    model.loadDataTable(view.getSettings());
+                    view.displayTable();
+                    view.resetHandValue();
+
+                    view.clearCards();
+                    view.updateStats(model.playerChips(), model.playerBet());
+                    model.updatePlayer(view.getSettings(), model.playerChips());
+                    view.updateTrueCount(model.getTrueCount());
+                    view.updateDeckCount(model.deckCount());
+                    view.displayMessage(Message.welcome());
+
+                    view.enableAllChips();
+                    view.updateChips(model.playerChips(), Model.chips());
+                    view.disableAllChoices();
+
+                    if (model.betIsSufficient()) {
+                        view.enableButton("Deal");
+                    } else {
+                        view.disableButton("Deal");
+                    }
+                    view.disableButton("Next Hand", "Hint");
                 }
-                view.disableButton("Next Hand", "Hint");
-            } else if ((model.nameisWrong(view.getSettings()) == false) && (model.nameisExist(view.getSettings()) == false)) {
+            } else if ((model.nameisExist(view.getSettings()) == false)) {
                 model.loadSettings(view.getSettings());
                 view.displayTable();
                 view.resetHandValue();
@@ -114,9 +136,6 @@ public class Controller {
                     view.disableButton("Deal");
                 }
                 view.disableButton("Next Hand", "Hint");
-            } else {
-                JOptionPane.showMessageDialog(null, "Enter the right name",
-                        "Message", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
@@ -425,7 +444,6 @@ public class Controller {
         view.initHandOptions(Model.options());
 
         view.initButtonActionListener("New Game", new NewGameAction());
-        view.initButtonActionListener("Load Game", new LoadGameAction());
         view.initButtonActionListener("Exit", new ExitGameAction());
         view.initButtonActionListener("Play", new PlayAction());
         view.initButtonActionListener("Back", new BackAction());
