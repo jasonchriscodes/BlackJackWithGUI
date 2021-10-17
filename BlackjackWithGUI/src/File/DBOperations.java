@@ -68,7 +68,7 @@ public class DBOperations {
         try {
             statement = dbManager.getConnection().createStatement();
             String sqlInsert = "insert into " + newTableName + "(name, chips) " + " values("
-                    + "'" + name + "', " + chips + ")";
+                    + "'" + name + "', " + chips + ")";// remember use 'NAME'
             statement.executeUpdate(sqlInsert);
 //            System.out.println("Data has been saved");
         } catch (SQLException ex) {
