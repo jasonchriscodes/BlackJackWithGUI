@@ -19,8 +19,7 @@ public class WelcomeSettingPanel extends JComponent {
 
     private Image bgImage;
     private JPanel welcomePanel;
-    private JButton newGameButton;
-    private JButton loadGameButton;
+    private JButton startGameButton;
     private JButton exitButton;
     private static final int WIDTH = 450;
     private static final int HEIGHT = 600;
@@ -34,44 +33,29 @@ public class WelcomeSettingPanel extends JComponent {
         welcomePanel = new JPanel();
         setLayout(null);
 
-        newGameButton = new JButton("New Game");
-        loadGameButton = new JButton("Load Game");
+        startGameButton = new JButton("Start Game");
         exitButton = new JButton("Exit");
 
-        newGameButton.setFont(View.FONT.generate(14, Font.BOLD));
-        loadGameButton.setFont(View.FONT.generate(14, Font.BOLD));
+        startGameButton.setFont(View.FONT.generate(14, Font.BOLD));
         exitButton.setFont(View.FONT.generate(14, Font.BOLD));
 
         welcomePanel.setBackground(View.PALETTE.menu());
-        newGameButton.setForeground(View.PALETTE.menu());
-        loadGameButton.setForeground(View.PALETTE.menu());
+        startGameButton.setForeground(View.PALETTE.menu());
         exitButton.setForeground(View.PALETTE.menu());
 
-        newGameButton.setBackground(View.PALETTE.button());
-        loadGameButton.setBackground(View.PALETTE.button());
+        startGameButton.setBackground(View.PALETTE.button());
         exitButton.setBackground(View.PALETTE.button());
 
-        add(newGameButton);
-        add(loadGameButton);
+        add(startGameButton);
         add(exitButton);
 
-        newGameButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 30, 120, 42);
-        loadGameButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 100, 120, 42);
+        startGameButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 80, 120, 42);
         exitButton.setBounds(WIDTH / 2 - 60, HEIGHT / 2 + 170, 120, 42);
 
-        DBOperations dboperations = new DBOperations();
-
-        if (dboperations.isDatabaseEmpty()) {
-            loadGameButton.setEnabled(false);
-        }
     }
 
     public void initNewGameActionListener(ActionListener l) {
-        newGameButton.addActionListener(l);
-    }
-
-    public void initLoadGameActionListener(ActionListener l) {
-        loadGameButton.addActionListener(l);
+        startGameButton.addActionListener(l);
     }
 
     public void initExitActionListener(ActionListener l) {
