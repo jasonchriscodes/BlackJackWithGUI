@@ -217,19 +217,35 @@ public class DBOperations {
         }
         return false;
     }
+
+    public void deleteUser(String name) throws SQLException {
+        try {
+            statement = dbManager.getConnection().createStatement();
+            String sqlDeleteUser = "DELETE FROM " + newTableName + " WHERE NAME =" + name;
+
+            statement.executeUpdate(sqlDeleteUser);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 //
 
     public static void main(String[] args) {
         DBOperations dboperations = new DBOperations();
-//        dboperations.createTable();
+        try {
+            //        dboperations.createTable();
 //        dboperations.addData("Jason", 50);
 //        dboperations.getQuery();
-        dboperations.updateTable("'Jason'", 80.0);
+            dboperations.deleteUser("'Jason'"); // remember 'NAME'
+//        dboperations.updateTable("'Jason'", 80.0);
 //        dboperations.getQuery();
 //        if (dboperations.hasUser("Jason")) {
 //            System.out.println("User already exist");
 //        }
 //        System.out.println("User NOT exist");
 //        dboperations.dbManager.closeConnections();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
