@@ -151,6 +151,10 @@ public class Message {
         return "Welcome to Blackjack! Place a bet.";
     }
 
+    public static String playerAlreadyExist() {
+        return "Are you sure you want to start a new chips with this user?";
+    }
+
     // Suppress default constructor for noninstantiability
     private Message() {
         throw new AssertionError();
