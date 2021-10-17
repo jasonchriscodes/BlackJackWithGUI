@@ -342,6 +342,15 @@ public class View {
         return option == 0;
     }
 
+    public boolean promptStartGame(String message, String title) {
+        JFrame frame = new JFrame();
+        String[] options = new String[2];
+        options[0] = "Start a new game";
+        options[1] = "Load the game";
+        int option = JOptionPane.showOptionDialog(frame.getContentPane(), message, title, 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+        return option == 0;
+    }
+
     /**
      * Places the front side of the dealer's hole card down.
      *
@@ -618,8 +627,6 @@ public class View {
             settingsPanel.initBackActionListener(l);
         } else if (key.equals("New Game")) {
             welcomeSettingPanel.initNewGameActionListener(l);
-        } else if (key.equals("Load Game")) {
-            welcomeSettingPanel.initLoadGameActionListener(l);
         } else if (key.equals("Exit")) {
             welcomeSettingPanel.initExitActionListener(l);
         } else {
