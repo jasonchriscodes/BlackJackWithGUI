@@ -52,10 +52,11 @@ public class PreparedStatement {
 //        retrieve update
         BlackjackPlayer humanUpdated = retrieve.getPlayerByName("'Jason'");
         humanUpdated.setBankroll(70);
+        System.out.println(retrieve.getChipsByName("'Susi'"));
         retrieve.dbManager.closeConnections();
-        System.out.println("Update player name: " + humanUpdated.getName() + " total chips to: " + humanUpdated.getBankroll());
-        for (BlackjackPlayer human : humanList) {
-            System.out.println("Name: " + human.getName() + ", Chips: " + human.getBankroll());
-        }
+//        System.out.println("Update player name: " + humanUpdated.getName() + " total chips to: " + humanUpdated.getBankroll());
+//        for (BlackjackPlayer human : humanList) {
+//            System.out.println("Name: " + human.getName() + ", Chips: " + human.getBankroll());
+//        }
     }
 }
