@@ -10,6 +10,9 @@ import Cards.CardContainer;
 import Cards.Shoe;
 import File.DBOperations;
 import File.RetrieveAll;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -211,6 +214,13 @@ public class Model {
         stand17 = (int) settings[3] == 1;
         shoe = new Shoe(deckAmount);
         shoe.shuffle();
+        if (dboperations.hasUser(name) == true) {
+            try {
+                dboperations.deleteUser("'" + name + "'");
+            } catch (SQLException ex) {
+                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         dboperations.addData(name, 1000);
         JOptionPane.showMessageDialog(null, "You do not have "
                 + "saved data named: " + name + " and you start "
@@ -220,7 +230,7 @@ public class Model {
     public void loadDataTable(Object[] settings) {
         String name = (String) settings[0];
         double chip = retrieve.getChipsByName("'" + name + "'"); // remember use 'NAME'
-        player = new BlackjackPlayer(name);
+        player = new BlackjackPlayer(name, chip);
         int deckAmount = (int) settings[1];
         minimumBet = (int) settings[2];
         stand17 = (int) settings[3] == 1;
@@ -254,7 +264,7 @@ public class Model {
     public boolean nameisExist(Object[] settings) {
         String textFieldName = (String) settings[0];
         if (dboperations.hasUser(textFieldName)) {
-            JOptionPane.showMessageDialog(null, "User already exists!",
+            JOptionPane.showMessageDialog(null, "Name is exist!",
                     "Message", JOptionPane.INFORMATION_MESSAGE);
             return true;
         }
