@@ -217,6 +217,19 @@ public class Model {
                 + "with: 1000 chips", "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public void loadDataTable(Object[] settings) {
+        String name = (String) settings[0];
+        double chip = retrieve.getChipsByName("'" + name + "'"); // remember use 'NAME'
+        player = new BlackjackPlayer(name);
+        int deckAmount = (int) settings[1];
+        minimumBet = (int) settings[2];
+        stand17 = (int) settings[3] == 1;
+        shoe = new Shoe(deckAmount);
+        shoe.shuffle();
+        JOptionPane.showMessageDialog(null, "You have "
+                + "saved data named: " + name + " and now you have: " + chip + " chips", "Message", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void updatePlayer(Object[] settings, Double totalChips) {
         String name = "'" + (String) settings[0] + "'";
         dboperations.updateTable(name, totalChips);
@@ -227,19 +240,25 @@ public class Model {
         if (textFieldName.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Name can not empty!",
                     "Message", JOptionPane.INFORMATION_MESSAGE);
-            return false;
+            return true;
         } else if (!dboperations.checkName(textFieldName)) {
             JOptionPane.showMessageDialog(null, "Characters only!",
                     "Message", JOptionPane.INFORMATION_MESSAGE);
-            return false;
-        } else if (dboperations.hasUser(textFieldName)) {
-            JOptionPane.showMessageDialog(null, "User already exists!",
-                    "Message", JOptionPane.INFORMATION_MESSAGE);
-            return false;
+            return true;
         } else {
             player = new BlackjackPlayer(textFieldName);
+            return false;
+        }
+    }
+
+    public boolean nameisExist(Object[] settings) {
+        String textFieldName = (String) settings[0];
+        if (dboperations.hasUser(textFieldName)) {
+            JOptionPane.showMessageDialog(null, "User already exists!",
+                    "Message", JOptionPane.INFORMATION_MESSAGE);
             return true;
         }
+        return false;
     }
 
     /**
