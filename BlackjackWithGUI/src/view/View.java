@@ -292,13 +292,13 @@ public class View {
 
     public void displayMenu() {
         backgroundPanel.removeAll();
-        backgroundPanel.add(welcomePanel); // previously startPanel
+        backgroundPanel.add(welcomePanel);
         backgroundPanel.repaint();
     }
 
     public void displaySettings() {
         backgroundPanel.removeAll();
-        backgroundPanel.add(startPanel); // previously startPanel
+        backgroundPanel.add(startPanel);
         backgroundPanel.repaint();
     }
 
