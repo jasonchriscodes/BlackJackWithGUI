@@ -151,8 +151,8 @@ public class Message {
         return "Welcome to Blackjack! Place a bet.";
     }
 
-    public static String playerAlreadyExist() {
-        return "Are you sure you want to start a new chips with this user?";
+    public static String startNewGame() {
+        return "Name is exist. Are you sure want start a new game with 1000 chips and lost all current saved chips?";
     }
 
     // Suppress default constructor for noninstantiability
