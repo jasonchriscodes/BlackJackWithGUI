@@ -67,7 +67,7 @@ public class RetrieveAll {
         return human;
     }
 
-    public BlackjackPlayer getChipsByName(String name) {
+    public Double getChipsByName(String name) {
         BlackjackPlayer human = new BlackjackPlayer(name);
         ResultSet rs = dbManager.myQuery("select * from Players where name=" + name);
 
