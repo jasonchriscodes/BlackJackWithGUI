@@ -3,6 +3,7 @@
  */
 package File;
 
+import View.Message;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class DBOperations {
     private final Connection conn;
     private Statement statement;
     private String newTableName = "PLAYERS";
+    private String stringTable = "MESSAGE";
 
     public DBOperations() {
         dbManager = new DBManager();
@@ -54,6 +56,29 @@ public class DBOperations {
         }
     }
 
+    public void createMessageTable() {
+        try {
+            Statement statement = dbManager.getConnection().createStatement();
+            // DO NOT use "USER" name as table because it is a built-in function in Derby. 
+            // You'd have to specify a different table name for the JPA entity 
+            // (usually done via the @Table annotation).
+
+            // check if table is exist
+            this.checkExistedTable(stringTable);
+
+            String sqlCreateMessage = "create table " + stringTable + " (Title varchar(20) not null, "
+                    + "Message varchar(100), PRIMARY KEY (TITLE))";
+
+            statement.executeUpdate(sqlCreateMessage);
+
+            //statement.close();
+//            System.out.println("Table created");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void deleteTable() throws SQLException {
         statement = dbManager.getConnection().createStatement();
         String sqlDelete = "Drop table " + newTableName;
@@ -69,6 +94,18 @@ public class DBOperations {
             statement = dbManager.getConnection().createStatement();
             String sqlInsert = "insert into " + newTableName + "(name, chips) " + " values("
                     + "'" + name + "', " + chips + ")";// remember use 'NAME'
+            statement.executeUpdate(sqlInsert);
+//            System.out.println("Data has been saved");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addMessage(String title, String message) {
+        try {
+            statement = dbManager.getConnection().createStatement();
+            String sqlInsert = "insert into " + stringTable + "(Title, Message) " + " values("
+                    + "'" + title + "', '" + message + "')";// remember use 'NAME'
             statement.executeUpdate(sqlInsert);
 //            System.out.println("Data has been saved");
         } catch (SQLException ex) {
@@ -218,6 +255,33 @@ public class DBOperations {
         return false;
     }
 
+    /**
+     * Checks for message in database.
+     *
+     * @param title
+     * @return true, if the message exists in database
+     */
+    public boolean hasMessage(String title) {
+        try {
+            Statement statement = dbManager.getConnection().createStatement();
+            String sqlCheckMessage = "SELECT TITLE FROM MESSAGE";
+
+            ResultSet nameSet = statement.executeQuery(sqlCheckMessage);
+
+            while (nameSet.next()) {
+                String s = nameSet.getString("TITLE");
+                if (s.toLowerCase().equals(title.toLowerCase())) {
+                    return true;
+                }
+                System.out.println(s);
+                System.out.println(title);
+            }
+        } catch (SQLException sqle) {
+            return true;
+        }
+        return false;
+    }
+
     public void deleteUser(String name) throws SQLException {
         try {
             statement = dbManager.getConnection().createStatement();
@@ -232,20 +296,23 @@ public class DBOperations {
 
     public static void main(String[] args) {
         DBOperations dboperations = new DBOperations();
-        try {
-            //        dboperations.createTable();
+//        try {
+//            dboperations.createTable();
+        dboperations.createMessageTable();
+        dboperations.addMessage("Rule", Message.opening());
 //        dboperations.addData("Jason", 50);
 //        dboperations.getQuery();
-            dboperations.deleteUser("'Jason'"); // remember 'NAME'
+//            dboperations.deleteUser("'Jason'"); // remember 'NAME'
 //        dboperations.updateTable("'Jason'", 80.0);
 //        dboperations.getQuery();
 //        if (dboperations.hasUser("Jason")) {
 //            System.out.println("User already exist");
 //        }
 //        System.out.println("User NOT exist");
-//        dboperations.dbManager.closeConnections();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        dboperations.dbManager.closeConnections();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 }
