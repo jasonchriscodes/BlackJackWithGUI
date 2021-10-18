@@ -11,6 +11,49 @@ import Graphic.Format;
  */
 public class Message {
 
+    private String title;
+    private String message;
+
+    /**
+     * Message constructor
+     *
+     * @param title
+     */
+    public Message(String title) {
+        this.title = title;
+    }
+
+    /**
+     * Another Message constructor
+     *
+     * @param title
+     * @param message
+     */
+    public Message(String title, String message) {
+        this.title = title;
+        this.message = message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public static String opening() {
+        return "Welcome to Blackjack! Created by Jason Christian - 21136899";
+    }
+
     public static String rule() {
         return "--------------------------------------------------------Game Rules--------------------------------------------------- \n"
                 + "\n"
@@ -156,7 +199,8 @@ public class Message {
     }
 
     // Suppress default constructor for noninstantiability
-    private Message() {
+    public Message() {
         throw new AssertionError();
     }
+
 }

@@ -27,6 +27,7 @@ public class Controller {
         this.view = view;
         initController();
         initView();
+        JOptionPane.showMessageDialog(null, Message.opening(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showMessageDialog(null, Message.rule(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
