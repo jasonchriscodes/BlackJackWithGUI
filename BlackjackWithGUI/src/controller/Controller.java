@@ -4,6 +4,7 @@
 package Controller;
 
 import Cards.Card;
+import File.RetrieveAll;
 import Model.BasicStrategy;
 import Model.Model;
 import Model.Payout;
@@ -21,13 +22,14 @@ public class Controller {
 
     private final Model model;
     private final View view;
+    RetrieveAll retrieve = new RetrieveAll();
 
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
         initController();
         initView();
-        JOptionPane.showMessageDialog(null, Message.opening(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, retrieve.getMessageByTitle("'Rule'"), "Display Message", JOptionPane.INFORMATION_MESSAGE); // Remember 'NAME'
         JOptionPane.showMessageDialog(null, Message.rule(), "Display Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
