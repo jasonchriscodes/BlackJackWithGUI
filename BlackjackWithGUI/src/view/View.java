@@ -292,13 +292,14 @@ public class View {
     public void displayMenu() {
         backgroundPanel.removeAll();
         backgroundPanel.add(welcomePanel);
-        backgroundPanel.validate();
+        backgroundPanel.repaint();
     }
 
     public void displaySettings() {
         backgroundPanel.removeAll();
         backgroundPanel.add(startPanel);
         backgroundPanel.validate();
+        backgroundPanel.repaint();
     }
 
     public void displayTable() {
@@ -306,7 +307,7 @@ public class View {
         backgroundPanel.add(topPanel, BorderLayout.NORTH);
         backgroundPanel.add(tablePanel, BorderLayout.CENTER);
         backgroundPanel.add(optionsPanel, BorderLayout.SOUTH);
-        backgroundPanel.validate();
+        backgroundPanel.repaint();
     }
 
     /**
