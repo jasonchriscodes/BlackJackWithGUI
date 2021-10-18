@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Oct 18 16:40:32 NZDT 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-917c-923d-0000053bcc90 
+Mon Oct 18 18:54:49 NZDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-91f7-81ef-0000053b10b0 
 on database directory C:\Jason\Uoa\Compsys\NetBeansProjects\BlackJackWithGUI\BlackjackWithGUI\PlayersDB with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
 Loaded from file:/C:/Jason/Uoa/Compsys/NetBeansProjects/BlackJackWithGUI/BlackjackWithGUI/lib/derby.jar
 java.vendor=Oracle Corporation

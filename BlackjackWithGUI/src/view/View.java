@@ -82,7 +82,6 @@ public class View {
         frame.setSize(1366, 725); //1366, 725
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
         backgroundPanel = new Table();
 
         // Styling for the option pane
@@ -293,13 +292,13 @@ public class View {
     public void displayMenu() {
         backgroundPanel.removeAll();
         backgroundPanel.add(welcomePanel);
-        backgroundPanel.repaint();
+        backgroundPanel.validate();
     }
 
     public void displaySettings() {
         backgroundPanel.removeAll();
         backgroundPanel.add(startPanel);
-        backgroundPanel.repaint();
+        backgroundPanel.validate();
     }
 
     public void displayTable() {
@@ -307,7 +306,7 @@ public class View {
         backgroundPanel.add(topPanel, BorderLayout.NORTH);
         backgroundPanel.add(tablePanel, BorderLayout.CENTER);
         backgroundPanel.add(optionsPanel, BorderLayout.SOUTH);
-        backgroundPanel.repaint();
+        backgroundPanel.validate();
     }
 
     /**
