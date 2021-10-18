@@ -8,6 +8,7 @@ package File;
 
 import Model.BlackjackPlayer;
 import Model.Player;
+import View.Message;
 //import Model.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +46,25 @@ public class RetrieveAll {
         }
 
         return humanList;
+    }
+
+    public List<Message> getAllMessage() {
+        List<Message> messageList = new ArrayList<>();
+        ResultSet rs = dbManager.myQuery("select * from Message");
+        try {
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String message = rs.getString("message");
+
+                Message content = new Message(title, message);
+                messageList.add(content);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RetrieveAll.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return messageList;
     }
 
     public BlackjackPlayer getPlayerByName(String name) {
@@ -85,6 +105,26 @@ public class RetrieveAll {
         }
 
         return human.getBankroll();
+    }
+
+    public String getMessageByTitle(String title) {
+        Message message = new Message(title);
+        ResultSet rs = dbManager.myQuery("select * from Message where title=" + title);
+
+        if (rs == null) {
+            return null;
+        }
+
+        try {
+            while (rs.next()) {
+                message.setMessage(rs.getString("message"));
+            }
+
+        } catch (SQLException ex) {
+            return null;
+        }
+
+        return message.getMessage();
     }
 
     public void deletePlayerByName(String name) {
