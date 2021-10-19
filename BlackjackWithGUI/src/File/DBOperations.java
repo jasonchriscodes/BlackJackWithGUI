@@ -127,29 +127,6 @@ public class DBOperations {
         return true;
     }
 
-//    public void getQuery() {
-//        ResultSet rs = null;
-//        try {
-//            System.out.println("Please wait.... getting query....");
-//            Statement statement = dbManager.getConnection().createStatement(
-//                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-//                    ResultSet.CONCUR_READ_ONLY);
-//
-//            String nm = "Jason";
-//            String sqlQuery = "select chips from players "
-//                    + "where name ='" + nm + "'";
-//
-//            rs = statement.executeQuery(sqlQuery);
-//            rs.beforeFirst();
-//            while (rs.next()) {
-//                Double chips = rs.getDouble(1);
-//                System.out.println(nm + ":  " + chips + " chips");
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     public void updateTable(String name, Double Bankroll) {
         try {
             Statement statement = dbManager.getConnection().createStatement();
@@ -292,14 +269,14 @@ public class DBOperations {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//
 
-    public static void main(String[] args) {
-        DBOperations dboperations = new DBOperations();
-//        try {
-//            dboperations.createTable();
-        dboperations.createMessageTable();
-        dboperations.addMessage("Rule", Message.opening());
+    // Testing Purpose
+//    public static void main(String[] args) {
+//        DBOperations dboperations = new DBOperations();
+////        try {
+////            dboperations.createTable();
+//        dboperations.createMessageTable();
+//        dboperations.addMessage("Rule", Message.opening());
 //        dboperations.addData("Jason", 50);
 //        dboperations.getQuery();
 //            dboperations.deleteUser("'Jason'"); // remember 'NAME'
@@ -309,10 +286,9 @@ public class DBOperations {
 //            System.out.println("User already exist");
 //        }
 //        System.out.println("User NOT exist");
-
-        dboperations.dbManager.closeConnections();
+//        dboperations.dbManager.closeConnections();
 //        } catch (SQLException ex) {
 //            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-    }
+//    }
 }
